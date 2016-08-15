@@ -81,11 +81,11 @@ public class Runner {
 					if (b < 0)
 						System.out.print("- " + -1*b + "x ");
 					else
-						System.out.print(" + " + b + "x ");
+						System.out.print("+ " + b + "x ");
 					if (c < 0)
 						System.out.print("- " + -1*c + " = ");
 					else
-						System.out.print(" + " + c + " = ");
+						System.out.print("+ " + c + " = ");
 
 					int [] factoredEquation = GMath.factorQuadratic(a, b, c);
 					if (factoredEquation == null)
