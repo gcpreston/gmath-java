@@ -163,7 +163,7 @@ public class Runner {
 
 		case "quadratic":
 			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n"
-					+ "where input is three integers a, b, and c, in the format ax^2 + bx + c");
+					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
 			break;
 
 		default:
