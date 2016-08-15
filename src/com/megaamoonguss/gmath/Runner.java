@@ -23,14 +23,14 @@ public class Runner {
 				System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + GMath.findGCF(parseInt(args[1]), parseInt(args[2])));
 				break;
 			default:
-				returnUsage(null);
+				returnUsage("null");
 				break;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			if (args.length > 0)
 				returnUsage(args[0].toLowerCase());
 			else
-				returnUsage(null);
+				returnUsage("null");
 			System.exit(0);
 		}
 	}
@@ -38,7 +38,7 @@ public class Runner {
 	public static int parseInt(String s) {
 		try {
 			if (s == null) {
-				returnUsage(null);
+				returnUsage("null");
 				System.exit(0);
 				return 0;
 			} else {
@@ -52,6 +52,16 @@ public class Runner {
 	}
 	
 	public static void returnUsage(String operation) {
-		System.out.println("Usage: " + operation);
+		switch (operation) {
+		case "factor":
+			System.out.println("Usage: java -jar gmath.jar factor [input]\nwhere input is an integer.");
+			break;
+		case "gcf":
+			System.out.println("Usage: java -jar gmath.jar gcf [input]\nwhere input is two integers.");
+			break;
+		default:
+			System.out.println("Usage: java -jar gmath.jar [operation] [input]\n\nwhere operations include:\n\tfactor: return a list of factors "
+					+ "of an integer\n\tgcf: return the greatest common factor of two integers");
+		}
 	}
 }
