@@ -67,7 +67,46 @@ public class Runner {
 				else
 					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + GMath.findGCF(parseInt(args[1]), parseInt(args[2])));
 				break;
-
+			
+			//Factor quadratic and return the answer(s)
+			case "quadratic":
+				if (args.length > 4)
+					returnUsage();
+				else {
+					int a = parseInt(args[1]);
+					int b = parseInt(args[2]);
+					int c = parseInt(args[3]);
+					
+					System.out.print(a + "x^2 ");
+					if (b < 0)
+						System.out.print("- " + -1*b + "x ");
+					else
+						System.out.print(" + " + b + "x ");
+					if (c < 0)
+						System.out.print("- " + -1*c + " = ");
+					else
+						System.out.print(" + " + c + " = ");
+					
+					int [] factoredEquation = GMath.factorQuadratic(a, b, c);
+					if (factoredEquation == null)
+						System.out.println("Not factorable.");
+					else {
+						System.out.print("(" + factoredEquation[0] + "x ");
+						if (factoredEquation[1] > 0)
+							System.out.print("+ " + factoredEquation[1] + ")(" + factoredEquation[2] + "x ");
+						else
+							System.out.print("- " + factoredEquation[1] * -1 + ")(" + factoredEquation[2] + "x ");
+						if (factoredEquation[3] > 0)
+							System.out.println("+ " + factoredEquation[3] + ")");
+						else
+							System.out.println("- " + factoredEquation[3] * -1 + ")");
+					}
+					
+					System.out.println("x = " + GMath.solveQuadratic(a, b, c)[0] + ", " + GMath.solveQuadratic(a, b, c)[1]);
+				}
+				break;
+				
+			//Return usage
 			default:
 				returnUsage();
 				break;
@@ -81,9 +120,10 @@ public class Runner {
 	public static void returnUsage() {
 		String usage = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
 				+ "add: add two or more numbers\n\t"
-				+ "subtract: subtract two or more numbers"
+				+ "subtract: subtract two or more numbers\n\t"
 				+ "factor: return a list of factors of an integer\n\t"
-				+ "gcf: return the greatest common factor of two integers";
+				+ "gcf: return the greatest common factor of two integers\n\t"
+				+ "quadratic: factor quadratic and return the answer(s)";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -92,17 +132,31 @@ public class Runner {
 
 		switch (operation) {
 		case "add":
-			System.out.println("Usage: java -jar gmath.jar add [input]\nwhere input is two or more numbers.");
+			System.out.println("Usage: java -jar gmath.jar add [input]\n"
+					+ "where input is two or more numbers.");
 			break;
+			
 		case "subtract":
-			System.out.println("Usage: java -jar gmath.jar subtract [input]\nwhere input is two or more numbers.\nThe second number and after are subtracted from the first number.");
+			System.out.println("Usage: java -jar gmath.jar subtract [input]\n"
+					+ "where input is two or more numbers.\n"
+					+ "The second number and after are subtracted from the first number.");
 			break;
+			
 		case "factor":
-			System.out.println("Usage: java -jar gmath.jar factor [input]\nwhere input is an integer.");
+			System.out.println("Usage: java -jar gmath.jar factor [input]\n"
+					+ "where input is an integer.");
 			break;
+			
 		case "gcf":
-			System.out.println("Usage: java -jar gmath.jar gcf [input]\nwhere input is two integers.");
+			System.out.println("Usage: java -jar gmath.jar gcf [input]\n"
+					+ "where input is two integers.");
 			break;
+			
+		case "quadratic":
+			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n"
+					+ "where input is three integers a, b, and c, in the format ax^2 + bx + c");
+			break;
+			
 		default:
 			System.out.println(usage);
 		}
