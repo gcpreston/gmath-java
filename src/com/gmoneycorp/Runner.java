@@ -1,4 +1,4 @@
-package com.gmoneycorp.gmath;
+package com.gmoneycorp;
 
 public class Runner {
 
@@ -51,7 +51,7 @@ public class Runner {
 				}
 				System.out.print(subAns);
 				break;
-
+				
 			//Return a list of factors of an integer
 			case "factor":
 				if (args.length > 2)
@@ -73,21 +73,10 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					int a = parseInt(args[1]);
-					int b = parseInt(args[2]);
-					int c = parseInt(args[3]);
+					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
+					System.out.println(quad + " = ");
 
-					System.out.print(a + "x^2 ");
-					if (b < 0)
-						System.out.print("- " + -1*b + "x ");
-					else
-						System.out.print("+ " + b + "x ");
-					if (c < 0)
-						System.out.print("- " + -1*c + " = ");
-					else
-						System.out.print("+ " + c + " = ");
-
-					int [] factoredEquation = GMath.factorQuadratic(a, b, c);
+					int [] factoredEquation = GMath.factorQuadratic(quad);
 					if (factoredEquation == null)
 						System.out.println("Not factorable.\n");
 					else {
@@ -102,19 +91,28 @@ public class Runner {
 							System.out.println("- " + factoredEquation[3] * -1 + ")\n");
 					}
 
-					if (GMath.solveDiscriminant(a, b, c) > 0) {
+					if (GMath.solveDiscriminant(quad) > 0) {
 						System.out.println("Two real solutions:");
-						System.out.println("x = " + GMath.solveQuadratic(a, b, c)[0] + ", " + GMath.solveQuadratic(a, b, c)[1]);
+						System.out.println("x = " + GMath.solveQuadratic(quad)[0] + ", " + GMath.solveQuadratic(quad)[1]);
 					}
-					else if (GMath.solveDiscriminant(a, b, c) == 0) {
+					else if (GMath.solveDiscriminant(quad) == 0) {
 						System.out.println("One real solution (duplicate solutions):");
-						System.out.println("x = " + GMath.solveQuadratic(a, b, c)[0]);
+						System.out.println("x = " + GMath.solveQuadratic(quad)[0]);
 					}
-					else if (GMath.solveDiscriminant(a, b, c) < 0)
+					else if (GMath.solveDiscriminant(quad) < 0)
 						System.out.println("Two imaginary solutions.");
 				}
 				break;
 
+			//Return discriminant of quadratic function
+			case "disc":
+				if (args.length > 4)
+					returnUsage();
+				else {
+					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
+					System.out.println("The discriminant of " + quad + " is " + GMath.solveDiscriminant(quad));
+				}
+				break;
 			//Return usage
 			default:
 				returnUsage();

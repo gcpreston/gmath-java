@@ -1,0 +1,69 @@
+package com.gmoneycorp;
+import java.util.ArrayList;
+
+public class GMath {
+	
+	public static ArrayList<Integer> factor(int num) {
+		ArrayList<Integer> factors = new ArrayList<Integer>();
+
+		if (num > 0) {
+			for (int i = 1; i <= num; i++) {
+				if (num % i == 0)
+					factors.add(i);
+			}
+		}
+		else {
+			for (int i = 1; i <= num*-1; i++) {
+				if (num % i == 0)
+					factors.add(i);
+			}
+		}
+
+		return factors;
+	}
+
+	public static int findGCF(int num1, int num2) {
+		ArrayList<Integer> factorsNum1 = factor(num1);
+		ArrayList<Integer> factorsNum2 = factor(num2);
+		int GCF = 1;
+
+		for (int i = 0; i < factorsNum1.size(); i++) {
+			for (int j = 0; j < factorsNum2.size(); j++) {
+				if (factorsNum1.get(i) == factorsNum2.get(j))
+					GCF = factorsNum1.get(i);
+			}
+		}
+		return GCF;
+	}
+
+	public static int[] factorQuadratic(Quadratic quad) {
+		int[] workingFactors = quad.findWorkingFactors();
+
+		if (workingFactors == null)
+			return null;
+
+		int group1GCF = findGCF(quad.a, workingFactors[0]);
+		int group2GCF = findGCF(workingFactors[1], quad.c);
+
+		if ((quad.a/group1GCF) != (workingFactors[1]/group2GCF) || (workingFactors[0]/group1GCF) != (quad.c/group2GCF)) {
+			group2GCF *= -1;
+		}
+		int[] finalEquation = {group1GCF, group2GCF, (quad.a/group1GCF), (workingFactors[0]/group1GCF)};
+
+		return finalEquation;
+	}
+	
+	public static double[] solveQuadratic(Quadratic quad) {
+		double [] answers = new double [2];
+		
+		answers[0] = ((-1*quad.b) + Math.sqrt(Math.pow(quad.b, 2) - (4 * quad.a * quad.c))) / (2 * quad.a);
+		answers[1] = ((-1*quad.b) - Math.sqrt(Math.pow(quad.b, 2) - (4 * quad.a * quad.c))) / (2 * quad.a);
+		
+		return answers;
+	}
+	
+	public static double solveDiscriminant(Quadratic quad)  {
+		return Math.pow(quad.b, 2) - (4 * quad.a * quad.c);
+	}
+	
+}

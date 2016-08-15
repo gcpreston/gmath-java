@@ -1,10 +1,20 @@
-package com.gmoneycorp.gmath;
+package com.gmoneycorp;
 
 import java.util.ArrayList;
 
 public class Quadratic {
 
-	public static int[] findWorkingFactors (int a, int b, int c) {
+	public int a;
+	public int b;
+	public int c;
+	
+	public Quadratic(int a, int b, int c) {
+		this.a = a;
+		this.b = b;
+		this.c = c;
+	}
+	
+	public int[] findWorkingFactors() {
 		ArrayList<Integer> factors = GMath.factor(a*c);
 		
 		int[] workingFactors = new int[2];
@@ -37,5 +47,19 @@ public class Quadratic {
 		}
 
 		return null;
+	}
+	
+	public String toString() {
+		String str = a + "x^2 ";
+		if (b < 0)
+			str += "- " + -1*b + "x ";
+		else
+			str += "+ " + b + "x ";
+		if (c < 0)
+			str += "- " + -1*c;
+		else
+			str += "+ " + c;
+		
+		return str;
 	}
 }
