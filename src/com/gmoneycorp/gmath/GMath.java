@@ -96,4 +96,8 @@ public class GMath {
 		
 		return answers;
 	}
+	
+	public static double solveDiscriminant (int a, int b, int c)  {
+		return Math.pow(b, 2) - (4 * a * c);
+	}
 }
