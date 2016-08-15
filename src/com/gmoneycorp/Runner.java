@@ -130,7 +130,8 @@ public class Runner {
 				+ "subtract: subtract two or more numbers\n\t"
 				+ "factor: return a list of factors of an integer\n\t"
 				+ "gcf: return the greatest common factor of two integers\n\t"
-				+ "quadratic: factor quadratic and return the answer(s)";
+				+ "quadratic: factor quadratic and return the answer(s)"
+				+ "dis: return the discriminant of a quadratic";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -164,6 +165,11 @@ public class Runner {
 					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
 			break;
 
+		case "disc":
+			System.out.println("Usage: java -jar gmath.jar disc [input]\n"
+					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
+			break;
+			
 		default:
 			System.out.println(usage);
 		}
