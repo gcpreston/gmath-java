@@ -1,5 +1,5 @@
 # GMath
-Math library meant to be used through command line.
+Calculator/math library meant to be used through command line.
 
 ##Build
 Compile the java files to class files using the `javac` command. Then create a runnable JAR file containing the compiled class files with `Runner.class` as the location of the main method.
