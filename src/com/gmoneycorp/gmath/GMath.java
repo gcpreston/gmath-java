@@ -1,4 +1,4 @@
-package com.megaamoonguss.gmath;
+package com.gmoneycorp.gmath;
 import java.util.ArrayList;
 public class GMath {
 
