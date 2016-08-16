@@ -21,6 +21,13 @@ public abstract class GMath {
 
 		return factors;
 	}
+	
+	public static boolean isPrime(int num) {
+		if (factor(num).size() == 2)
+			return true;
+		else
+			return false;
+	}
 
 	public static int findGCF(int num1, int num2) {
 		ArrayList<Integer> factorsNum1 = factor(num1);
@@ -35,16 +42,9 @@ public abstract class GMath {
 		}
 		return GCF;
 	}
+	
+	public static int findLCM(int num1, int num2) {
+		return 0;
+	}
 
-	public static int[] factorQuadratic(Quadratic quad) {
-		return quad.factorQuadratic();
-	}
-	
-	public static double[] solveQuadratic(Quadratic quad) {
-		return quad.solveQuadratic();
-	}
-	
-	public static double solveDiscriminant(Quadratic quad) {
-		return quad.solveDiscriminant();
-	}
 }

@@ -1,5 +1,6 @@
 package com.gmoneycorp;
 import java.util.ArrayList;
+import com.gmoneycorp.GMath;
 
 public class Quadratic {
 

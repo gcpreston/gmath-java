@@ -60,6 +60,19 @@ public class Runner {
 					System.out.println("Factors of " + args[1] + ": " + GMath.factor(parseInt(args[1])));
 				break;
 
+
+			//Return true if input is prime, otherwise false
+			case "isprime":
+				if (args.length > 2)
+					returnUsage();
+				else {
+					if (GMath.isPrime(parseInt(args[1])))
+						System.out.println(args[1] + " is prime.");
+					else
+						System.out.println(args[1] + " is not prime.");
+				}
+				break;
+				
 			//Return the greatest common factor of two integers
 			case "gcf":
 				if (args.length > 3)
@@ -67,7 +80,7 @@ public class Runner {
 				else
 					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + GMath.findGCF(parseInt(args[1]), parseInt(args[2])));
 				break;
-
+				
 			//Factor quadratic and return the answer(s)
 			case "quadratic":
 				if (args.length > 4)
@@ -76,7 +89,7 @@ public class Runner {
 					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
 					System.out.print(quad + " = ");
 
-					int [] factoredEquation = GMath.factorQuadratic(quad);
+					int [] factoredEquation = quad.factorQuadratic();
 					if (factoredEquation == null)
 						System.out.println("Not factorable.\n");
 					else {
@@ -91,15 +104,15 @@ public class Runner {
 							System.out.println("- " + factoredEquation[3] * -1 + ")\n");
 					}
 
-					if (GMath.solveDiscriminant(quad) > 0) {
+					if (quad.solveDiscriminant() > 0) {
 						System.out.println("Two real solutions:");
-						System.out.println("x = " + GMath.solveQuadratic(quad)[0] + ", " + GMath.solveQuadratic(quad)[1]);
+						System.out.println("x = " + quad.solveQuadratic()[0] + ", " + quad.solveQuadratic()[1]);
 					}
-					else if (GMath.solveDiscriminant(quad) == 0) {
+					else if (quad.solveDiscriminant() == 0) {
 						System.out.println("One real solution (duplicate solutions):");
-						System.out.println("x = " + GMath.solveQuadratic(quad)[0]);
+						System.out.println("x = " + quad.solveQuadratic()[0]);
 					}
-					else if (GMath.solveDiscriminant(quad) < 0)
+					else if (quad.solveDiscriminant() < 0)
 						System.out.println("Two imaginary solutions.");
 				}
 				break;
@@ -110,7 +123,7 @@ public class Runner {
 					returnUsage();
 				else {
 					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
-					System.out.println("The discriminant of " + quad + " is " + GMath.solveDiscriminant(quad));
+					System.out.println("The discriminant of " + quad + " is " + quad.solveDiscriminant());
 				}
 				break;
 			//Return usage
@@ -129,9 +142,10 @@ public class Runner {
 				+ "add: add two or more numbers\n\t"
 				+ "subtract: subtract two or more numbers\n\t"
 				+ "factor: return a list of factors of an integer\n\t"
+				+ "isprime: return true if input is prime, otherwise return false\n\t"
 				+ "gcf: return the greatest common factor of two integers\n\t"
-				+ "quadratic: factor quadratic and return the answer(s)"
-				+ "dis: return the discriminant of a quadratic";
+				+ "quadratic: factor quadratic and return the answer(s)\n\t"
+				+ "disc: return the discriminant of a quadratic";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -155,6 +169,11 @@ public class Runner {
 					+ "where input is an integer.");
 			break;
 
+		case "isprime":
+			System.out.println("Usage: java -jar gmath.jar isprime [input]\n"
+					+ "where input is an integer.");
+			break;
+			
 		case "gcf":
 			System.out.println("Usage: java -jar gmath.jar gcf [input]\n"
 					+ "where input is two integers.");
@@ -206,5 +225,4 @@ public class Runner {
 			return 0;
 		}
 	}
-
 }
