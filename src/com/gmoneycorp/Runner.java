@@ -162,7 +162,7 @@ public class Runner {
 		}
 	}
 
-	public static void returnUsage() {
+	private static void returnUsage() {
 		String usage = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
 				+ "add\t\tadd two or more numbers\n\t"
 				+ "subtract\tsubtract two or more numbers\n\t"
@@ -225,7 +225,7 @@ public class Runner {
 		}
 	}
 
-	public static int parseInt(String s) {
+	private static int parseInt(String s) {
 		try {
 			if (s == null) {
 				returnUsage();
@@ -241,7 +241,7 @@ public class Runner {
 		}
 	}
 
-	public static double parseDouble(String s) {
+	private static double parseDouble(String s) {
 		try {
 			if (s == null) {
 				returnUsage();

@@ -4,9 +4,9 @@ import com.gmoneycorp.GMath;
 
 public class Quadratic {
 
-	public int a;
-	public int b;
-	public int c;
+	int a;
+	int b;
+	int c;
 	
 	public Quadratic(int a, int b, int c) {
 		this.a = a;
@@ -14,7 +14,7 @@ public class Quadratic {
 		this.c = c;
 	}
 	
-	public int[] findWorkingFactors() {
+	private int[] findWorkingFactors() {
 		ArrayList<Integer> factors = GMath.factor(a*c);
 		
 		int[] workingFactors = new int[2];

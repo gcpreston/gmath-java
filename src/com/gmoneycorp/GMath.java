@@ -109,11 +109,11 @@ public abstract class GMath {
 	}
 	
 	/**
-	 * A utility to find the number of occurances of a certain integer
+	 * A utility to find the number of occurrences of a certain integer
 	 * in a specified ArrayList. This is used in findLCM().
-	 * @param num	the integer to find the number of occurances of
+	 * @param num	the integer to find the number of occurrences of
 	 * @param arr	the ArrayList to search for num in
-	 * @return		the number of occurances of num in arr
+	 * @return		the number of occurrences of num in arr
 	 */
 	private static int countOf(int num, ArrayList<Integer> arr) {
 		int count = 0;
