@@ -1,5 +1,4 @@
 package com.gmoneycorp;
-
 import java.util.ArrayList;
 
 public class Quadratic {
@@ -47,6 +46,36 @@ public class Quadratic {
 		}
 
 		return null;
+	}
+	
+	public int[] factorQuadratic() {
+		int[] workingFactors = findWorkingFactors();
+
+		if (workingFactors == null)
+			return null;
+
+		int group1GCF = GMath.findGCF(a, workingFactors[0]);
+		int group2GCF = GMath.findGCF(workingFactors[1], c);
+
+		if ((a/group1GCF) != (workingFactors[1]/group2GCF) || (workingFactors[0]/group1GCF) != (c/group2GCF)) {
+			group2GCF *= -1;
+		}
+		int[] finalEquation = {group1GCF, group2GCF, (a/group1GCF), (workingFactors[0]/group1GCF)};
+
+		return finalEquation;
+	}
+	
+	public double[] solveQuadratic() {
+		double [] answers = new double [2];
+		
+		answers[0] = ((-1*b) + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+		answers[1] = ((-1*b) - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+		
+		return answers;
+	}
+	
+	public double solveDiscriminant()  {
+		return Math.pow(b, 2) - (4 * a * c);
 	}
 	
 	public String toString() {

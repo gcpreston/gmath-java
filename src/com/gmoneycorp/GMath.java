@@ -1,7 +1,7 @@
 package com.gmoneycorp;
 import java.util.ArrayList;
 
-public class GMath {
+public abstract class GMath {
 	
 	public static ArrayList<Integer> factor(int num) {
 		ArrayList<Integer> factors = new ArrayList<Integer>();
@@ -37,33 +37,14 @@ public class GMath {
 	}
 
 	public static int[] factorQuadratic(Quadratic quad) {
-		int[] workingFactors = quad.findWorkingFactors();
-
-		if (workingFactors == null)
-			return null;
-
-		int group1GCF = findGCF(quad.a, workingFactors[0]);
-		int group2GCF = findGCF(workingFactors[1], quad.c);
-
-		if ((quad.a/group1GCF) != (workingFactors[1]/group2GCF) || (workingFactors[0]/group1GCF) != (quad.c/group2GCF)) {
-			group2GCF *= -1;
-		}
-		int[] finalEquation = {group1GCF, group2GCF, (quad.a/group1GCF), (workingFactors[0]/group1GCF)};
-
-		return finalEquation;
+		return quad.factorQuadratic();
 	}
 	
 	public static double[] solveQuadratic(Quadratic quad) {
-		double [] answers = new double [2];
-		
-		answers[0] = ((-1*quad.b) + Math.sqrt(Math.pow(quad.b, 2) - (4 * quad.a * quad.c))) / (2 * quad.a);
-		answers[1] = ((-1*quad.b) - Math.sqrt(Math.pow(quad.b, 2) - (4 * quad.a * quad.c))) / (2 * quad.a);
-		
-		return answers;
+		return quad.solveQuadratic();
 	}
 	
-	public static double solveDiscriminant(Quadratic quad)  {
-		return Math.pow(quad.b, 2) - (4 * quad.a * quad.c);
+	public static double solveDiscriminant(Quadratic quad) {
+		return quad.solveDiscriminant();
 	}
-	
 }
