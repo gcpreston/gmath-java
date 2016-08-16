@@ -90,12 +90,20 @@ public class Runner {
 				}
 				break;
 				
-			//Return the greatest common factor of two integers
+			//Return the gcf of two positive integers
 			case "gcf":
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
 				else
 					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + GMath.findGCF(parseInt(args[1]), parseInt(args[2])));
+				break;
+				
+			//Return the lcm of two positive integers
+			case "lcm":
+				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
+					returnUsage();
+				else
+					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + GMath.findLCM(parseInt(args[1]), parseInt(args[2])));
 				break;
 				
 			//Factor quadratic and return the answer(s)

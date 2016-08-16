@@ -21,28 +21,21 @@ public abstract class GMath {
 
 		return factors;
 	}
-	
-	public static ArrayList<Integer> primeFactorize(int num) {
-		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
-		
-		int i = 2;
-		while (i < Math.sqrt((double) num)) {
-			if (isPrime(i) && num % i == 0) {
-				primeFactors.add(i);
-				num /= i;
-				
-				if (isPrime(num)) {
-					primeFactors.add(num);
-					break;
-				}
-				i = 2;
-			}
-			else
-				i++;
-		}
+
+	public static ArrayList<Integer> primeFactorize(int n) {
+		ArrayList<Integer> primeFactors = new ArrayList<>();
+	    for (int i = 2; i <= n / i; i++) {
+	        while (n % i == 0) {
+	            primeFactors.add(i);
+	            n /= i ;
+	        }
+	    }
+	    if (n > 1)
+	        primeFactors.add(n);
+	    
 		return primeFactors;
 	}
-	
+
 	public static boolean isPrime(int num) {
 		if (factor(num).size() == 2)
 			return true;
@@ -51,17 +44,45 @@ public abstract class GMath {
 	}
 	
 	public static int findGCF(int num1, int num2) {
-		ArrayList<Integer> factorsNum1 = factor(num1);
-		ArrayList<Integer> factorsNum2 = factor(num2);
+		ArrayList<Integer> factors1 = factor(num1);
+		ArrayList<Integer> factors2 = factor(num2);
 		int GCF = 1;
 
-		for (int i = 0; i < factorsNum1.size(); i++) {
-			for (int j = 0; j < factorsNum2.size(); j++) {
-				if (factorsNum1.get(i) == factorsNum2.get(j))
-					GCF = factorsNum1.get(i);
+		for (int i = 0; i < factors1.size(); i++) {
+			for (int j = 0; j < factors2.size(); j++) {
+				if (factors1.get(i) == factors2.get(j))
+					GCF = factors1.get(i);
 			}
 		}
 		return GCF;
 	}
 
+	public static int findLCM(int num1, int num2) {
+		ArrayList<Integer> primeFactors1 = primeFactorize(num1);
+		ArrayList<Integer> primeFactors2 = primeFactorize(num2);
+		
+		for (int x : primeFactors2) {
+			int count1 = countOf(x, primeFactors1);
+			int count2 = countOf(x, primeFactors2);
+			if (count2 > count1) {
+				for (int i = 0; i < count2 - count1; i++)
+					primeFactors1.add(x);
+			}
+		}
+		
+		int LCM = 1;
+		for (int x : primeFactors1)
+			LCM *= x;
+		
+		return LCM;
+	}
+	
+	public static int countOf(int num, ArrayList<Integer> arr) {
+		int count = 0;
+		for (int x : arr) {
+			if (x == num)
+				count++;
+		}
+		return count;
+	}
 }
