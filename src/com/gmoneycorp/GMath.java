@@ -115,7 +115,7 @@ public abstract class GMath {
 	 * @param arr	the ArrayList to search for num in
 	 * @return		the number of occurances of num in arr
 	 */
-	public static int countOf(int num, ArrayList<Integer> arr) {
+	private static int countOf(int num, ArrayList<Integer> arr) {
 		int count = 0;
 		for (int x : arr) {
 			if (x == num)
