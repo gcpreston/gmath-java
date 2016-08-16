@@ -6,10 +6,10 @@ Compile the java files to class files using the `javac` command. Then create a r
 
 ##Usage
 Assuming the created JAR file is named gmath.jar:
-`java -jar gmath.jar [operation] [input]`
+`java -jar gmath.jar <operation> [input]`
 
 To get usage information, type
 `java -jar gmath.jar`
 for possible operations, or
-`java -jar gmath.jar [operation]`
+`java -jar gmath.jar <operation>`
 for usage of a certain operation.
