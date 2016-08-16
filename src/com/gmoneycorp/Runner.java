@@ -74,7 +74,7 @@ public class Runner {
 					returnUsage();
 				else {
 					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
-					System.out.println(quad + " = ");
+					System.out.print(quad + " = ");
 
 					int [] factoredEquation = GMath.factorQuadratic(quad);
 					if (factoredEquation == null)
