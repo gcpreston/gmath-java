@@ -79,6 +79,18 @@ public class Quadratic {
 		return Math.pow(b, 2) - (4 * a * c);
 	}
 	
+	public int getA() {
+		return a;
+	}
+	
+	public int getB() {
+		return b;
+	}
+	
+	public int getC() {
+		return c;
+	}
+	
 	public String toString() {
 		String str = a + "x^2 ";
 		if (b < 0)
