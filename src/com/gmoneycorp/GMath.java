@@ -1,8 +1,16 @@
 package com.gmoneycorp;
 import java.util.ArrayList;
 
+/**
+ * @author Graham Preston
+ */
 public abstract class GMath {
 	
+	/**
+	 * Returns all factors of a specified integer as an ArrayList.
+	 * @param num	an integer to be factored
+	 * @return		an ArrayList of factors of num
+	 */
 	public static ArrayList<Integer> factor(int num) {
 		ArrayList<Integer> factors = new ArrayList<Integer>();
 
@@ -22,20 +30,31 @@ public abstract class GMath {
 		return factors;
 	}
 
-	public static ArrayList<Integer> primeFactorize(int n) {
+	/**
+	 * Returns the prime factorization of a specified integer as
+	 * an ArrayList.
+	 * @param num	an integer to be prime factorized
+	 * @return		an ArrayList of the prime factorization of num
+	 */
+	public static ArrayList<Integer> primeFactorize(int num) {
 		ArrayList<Integer> primeFactors = new ArrayList<>();
-	    for (int i = 2; i <= n / i; i++) {
-	        while (n % i == 0) {
+	    for (int i = 2; i <= num / i; i++) {
+	        while (num % i == 0) {
 	            primeFactors.add(i);
-	            n /= i ;
+	            num /= i ;
 	        }
 	    }
-	    if (n > 1)
-	        primeFactors.add(n);
+	    if (num > 1)
+	        primeFactors.add(num);
 	    
 		return primeFactors;
 	}
 
+	/**
+	 * Evaluates whether or not a specified integer is prime.
+	 * @param num	an integer to be evaluated as prime or not
+	 * @return		true if num is prime, false otherwise
+	 */
 	public static boolean isPrime(int num) {
 		if (factor(num).size() == 2)
 			return true;
@@ -43,6 +62,12 @@ public abstract class GMath {
 			return false;
 	}
 	
+	/**
+	 * Returns the greatest common factor of two specified integers.
+	 * @param num1	the first integer
+	 * @param num2	the second integer
+	 * @return		the greatest common factor of num1 and num2
+	 */
 	public static int findGCF(int num1, int num2) {
 		ArrayList<Integer> factors1 = factor(num1);
 		ArrayList<Integer> factors2 = factor(num2);
@@ -57,6 +82,12 @@ public abstract class GMath {
 		return GCF;
 	}
 
+	/**
+	 * Returns the lowest common multiple of two specified integers.
+	 * @param num1	the first integer
+	 * @param num2	the second integer
+	 * @return		the least common multiple of num1 and num2
+	 */
 	public static int findLCM(int num1, int num2) {
 		ArrayList<Integer> primeFactors1 = primeFactorize(num1);
 		ArrayList<Integer> primeFactors2 = primeFactorize(num2);
@@ -77,6 +108,13 @@ public abstract class GMath {
 		return LCM;
 	}
 	
+	/**
+	 * A utility to find the number of occurances of a certain integer
+	 * in a specified ArrayList. This is used in findLCM().
+	 * @param num	the integer to find the number of occurances of
+	 * @param arr	the ArrayList to search for num in
+	 * @return		the number of occurances of num in arr
+	 */
 	public static int countOf(int num, ArrayList<Integer> arr) {
 		int count = 0;
 		for (int x : arr) {
