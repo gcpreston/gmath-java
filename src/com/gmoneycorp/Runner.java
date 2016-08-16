@@ -1,4 +1,5 @@
 package com.gmoneycorp;
+import java.util.ArrayList;
 
 public class Runner {
 
@@ -54,16 +55,32 @@ public class Runner {
 				
 			//Return a list of factors of an integer
 			case "factor":
-				if (args.length > 2)
+				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
 				else
 					System.out.println("Factors of " + args[1] + ": " + GMath.factor(parseInt(args[1])));
 				break;
 
-
-			//Return true if input is prime, otherwise false
+			//Return prime factorization of an integer
+			case "primefactor":
+				if (args.length > 2 || parseInt(args[1]) < 0)
+					returnUsage();
+				else {
+					ArrayList<Integer> primeFactors = GMath.primeFactorize(parseInt(args[1]));
+					
+					System.out.print("Prime factorization of " + args[1] + ": ");
+					for (int i = 0; i < primeFactors.size(); i++) {
+						if (i == primeFactors.size() - 1)
+							System.out.println(primeFactors.get(i));
+						else
+							System.out.print(primeFactors.get(i) + " * ");
+					}
+				}
+				break;
+				
+			//Return true if an integer is prime, otherwise false
 			case "isprime":
-				if (args.length > 2)
+				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
 				else {
 					if (GMath.isPrime(parseInt(args[1])))
@@ -75,7 +92,7 @@ public class Runner {
 				
 			//Return the greatest common factor of two integers
 			case "gcf":
-				if (args.length > 3)
+				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
 				else
 					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + GMath.findGCF(parseInt(args[1]), parseInt(args[2])));
@@ -139,13 +156,14 @@ public class Runner {
 
 	public static void returnUsage() {
 		String usage = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
-				+ "add: add two or more numbers\n\t"
-				+ "subtract: subtract two or more numbers\n\t"
-				+ "factor: return a list of factors of an integer\n\t"
-				+ "isprime: return true if input is prime, otherwise return false\n\t"
-				+ "gcf: return the greatest common factor of two integers\n\t"
-				+ "quadratic: factor quadratic and return the answer(s)\n\t"
-				+ "disc: return the discriminant of a quadratic";
+				+ "add\t\tadd two or more numbers\n\t"
+				+ "subtract\tsubtract two or more numbers\n\t"
+				+ "factor\t\treturn a list of factors of a positive integer\n\t"
+				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
+				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
+				+ "gcf\t\treturn the GCF of two positive integers\n\t"
+				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
+				+ "disc\t\treturn the discriminant of a quadratic";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -166,17 +184,22 @@ public class Runner {
 
 		case "factor":
 			System.out.println("Usage: java -jar gmath.jar factor [input]\n"
-					+ "where input is an integer.");
+					+ "where input is a positive integer.");
 			break;
 
+		case "primefactor":
+			System.out.println("Usage: java -jar gmath.jar primefactor [input]\n"
+					+ "where input is a positive integer.");
+			break;
+			
 		case "isprime":
 			System.out.println("Usage: java -jar gmath.jar isprime [input]\n"
-					+ "where input is an integer.");
+					+ "where input is a positive integer.");
 			break;
 			
 		case "gcf":
 			System.out.println("Usage: java -jar gmath.jar gcf [input]\n"
-					+ "where input is two integers.");
+					+ "where input is two positive integers.");
 			break;
 
 		case "quadratic":

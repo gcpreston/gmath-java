@@ -22,13 +22,34 @@ public abstract class GMath {
 		return factors;
 	}
 	
+	public static ArrayList<Integer> primeFactorize(int num) {
+		ArrayList<Integer> primeFactors = new ArrayList<Integer>();
+		
+		int i = 2;
+		while (i < Math.sqrt((double) num)) {
+			if (isPrime(i) && num % i == 0) {
+				primeFactors.add(i);
+				num /= i;
+				
+				if (isPrime(num)) {
+					primeFactors.add(num);
+					break;
+				}
+				i = 2;
+			}
+			else
+				i++;
+		}
+		return primeFactors;
+	}
+	
 	public static boolean isPrime(int num) {
 		if (factor(num).size() == 2)
 			return true;
 		else
 			return false;
 	}
-
+	
 	public static int findGCF(int num1, int num2) {
 		ArrayList<Integer> factorsNum1 = factor(num1);
 		ArrayList<Integer> factorsNum2 = factor(num2);
@@ -41,10 +62,6 @@ public abstract class GMath {
 			}
 		}
 		return GCF;
-	}
-	
-	public static int findLCM(int num1, int num2) {
-		return 0;
 	}
 
 }
