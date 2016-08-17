@@ -1,4 +1,4 @@
-package com.gmoneycorp;
+package com.gmoneycorp.mathematics;
 import java.util.ArrayList;
 
 public class Runner {

@@ -1,6 +1,7 @@
-package com.gmoneycorp;
+package com.gmoneycorp.mathematics;
 import java.util.ArrayList;
-import com.gmoneycorp.GMath;
+
+import com.gmoneycorp.mathematics.GMath;
 
 /**
  * @author Graham Preston

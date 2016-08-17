@@ -1,4 +1,4 @@
-package com.gmoneycorp;
+package com.gmoneycorp.mathematics;
 import java.util.ArrayList;
 
 /**
@@ -7,15 +7,16 @@ import java.util.ArrayList;
 public abstract class GMath {
 	
 	/**
-	 * Evaluates the given mathematical string.
+	 * Evaluates the given mathematical String. The String must have no
+	 * spaces and can contain (), ^, +, -, *, and /.
 	 * @param str
 	 * @return
 	 */
+	/*
 	public static double eval(String str) {
-		
-		
-		return 0;
+		ArrayList<String> equation = new ArrayList<String>();
 	}
+	*/
 	
 	/**
 	 * Returns all factors of a specified integer as an ArrayList.
