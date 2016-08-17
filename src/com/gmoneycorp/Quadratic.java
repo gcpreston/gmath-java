@@ -2,18 +2,33 @@ package com.gmoneycorp;
 import java.util.ArrayList;
 import com.gmoneycorp.GMath;
 
+/**
+ * @author Graham Preston
+ */
 public class Quadratic {
 
 	int a;
 	int b;
 	int c;
 	
+	/**
+	 * The constructor for Quadratic. Stores the values of a, b, and c for
+	 * the format ax^2 + bx + c as instance variables.
+	 * @param a		the value for a in a quadratic equation
+	 * @param b		the value for a in a quadratic equation
+	 * @param c		the value for a in a quadratic equation
+	 */
 	public Quadratic(int a, int b, int c) {
 		this.a = a;
 		this.b = b;
 		this.c = c;
 	}
 	
+	/**
+	 * Finds two factors of c that add up to b.
+	 * @return		an integer array with containing two factors of c that add
+	 * 				up to b
+	 */
 	private int[] findWorkingFactors() {
 		ArrayList<Integer> factors = GMath.factor(a*c);
 		
@@ -49,6 +64,12 @@ public class Quadratic {
 		return null;
 	}
 	
+	/**
+	 * Uses the working factors of c obtained by calling findWorkingFactors()
+	 * to create a factored version of the quadratic.
+	 * @return		an integer array with the coefficients of the factored equation
+	 * 				as its four indexes
+	 */
 	public int[] factorQuadratic() {
 		int[] workingFactors = findWorkingFactors();
 
@@ -66,6 +87,11 @@ public class Quadratic {
 		return finalEquation;
 	}
 	
+	/**
+	 * Solves for x using the quadratic formula.
+	 * @return		a double array containing the two possible values of x. Any
+	 * 				imaginary x values are entered as NaN
+	 */
 	public double[] solveQuadratic() {
 		double [] answers = new double [2];
 		
@@ -75,22 +101,38 @@ public class Quadratic {
 		return answers;
 	}
 	
+	/**
+	 * Solves for the discriminant using b^2 - 4ac.
+	 * @return		a double containing the value of the discriminant
+	 */
 	public double solveDiscriminant()  {
 		return Math.pow(b, 2) - (4 * a * c);
 	}
 	
+	/**
+	 * @return		the value of a
+	 */
 	public int getA() {
 		return a;
 	}
 	
+	/**
+	 * @return		the value of b
+	 */
 	public int getB() {
 		return b;
 	}
 	
+	/**
+	 * @return		the value of c
+	 */
 	public int getC() {
 		return c;
 	}
 	
+	/**
+	 * Returns the quadratic in the formula ax^2 + bx + c.
+	 */
 	public String toString() {
 		String str = a + "x^2 ";
 		if (b < 0)
