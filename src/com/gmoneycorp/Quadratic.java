@@ -25,7 +25,7 @@ public class Quadratic {
 	}
 	
 	/**
-	 * Finds two factors of c that add up to b.
+	 * Returns the two factors of c that add up to b.
 	 * @return		an integer array with containing two factors of c that add
 	 * 				up to b
 	 */
@@ -65,8 +65,8 @@ public class Quadratic {
 	}
 	
 	/**
-	 * Uses the working factors of c obtained by calling findWorkingFactors()
-	 * to create a factored version of the quadratic.
+	 * Returns the factored version of the quadratic in the form of an integer array
+	 * with four indexes holding the coefficients.
 	 * @return		an integer array with the coefficients of the factored equation
 	 * 				as its four indexes
 	 */
@@ -88,7 +88,7 @@ public class Quadratic {
 	}
 	
 	/**
-	 * Solves for x using the quadratic formula.
+	 * Returns the possible values of x using the quadratic formula.
 	 * @return		a double array containing the two possible values of x. Any
 	 * 				imaginary x values are entered as NaN
 	 */
@@ -102,7 +102,7 @@ public class Quadratic {
 	}
 	
 	/**
-	 * Solves for the discriminant using b^2 - 4ac.
+	 * Returns the discriminant using b^2 - 4ac.
 	 * @return		a double containing the value of the discriminant
 	 */
 	public double solveDiscriminant()  {
@@ -110,6 +110,7 @@ public class Quadratic {
 	}
 	
 	/**
+	 * Returns the value of a
 	 * @return		the value of a
 	 */
 	public int getA() {
@@ -117,6 +118,7 @@ public class Quadratic {
 	}
 	
 	/**
+	 * Returns the value of b
 	 * @return		the value of b
 	 */
 	public int getB() {
@@ -124,6 +126,7 @@ public class Quadratic {
 	}
 	
 	/**
+	 * Returns the value of c
 	 * @return		the value of c
 	 */
 	public int getC() {

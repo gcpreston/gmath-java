@@ -7,6 +7,17 @@ import java.util.ArrayList;
 public abstract class GMath {
 	
 	/**
+	 * Evaluates the given mathematical string.
+	 * @param str
+	 * @return
+	 */
+	public static double eval(String str) {
+		
+		
+		return 0;
+	}
+	
+	/**
 	 * Returns all factors of a specified integer as an ArrayList.
 	 * @param num	an integer to be factored
 	 * @return		an ArrayList of factors of num
