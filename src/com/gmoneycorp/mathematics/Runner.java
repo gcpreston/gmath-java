@@ -13,46 +13,6 @@ public class Runner {
 
 			switch (operation) {
 
-			//Add two or more numbers
-			case "add":
-				if (args.length < 3) {
-					returnUsage();
-					break;
-				}
-
-				double addAns = 0;
-				for (int i = 1; i < args.length; i++)
-					addAns += parseDouble(args[i]);
-
-				for (int i = 1; i < args.length; i++) {
-					if (i == args.length - 1)
-						System.out.print(args[i] + " = ");
-					else
-						System.out.print(args[i] + " + ");
-				}
-				System.out.print(addAns);
-				break;
-
-			//Subtract two or more numbers
-			case "subtract":
-				if (args.length < 3) {
-					returnUsage();
-					break;
-				}
-
-				double subAns = parseDouble(args[1]);
-				for (int i = 2; i < args.length; i++)
-					subAns -= parseDouble(args[i]);
-
-				for (int i = 1; i < args.length; i++) {
-					if (i == args.length - 1)
-						System.out.print(args[i] + " = ");
-					else
-						System.out.print(args[i] + " - ");
-				}
-				System.out.print(subAns);
-				break;
-				
 			//Return a list of factors of an integer
 			case "factor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
@@ -154,8 +114,6 @@ public class Runner {
 
 	private static void returnUsage() {
 		String usage = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
-				+ "add\t\tadd two or more numbers\n\t"
-				+ "subtract\tsubtract two or more numbers\n\t"
 				+ "factor\t\treturn a list of factors of a positive integer\n\t"
 				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
@@ -169,17 +127,6 @@ public class Runner {
 		}
 
 		switch (operation) {
-		case "add":
-			System.out.println("Usage: java -jar gmath.jar add [input]\n"
-					+ "where input is two or more numbers.");
-			break;
-
-		case "subtract":
-			System.out.println("Usage: java -jar gmath.jar subtract [input]\n"
-					+ "where input is two or more numbers.\n"
-					+ "The second number and after are subtracted from the first number.");
-			break;
-
 		case "factor":
 			System.out.println("Usage: java -jar gmath.jar factor [input]\n"
 					+ "where input is a positive integer.");
@@ -231,6 +178,7 @@ public class Runner {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static double parseDouble(String s) {
 		try {
 			if (s == null) {
