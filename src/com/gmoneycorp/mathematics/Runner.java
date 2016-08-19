@@ -71,7 +71,7 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
+					Quadratic quad = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseInt(args[3]));
 					System.out.print(quad + " = ");
 
 					if (quad.factorQuadratic() == null)
@@ -178,7 +178,6 @@ public class Runner {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private static double parseDouble(String s) {
 		try {
 			if (s == null) {

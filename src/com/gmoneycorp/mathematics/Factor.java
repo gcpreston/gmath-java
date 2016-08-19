@@ -1,5 +1,4 @@
 package com.gmoneycorp.mathematics;
-
 import java.util.ArrayList;
 
 /**
