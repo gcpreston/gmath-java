@@ -6,8 +6,11 @@ Compile the java files to class files using the `javac` command. Then create a r
 
 ##Usage
 Assuming the created JAR file is named gmath.jar and you have cd'd to its directory:
+
 `java -jar gmath.jar <operation> [input]`
+
 Or alternatively, put gmath.jar in C:\Users\(your_username)\Programs, put gmath.bat's folder in PATH, and run:
+
 `gmath <operation> [input]`
 
 To get usage information, type
