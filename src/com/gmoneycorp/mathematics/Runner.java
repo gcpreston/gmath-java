@@ -76,6 +76,16 @@ public class Runner {
 				}
 				break;
 				
+			//Calculate linear function from of two coordinates
+			case "calcline":
+				if (args.length > 3)
+					returnUsage();
+				else {
+					LinearFunction func = new LinearFunction(args[1], args[2]);
+					System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
+				}
+				break;
+				
 			//Factor quadratic and return the answer(s)
 			case "quadratic":
 				if (args.length > 4)
@@ -119,6 +129,9 @@ public class Runner {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			returnUsage();
 			System.exit(0);
+		} catch (NumberFormatException e) {
+			returnUsage();
+			System.exit(0);
 		}
 	}
 
@@ -129,6 +142,7 @@ public class Runner {
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
 				+ "gcf\t\treturn the GCF of two positive integers\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
+				+ "calcline\t\tcalculate a line given two coordinates\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic";
 
@@ -161,6 +175,11 @@ public class Runner {
 		case "x-int":
 			System.out.println("Usage: java -jar gmath.jar x-int [input]\n"
 					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
+			break;
+			
+		case "calcline":
+			System.out.println("Usage: java -jar gmath.jar calcline [input]\n"
+					+ "where input is two coordinates in the format (x1,y1) (x2,y2)");
 			break;
 			
 		case "quadratic":
