@@ -5,3 +5,4 @@ bin/
 *.bat
 *.sh
 doc/
+!gmath.bat
