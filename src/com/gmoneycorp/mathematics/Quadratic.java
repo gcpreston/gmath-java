@@ -1,6 +1,5 @@
 package com.gmoneycorp.mathematics;
 import java.util.ArrayList;
-
 import com.gmoneycorp.mathematics.GMath;
 
 /**
@@ -86,6 +85,27 @@ public class Quadratic {
 		int[] finalEquation = {group1GCF, group2GCF, (a/group1GCF), (workingFactors[0]/group1GCF)};
 
 		return finalEquation;
+	}
+	
+	/**
+	 * Returns the factored form of the quadratic as a String.
+	 * @return		a String containing the factored form of the given Quadratic
+	 */
+	public String factorToString() {
+		int[] factoredEquation = factorQuadratic();
+		String factoredForm = "";
+		
+		factoredForm += "(" + factoredEquation[0] + "x ";
+		if (factoredEquation[1] > 0)
+			factoredForm += "+ " + factoredEquation[1] + ")(" + factoredEquation[2] + "x ";
+		else
+			factoredForm += "- " + factoredEquation[1] * -1 + ")(" + factoredEquation[2] + "x ";
+		if (factoredEquation[3] > 0)
+			factoredForm += "+ " + factoredEquation[3] + ")";
+		else
+			factoredForm += "- " + factoredEquation[3] * -1 + ")";
+		
+		return factoredForm;
 	}
 	
 	/**

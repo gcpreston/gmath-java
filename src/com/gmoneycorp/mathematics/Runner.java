@@ -114,20 +114,10 @@ public class Runner {
 					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
 					System.out.print(quad + " = ");
 
-					int [] factoredEquation = quad.factorQuadratic();
-					if (factoredEquation == null)
+					if (quad.factorQuadratic() == null)
 						System.out.println("Not factorable.\n");
-					else {
-						System.out.print("(" + factoredEquation[0] + "x ");
-						if (factoredEquation[1] > 0)
-							System.out.print("+ " + factoredEquation[1] + ")(" + factoredEquation[2] + "x ");
-						else
-							System.out.print("- " + factoredEquation[1] * -1 + ")(" + factoredEquation[2] + "x ");
-						if (factoredEquation[3] > 0)
-							System.out.println("+ " + factoredEquation[3] + ")\n");
-						else
-							System.out.println("- " + factoredEquation[3] * -1 + ")\n");
-					}
+					else
+						System.out.println(quad.factorToString() + "\n");
 
 					if (quad.solveDiscriminant() > 0) {
 						System.out.println("Two real solutions:");
