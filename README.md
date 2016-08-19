@@ -5,8 +5,10 @@ The main functionality of GMath is to be used as a command line calculator, doin
 Compile the java files to class files using the `javac` command. Then create a runnable JAR file containing the compiled class files with `Runner.class` as the location of the main method.
 
 ##Usage
-Assuming the created JAR file is named gmath.jar:
+Assuming the created JAR file is named gmath.jar and you have cd'd to its directory:
 `java -jar gmath.jar <operation> [input]`
+
+Or alternatively, put gmath.jar in C:\Users\(your_username)\Programs and run: `gmath <operation> [input]`
 
 To get usage information, type
 `java -jar gmath.jar`
