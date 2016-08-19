@@ -10,6 +10,10 @@ public class LinearFunction {
 		this.b = b;
 	}
 	
+	public double findXInt() {
+		return (-1 * b) / m;
+	}
+	
 	public double getM() {
 		return m;
 	}

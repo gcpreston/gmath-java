@@ -66,6 +66,16 @@ public class Runner {
 					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + Factor.findLCM(parseInt(args[1]), parseInt(args[2])));
 				break;
 				
+			// Return the x-intercept of a linear function
+			case "x-int":
+				if (args.length > 3)
+					returnUsage();
+				else {
+					LinearFunction func = new LinearFunction(parseDouble(args[1]), parseDouble(args[2]));
+					System.out.println("The x-intercept of " + func + " is " + func.findXInt());
+				}
+				break;
+				
 			//Factor quadratic and return the answer(s)
 			case "quadratic":
 				if (args.length > 4)
@@ -93,7 +103,7 @@ public class Runner {
 				break;
 
 			//Return discriminant of quadratic function
-			case "disc":
+			case "discrim":
 				if (args.length > 4)
 					returnUsage();
 				else {
@@ -118,8 +128,9 @@ public class Runner {
 				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
 				+ "gcf\t\treturn the GCF of two positive integers\n\t"
+				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
-				+ "disc\t\treturn the discriminant of a quadratic";
+				+ "discrim\t\treturn the discriminant of a quadratic";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -152,7 +163,7 @@ public class Runner {
 					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
 			break;
 
-		case "disc":
+		case "discrim":
 			System.out.println("Usage: java -jar gmath.jar disc [input]\n"
 					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
 			break;
