@@ -158,14 +158,19 @@ public class Runner {
 					+ "where input is two positive integers.");
 			break;
 
+		case "x-int":
+			System.out.println("Usage: java -jar gmath.jar x-int [input]\n"
+					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
+			break;
+			
 		case "quadratic":
 			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n"
-					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
+					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c");
 			break;
 
 		case "discrim":
 			System.out.println("Usage: java -jar gmath.jar disc [input]\n"
-					+ "where input is three integers a, b, and c, from the quadratic ax^2 + bx + c");
+					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c");
 			break;
 			
 		default:
