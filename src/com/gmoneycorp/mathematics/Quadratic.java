@@ -6,9 +6,9 @@ import java.util.ArrayList;
  */
 public class Quadratic {
 
-	double a;
-	double b;
-	double c;
+	private double a;
+	private double b;
+	private double c;
 
 	/**
 	 * The constructor for Quadratic. Stores the values of a, b, and c for
