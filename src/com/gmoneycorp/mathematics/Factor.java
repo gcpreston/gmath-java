@@ -1,22 +1,11 @@
 package com.gmoneycorp.mathematics;
+
 import java.util.ArrayList;
 
 /**
  * @author Graham Preston
  */
-public abstract class GMath {
-	
-	/**
-	 * Evaluates the given mathematical String. The String must have no
-	 * spaces and can contain (), ^, +, -, *, and /.
-	 * @param str
-	 * @return
-	 */
-	/*
-	public static double eval(String str) {
-		ArrayList<String> equation = new ArrayList<String>();
-	}
-	*/
+public abstract class Factor {
 	
 	/**
 	 * Returns all factors of a specified integer as an ArrayList.

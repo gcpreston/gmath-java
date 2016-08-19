@@ -58,7 +58,7 @@ public class Runner {
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
 				else
-					System.out.println("Factors of " + args[1] + ": " + GMath.factor(parseInt(args[1])));
+					System.out.println("Factors of " + args[1] + ": " + Factor.factor(parseInt(args[1])));
 				break;
 
 			//Return prime factorization of an integer
@@ -66,7 +66,7 @@ public class Runner {
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
 				else {
-					ArrayList<Integer> primeFactors = GMath.primeFactorize(parseInt(args[1]));
+					ArrayList<Integer> primeFactors = Factor.primeFactorize(parseInt(args[1]));
 					
 					System.out.print("Prime factorization of " + args[1] + ": ");
 					for (int i = 0; i < primeFactors.size(); i++) {
@@ -83,7 +83,7 @@ public class Runner {
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
 				else {
-					if (GMath.isPrime(parseInt(args[1])))
+					if (Factor.isPrime(parseInt(args[1])))
 						System.out.println(args[1] + " is prime.");
 					else
 						System.out.println(args[1] + " is not prime.");
@@ -95,7 +95,7 @@ public class Runner {
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
 				else
-					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + GMath.findGCF(parseInt(args[1]), parseInt(args[2])));
+					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + Factor.findGCF(parseInt(args[1]), parseInt(args[2])));
 				break;
 				
 			//Return the lcm of two positive integers
@@ -103,7 +103,7 @@ public class Runner {
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
 				else
-					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + GMath.findLCM(parseInt(args[1]), parseInt(args[2])));
+					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + Factor.findLCM(parseInt(args[1]), parseInt(args[2])));
 				break;
 				
 			//Factor quadratic and return the answer(s)

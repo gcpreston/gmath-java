@@ -1,6 +1,6 @@
 package com.gmoneycorp.mathematics;
 import java.util.ArrayList;
-import com.gmoneycorp.mathematics.GMath;
+import com.gmoneycorp.mathematics.Factor;
 
 /**
  * @author Graham Preston
@@ -30,7 +30,7 @@ public class Quadratic {
 	 * 				up to b
 	 */
 	private int[] findWorkingFactors() {
-		ArrayList<Integer> factors = GMath.factor(a*c);
+		ArrayList<Integer> factors = Factor.factor(a*c);
 		
 		int[] workingFactors = new int[2];
 
@@ -76,8 +76,8 @@ public class Quadratic {
 		if (workingFactors == null)
 			return null;
 
-		int group1GCF = GMath.findGCF(a, workingFactors[0]);
-		int group2GCF = GMath.findGCF(workingFactors[1], c);
+		int group1GCF = Factor.findGCF(a, workingFactors[0]);
+		int group2GCF = Factor.findGCF(workingFactors[1], c);
 
 		if ((a/group1GCF) != (workingFactors[1]/group2GCF) || (workingFactors[0]/group1GCF) != (c/group2GCF)) {
 			group2GCF *= -1;
