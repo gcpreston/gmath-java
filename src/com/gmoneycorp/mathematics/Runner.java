@@ -1,5 +1,5 @@
 package com.gmoneycorp.mathematics;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Runner {
 
@@ -26,7 +26,7 @@ public class Runner {
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
 				else {
-					ArrayList<Integer> primeFactors = Factor.primeFactorize(parseInt(args[1]));
+					List<Integer> primeFactors = Factor.primeFactorize(parseInt(args[1]));
 					
 					System.out.print("Prime factorization of " + args[1] + ": ");
 					for (int i = 0; i < primeFactors.size(); i++) {
@@ -71,7 +71,10 @@ public class Runner {
 				if (args.length > 2)
 					returnUsage();
 				else
-					System.out.println(args[1] + " = " + Factor.toFraction(parseDouble(args[1])));
+					if (args[1].length() > 8)
+						System.out.println("Please enter a number with less 8 decimals or less.");
+					else
+						System.out.println(args[1] + " = " + Fraction.toFraction(parseDouble(args[1])));
 				break;
 				
 			// Return the x-intercept of a linear function
@@ -145,7 +148,7 @@ public class Runner {
 				
 				int i = 0;
 				for (double d : p.findPossibleRoots()) {
-					possibleRoots[i] = Factor.toFraction(d);
+					possibleRoots[i] = Fraction.toFraction(d);
 					i++;
 				}
 				

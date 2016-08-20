@@ -1,5 +1,5 @@
 package com.gmoneycorp.mathematics;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Graham Preston
@@ -29,7 +29,7 @@ public class Quadratic {
 	 * 				up to b
 	 */
 	private int[] findWorkingFactors() {
-		ArrayList<Integer> factors = Factor.factor((int)a*(int)c);
+		List<Integer> factors = Factor.factor((int)a*(int)c);
 
 		int[] workingFactors = new int[2];
 

@@ -45,20 +45,20 @@ public class LinearFunction {
 		if (m == Math.floor(m))
 			eq += (int)m + "x ";
 		else
-			eq += "(" + Factor.toFraction(m) + ")" + "x ";
+			eq += "(" + Fraction.toFraction(m) + ")" + "x ";
 		if (b < 0) {
 			eq += "- ";
 			if (b == Math.floor(b))
 				eq += -1 * (int)b;
 			else
-				eq += "(" + Factor.toFraction(-1 * b) + ")";
+				eq += "(" + Fraction.toFraction(-1 * b) + ")";
 		}
 		else {
 			eq += "+ ";
 			if (b == Math.floor(b))
 				eq += (int)b;
 			else
-				eq += "(" + Factor.toFraction(b) + ")";
+				eq += "(" + Fraction.toFraction(b) + ")";
 		}
 
 		return eq;
