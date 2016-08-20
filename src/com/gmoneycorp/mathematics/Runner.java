@@ -71,10 +71,22 @@ public class Runner {
 				if (args.length > 2)
 					returnUsage();
 				else
-					if (args[1].length() > 8)
-						System.out.println("Please enter a number with less 8 decimals or less.");
+					if (args[1].length() > 9)
+						System.out.println("Please enter a number with 7 decimals or less.");
 					else
 						System.out.println(args[1] + " = " + Fraction.toFraction(parseDouble(args[1])));
+				break;
+				
+			//Return the decimal form of a fraction
+			case "decimal":
+				if (args.length > 2)
+					returnUsage();
+				else {
+					if (String.valueOf(Fraction.toDecimal(args[1])).length() == 18)
+						System.out.println(args[1] + " = " + Fraction.toRepeatingDecimal(args[1]));
+					else
+						System.out.println(args[1] + " = " + Fraction.toDecimal(args[1]));
+				}
 				break;
 				
 			// Return the x-intercept of a linear function
@@ -182,6 +194,7 @@ public class Runner {
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
 				+ "gcf\t\treturn the GCF of two positive integers\n\t"
 				+ "fraction\treturn the fraction form of a number\n\t"
+				+ "decimal\treturn the decimal form of a fraction\t\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "calcline\tcalculate a line given two coordinates\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
@@ -219,6 +232,11 @@ public class Runner {
 					+ "where input one number.");
 			break;
 
+		case "decimal":
+			System.out.println("Usage: java -jar gmath.jar decimal [input]\n"
+					+ "where input a fraction in the form numerator/denominaor.");
+			break;
+			
 		case "x-int":
 			System.out.println("Usage: java -jar gmath.jar x-int [input]\n"
 					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
