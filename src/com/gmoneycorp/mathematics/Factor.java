@@ -115,10 +115,12 @@ public abstract class Factor {
 	 * @return		a String containing the fraction form of num
 	 */
 	public static String toFraction(double d) {
-		if (d == Math.floor(d))
-			return Integer.toString((int)d);
+		String s = String.valueOf(d);
+		int numDecimals = s.length() - 1 - s.indexOf('.');
 		
-		int numDecimals = Double.toString(d).split("\\.")[1].length();
+		if (d == Math.floor(d) || numDecimals >= 16)
+			return s;
+		
 		int denom = (int)Math.pow(10, numDecimals);
 		int workingNum = (int)(d * denom);
 		int GCF = findGCF(workingNum, denom);
