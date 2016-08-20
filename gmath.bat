@@ -1,3 +1,3 @@
 @echo off
 
-java -jar %USERPROFILE%\Programs\gmath.jar %*
+java -jar %USERPROFILE%\Programs\GMath.jar %*

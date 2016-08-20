@@ -6,3 +6,4 @@ bin/
 *.sh
 doc/
 !gmath.bat
+src/com/gmoneycorp/test/

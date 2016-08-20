@@ -108,6 +108,26 @@ public abstract class Factor {
 		return LCM;
 	}
 	
+	//KNOWM BUG: Gets stuck in loop when working with repeating decimals
+	/**
+	 * Returns the given input in fraction form.
+	 * @param num	a double to be converted to a fraction
+	 * @return		a String containing the fraction form of num
+	 */
+	public static String toFraction(double d) {
+		if (d == Math.floor(d))
+			return Integer.toString((int)d);
+		
+		int numDecimals = Double.toString(d).split("\\.")[1].length();
+		int denom = (int)Math.pow(10, numDecimals);
+		int workingNum = (int)(d * denom);
+		int GCF = findGCF(workingNum, denom);
+		workingNum /= GCF;
+		denom /= GCF;
+		
+		return workingNum + "/" + denom;
+	}
+	
 	/**
 	 * A utility to find the number of occurrences of a certain integer
 	 * in a specified ArrayList. This is used in findLCM().

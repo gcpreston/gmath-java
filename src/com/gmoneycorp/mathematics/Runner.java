@@ -65,6 +65,14 @@ public class Runner {
 				else
 					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + Factor.findLCM(parseInt(args[1]), parseInt(args[2])));
 				break;
+			
+			//Return the fraction form of a number
+			case "fraction":
+				if (args.length > 2)
+					returnUsage();
+				else
+					System.out.println(args[1] + " = " + Factor.toFraction(parseDouble(args[1])));
+				break;
 				
 			// Return the x-intercept of a linear function
 			case "x-int":
@@ -91,23 +99,23 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					Quadratic quad = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseInt(args[3]));
-					System.out.print(quad + " = ");
+					Quadratic q = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseInt(args[3]));
+					System.out.print(q + " = ");
 
-					if (quad.factorQuadratic() == null)
+					if (q.factorQuadratic() == null)
 						System.out.println("Not factorable.\n");
 					else
-						System.out.println(quad.factorToString() + "\n");
+						System.out.println(q.factorToString() + "\n");
 
-					if (quad.solveDiscriminant() > 0) {
+					if (q.solveDiscriminant() > 0) {
 						System.out.println("Two real solutions:");
-						System.out.println("x = " + quad.solveQuadratic()[0] + ", " + quad.solveQuadratic()[1]);
+						System.out.println("x = " + q.solveQuadratic()[0] + ", " + q.solveQuadratic()[1]);
 					}
-					else if (quad.solveDiscriminant() == 0) {
+					else if (q.solveDiscriminant() == 0) {
 						System.out.println("One real solution (duplicate solutions):");
-						System.out.println("x = " + quad.solveQuadratic()[0]);
+						System.out.println("x = " + q.solveQuadratic()[0]);
 					}
-					else if (quad.solveDiscriminant() < 0)
+					else if (q.solveDiscriminant() < 0)
 						System.out.println("Two imaginary solutions.");
 				}
 				break;
@@ -117,10 +125,39 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					Quadratic quad = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
-					System.out.println("The discriminant of " + quad + " is " + quad.solveDiscriminant());
+					Quadratic q = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
+					System.out.println("The discriminant of " + q + " is " + q.solveDiscriminant());
 				}
 				break;
+				
+			//Return the possible roots of a polynomial (rational root formula)
+			case "rationalroot":
+				int[] coeffs = new int[args.length - 1];
+				
+				int j = 0;
+				for (int i = 1; i < args.length; i++) {
+					coeffs[j] = parseInt(args[i]);
+					j++;
+				}
+				
+				Polynomial p = new Polynomial(coeffs);
+				String[] possibleRoots = new String[p.findPossibleRoots().size()];
+				
+				int i = 0;
+				for (double d : p.findPossibleRoots()) {
+					possibleRoots[i] = Factor.toFraction(d);
+					i++;
+				}
+				
+				System.out.print("Possible roots: +/- ");
+				for (int k = 0; k < possibleRoots.length; k++) {
+					if (k == possibleRoots.length - 1)
+						System.out.println(possibleRoots[k]);
+					else
+						System.out.print(possibleRoots[k] + ", ");
+				}
+				break;
+				
 			//Return usage
 			default:
 				returnUsage();
@@ -141,10 +178,12 @@ public class Runner {
 				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
 				+ "gcf\t\treturn the GCF of two positive integers\n\t"
+				+ "fraction\treturn the fraction form of a number\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "calcline\tcalculate a line given two coordinates\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
-				+ "discrim\t\treturn the discriminant of a quadratic";
+				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
+				+ "rationalroot\treturn the possible rational roots of a polynomial";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -172,6 +211,11 @@ public class Runner {
 					+ "where input is two positive integers.");
 			break;
 
+		case "fraction":
+			System.out.println("Usage: java -jar gmath.jar fraction [input]\n"
+					+ "where input one number.");
+			break;
+
 		case "x-int":
 			System.out.println("Usage: java -jar gmath.jar x-int [input]\n"
 					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
@@ -184,12 +228,17 @@ public class Runner {
 			
 		case "quadratic":
 			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n"
-					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c");
+					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c.");
 			break;
 
 		case "discrim":
-			System.out.println("Usage: java -jar gmath.jar disc [input]\n"
-					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c");
+			System.out.println("Usage: java -jar gmath.jar discrim [input]\n"
+					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c.");
+			break;
+			
+		case "rationalroot":
+			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n"
+					+ "where input is the coefficients of a polynomial function.");
 			break;
 			
 		default:
