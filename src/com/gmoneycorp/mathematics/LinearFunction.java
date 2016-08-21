@@ -4,10 +4,14 @@ public class LinearFunction {
 
 	private double m;
 	private double b;
+	private String mFraction;
+	private String bFraction;
 
 	public LinearFunction(double m, double b) {
 		this.m = m;
 		this.b = b;
+		this.mFraction = Fraction.simplifyFraction(Fraction.toFraction(m));
+		this.bFraction = Fraction.simplifyFraction(Fraction.toFraction(b));
 	}
 
 	public LinearFunction(String coord1, String coord2) {
@@ -25,6 +29,8 @@ public class LinearFunction {
 
 		this.m = (y2 - y1) / (x2 - x1);
 		this.b = y1 - (this.m * x1);
+		this.mFraction = Fraction.simplifyFraction((y2 - y1) + "/" + (x2 - x1));
+		this.bFraction = String.valueOf(Math.abs((double)Math.round(b * 1000d) / 1000d));
 	}
 
 	public double findXInt() {
@@ -45,20 +51,20 @@ public class LinearFunction {
 		if (m == Math.floor(m))
 			eq += (int)m + "x ";
 		else
-			eq += "(" + Fraction.toFraction(m) + ")" + "x ";
+			eq += "(" + mFraction + ")" + "x ";
 		if (b < 0) {
 			eq += "- ";
 			if (b == Math.floor(b))
 				eq += -1 * (int)b;
 			else
-				eq += "(" + Fraction.toFraction(-1 * b) + ")";
+				eq += bFraction;
 		}
 		else {
 			eq += "+ ";
 			if (b == Math.floor(b))
 				eq += (int)b;
 			else
-				eq += "(" + Fraction.toFraction(b) + ")";
+				eq += bFraction;
 		}
 
 		return eq;

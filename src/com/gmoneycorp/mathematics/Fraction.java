@@ -35,44 +35,36 @@ public class Fraction {
 
 		int b = a / denominator;
 		String decimal = b + ".";
-		String repeat = "";
-
-		boolean foundRepeat = false;
 
 		while (a % denominator != 0) {
 			a = (a - (b * denominator)) * 10;
 			b = a / denominator;
 
 			if (numsDivided.contains(a)) {
-				foundRepeat = true;
+				int repeatIndex = 2 + numsDivided.indexOf(a);
+				decimal = decimal.substring(0, repeatIndex) + "(" + decimal.substring(repeatIndex) + ")";
 				break;
 			}
 			numsDivided.add(a);
-			repeat += b;
 			decimal += b;
-		} 
-
-		if (foundRepeat) {
-			int index = decimal.indexOf(repeat);
-			decimal = decimal.substring(0, index) + "(" + decimal.substring(index) + ")";
 		}
 
 		return decimal;
 	}
 	
-	//KNOWM BUG: Gets stuck in loop when working with repeating decimals
 	/**
-	 * Returns the given input in fraction form.
+	 * Returns the given input in fraction form. This will start getting very slow when processing around
+	 * 8 decimals, so be wary of this when implementing the method.
 	 * @param num	a double to be converted to a fraction
-	 * @return		a String containing the fraction form of num
+	 * @return		the fraction form of num
 	 */
 	public static String toFraction(double d) {
 		String s = String.valueOf(d);
-		int numDecimals = s.length() - 1 - s.indexOf('.');
 
-		if (d == Math.floor(d) || numDecimals >= 16)
+		if (d == Math.floor(d) || s.length() >= 18)
 			return s;
 
+		int numDecimals = s.length() - 1 - s.indexOf('.');
 		int denom = (int)Math.pow(10, numDecimals);
 		int workingNum = (int)(d * denom);
 		int GCF = Factor.findGCF(workingNum, denom);
@@ -80,6 +72,49 @@ public class Fraction {
 		denom /= GCF;
 
 		return workingNum + "/" + denom;
+	}
+	
+	/**
+	 * Returns a simplified version of a given fraction.
+	 * @param s		a fraction in the form numerator/denominator
+	 * @return		s simplified
+	 */
+	public static String simplifyFraction(String s) {
+		String[] fraction = s.split("/");
+		double numerator = Double.parseDouble(fraction[0]);
+		double denominator = Double.parseDouble(fraction[1]);
+		
+		if (numerator == 0)
+			return "0";
+		
+		String numerStr = String.valueOf(numerator);
+		String denomStr = String.valueOf(denominator);
+		int numDecimalsNumer = numerStr.length() - 1 - numerStr.indexOf('.');
+		int numDecimalsDenom = denomStr.length() - 1 - denomStr.indexOf('.');
+		
+		if (numDecimalsNumer > numDecimalsDenom){
+			numerator *= Math.pow(10, numDecimalsNumer);
+			denominator *= Math.pow(10, numDecimalsNumer);
+		}
+		else {
+			numerator *= Math.pow(10, numDecimalsDenom);
+			denominator *= Math.pow(10, numDecimalsDenom);
+		}
+		
+		int GCF = Factor.findGCF((int)numerator, (int)denominator);
+		numerator /= GCF;
+		denominator /= GCF;
+		
+		if ((denominator < 0 && numerator > 0) || (denominator > 0 && numerator < 0)) {
+			denominator = Math.abs(denominator);
+			numerator = Math.abs(numerator);
+			return "- " + (int)numerator + "/" + (int)denominator;
+		}
+		else {
+			denominator = Math.abs(denominator);
+			numerator = Math.abs(numerator);
+			return (int)numerator + "/" + (int)denominator;
+		}
 	}
 
 }
