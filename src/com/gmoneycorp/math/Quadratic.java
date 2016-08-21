@@ -1,4 +1,4 @@
-package com.gmoneycorp.mathematics;
+package com.gmoneycorp.math;
 import java.util.List;
 
 /**
