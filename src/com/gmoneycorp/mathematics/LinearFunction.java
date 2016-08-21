@@ -44,6 +44,14 @@ public class LinearFunction {
 	public double getB() {
 		return b;
 	}
+	
+	public String getMFraction() {
+		return mFraction;
+	}
+	
+	public String getBFraction() {
+		return bFraction;
+	}
 
 	public String toString() {
 		String eq = "y = ";

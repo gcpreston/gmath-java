@@ -5,6 +5,18 @@ import java.util.List;
 
 public class Fraction {
 
+	private int numerator;
+	private int denominator;
+	
+	public Fraction(int numerator, int denominator) {
+		this.numerator = numerator;
+		this.denominator = denominator;
+	}
+	
+	public static Fraction add(Fraction f, Fraction g) {
+		
+	}
+	
 	/**
 	 * Returns the decimal equivalent of a given fraction.
 	 * @param s		a String in the format "numerator/denominator"
@@ -115,6 +127,14 @@ public class Fraction {
 			numerator = Math.abs(numerator);
 			return (int)numerator + "/" + (int)denominator;
 		}
+	}
+	
+	public int getNumerator() {
+		return numerator;
+	}
+	
+	public int getDenominator() {
+		return denominator;
 	}
 
 }
