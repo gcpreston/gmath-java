@@ -66,7 +66,7 @@ public class LinearFunction {
 			if (b == Math.floor(b))
 				eq += "- " + -1 * (int)b;
 			else
-				eq += bFraction;
+				eq += "- " + bFraction.toString().substring(1);
 		}
 		else {
 			eq += "+ ";

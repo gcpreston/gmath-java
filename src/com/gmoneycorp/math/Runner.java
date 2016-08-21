@@ -159,16 +159,30 @@ public class Runner {
 				
 				Polynomial p = new Polynomial(coeffs);
 				List<Fraction> possibleRoots = new ArrayList<>();
+				List<Fraction> realRoots = new ArrayList<>();
 				
-				for (Fraction f : p.possibleRootsFractions())
+				for (Fraction f : p.possibleRoots())
 					possibleRoots.add(f);
 				
-				System.out.print("Possible roots: +/- ");
+				for (Fraction f : p.realRoots())
+					realRoots.add(f);
+				
+				System.out.print("Possible roots:\n+/- ");
 				for (int i = 0; i < possibleRoots.size(); i++) {
-					if (i == possibleRoots.size() - 1)
-						System.out.println(possibleRoots.get(i));
+					if (!possibleRoots.get(i).isNegative()) {
+						if (i == possibleRoots.size() - 2)
+							System.out.println(possibleRoots.get(i) + "\n");
+						else
+							System.out.print(possibleRoots.get(i) + ", ");
+					}
+				}
+				
+				System.out.println("Rational roots:");
+				for (int i = 0; i < realRoots.size(); i++) {
+					if (i == realRoots.size() - 1)
+						System.out.println(realRoots.get(i));
 					else
-						System.out.print(possibleRoots.get(i) + ", ");
+						System.out.print(realRoots.get(i) + ", ");
 				}
 				break;
 				

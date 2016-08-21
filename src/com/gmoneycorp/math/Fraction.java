@@ -125,6 +125,14 @@ public class Fraction {
 
 		return d;
 	}
+	
+	/**
+	 * Returns the decimal equivalent of a Fraction
+	 * @return		f in decimal form as a double
+	 */
+	public double toDecimal() {
+		return (double)getNumerator() / (double)getDenominator();
+	}
 
 	/**
 	 * Returns the decimal equivalent of a given fraction, including repeating decimal notation.
@@ -243,16 +251,30 @@ public class Fraction {
 	public int getDenominator() {
 		return denominator;
 	}
+	
+	public boolean isNegative() {
+		return isNegative;
+	}
 
+	public boolean equals(Object obj) {
+		if (numerator == ((Fraction) obj).getNumerator() &&
+			denominator == ((Fraction) obj).getDenominator() &&
+			isNegative == ((Fraction) obj).isNegative()) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	public String toString() {
 		if (numerator == 0)
 			return "0";
 		
 		if (isNegative) {
 			if (denominator == 1)
-				return "- " + numerator;
+				return "-" + numerator;
 			else
-				return "- " + numerator + "/" + denominator;
+				return "-" + numerator + "/" + denominator;
 		}
 		else {
 			if (denominator == 1)
