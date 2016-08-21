@@ -160,9 +160,8 @@ public class Runner {
 				Polynomial p = new Polynomial(coeffs);
 				List<Fraction> possibleRoots = new ArrayList<>();
 				
-				for (double d : p.findPossibleRoots()) {
-					possibleRoots.add(Fraction.toFraction(d));
-				}
+				for (Fraction f : p.possibleRootsFractions())
+					possibleRoots.add(f);
 				
 				System.out.print("Possible roots: +/- ");
 				for (int i = 0; i < possibleRoots.size(); i++) {
