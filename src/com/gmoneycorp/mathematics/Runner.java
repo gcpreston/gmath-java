@@ -196,7 +196,7 @@ public class Runner {
 				+ "fraction\treturn the fraction form of a number\n\t"
 				+ "decimal\t\treturn the decimal form of a fraction\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
-				+ "calcline\tcalculate the formula of a line given two coordinates\n\t"
+				+ "calcline\treturn the formula of a line given two coordinates\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
 				+ "rationalroot\treturn the possible rational roots of a polynomial";
