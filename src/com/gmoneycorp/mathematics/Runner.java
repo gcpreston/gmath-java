@@ -1,5 +1,6 @@
 package com.gmoneycorp.mathematics;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Runner {
 
@@ -157,20 +158,18 @@ public class Runner {
 				}
 				
 				Polynomial p = new Polynomial(coeffs);
-				String[] possibleRoots = new String[p.findPossibleRoots().size()];
+				List<Fraction> possibleRoots = new ArrayList<>();
 				
-				int i = 0;
 				for (double d : p.findPossibleRoots()) {
-					possibleRoots[i] = Fraction.toFraction(d);
-					i++;
+					possibleRoots.add(Fraction.toFraction(d));
 				}
 				
 				System.out.print("Possible roots: +/- ");
-				for (int k = 0; k < possibleRoots.length; k++) {
-					if (k == possibleRoots.length - 1)
-						System.out.println(possibleRoots[k]);
+				for (int i = 0; i < possibleRoots.size(); i++) {
+					if (i == possibleRoots.size() - 1)
+						System.out.println(possibleRoots.get(i));
 					else
-						System.out.print(possibleRoots[k] + ", ");
+						System.out.print(possibleRoots.get(i) + ", ");
 				}
 				break;
 				
