@@ -205,6 +205,7 @@ public class Runner {
 				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
 				+ "gcf\t\treturn the GCF of two positive integers\n\t"
+				+ "lcm\t\treturn the LCM of two positive integers\n\t"
 				+ "fraction\treturn the fraction form of a number\n\t"
 				+ "decimal\t\treturn the decimal form of a fraction\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
@@ -239,6 +240,11 @@ public class Runner {
 					+ "where input is two positive integers.");
 			break;
 
+		case "lcm":
+			System.out.println("Usage: java -jar gmath.jar lcm [input]\n"
+					+ "where input is two positive integers.");
+			break;
+			
 		case "fraction":
 			System.out.println("Usage: java -jar gmath.jar fraction [input]\n"
 					+ "where input one number.");
