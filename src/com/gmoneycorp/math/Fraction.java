@@ -176,7 +176,7 @@ public class Fraction {
 	public static Fraction toFraction(double d) {
 		String s = String.valueOf(d);
 
-		if (d == Math.floor(d) || s.length() >= 18)
+		if (s.length() >= 18)
 			return null;
 
 		int numDecimals = s.length() - 1 - s.indexOf('.');
@@ -272,7 +272,7 @@ public class Fraction {
 		
 		if (isNegative) {
 			if (denominator == 1)
-				return "-" + numerator;
+				return "-" + (int)numerator;
 			else
 				return "-" + numerator + "/" + denominator;
 		}
