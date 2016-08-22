@@ -106,8 +106,7 @@ public class Runner {
 					returnUsage();
 				else {
 					LinearFunction func = new LinearFunction(args[1], args[2]);
-					System.out.print(args[1] + " and " + args[2] + " are both on the line ");
-					System.out.print(func);
+					System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
 				}
 				break;
 				
