@@ -185,6 +185,18 @@ public class Runner {
 				}
 				break;
 				
+			//Return the integral of a polynomial over a certain interval
+			case "integrate":
+				int[] interval = {parseInt(args[args.length - 2]), parseInt(args[args.length - 1])};
+				int[] coeffs2 = new int[args.length - 3];
+				for (int i = 1; i < args.length - 2; i++)
+					coeffs2[i - 1] = parseInt(args[i]);
+				
+				Polynomial p2 = new Polynomial(coeffs2);
+				
+				System.out.println("The integral of f(x) over (" + interval[0] + ", " + interval[1] + ") is " + p2.integral(interval[0], interval[1]));
+				break;
+				
 			//Return usage
 			default:
 				returnUsage();
@@ -212,7 +224,8 @@ public class Runner {
 				+ "calcline\treturn the formula of a line given two coordinates\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
-				+ "rationalroot\treturn the possible rational roots of a polynomial";
+				+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
+				+ "integrate\treturn the integral of a polynomial over an interval";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -267,17 +280,26 @@ public class Runner {
 			
 		case "quadratic":
 			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n"
-					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c.");
+					+ "where input is three integers a, b, and c, from the quadratic\n"
+					+ "f(x) = ax^2 + bx + c.");
 			break;
 
 		case "discrim":
 			System.out.println("Usage: java -jar gmath.jar discrim [input]\n"
-					+ "where input is three integers a, b, and c, from the quadratic f(x) = ax^2 + bx + c.");
+					+ "where input is three integers a, b, and c, from the quadratic\n"
+					+ "f(x) = ax^2 + bx + c.");
 			break;
 			
 		case "rationalroot":
 			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n"
 					+ "where input is the coefficients of a polynomial function.");
+			break;
+			
+		case "integrate":
+			System.out.println("Usage: java -jar gmath.jar integrate [coefficients] [interval]\n"
+					+ "where coefficients are any number of integers representing the coefficients of a"
+					+ "polynomial and interval is two integers representing the start and end of the\n"
+					+ "interval to integrate over, respecitvely.");
 			break;
 			
 		default:
