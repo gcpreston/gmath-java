@@ -87,4 +87,25 @@ public class Polynomial {
 
 		return x;
 	}
+
+	/*
+	public String toString() {
+		if (coeffs.length == 0)
+			return "0";
+		
+		String s = "";
+		
+		if (coeffs[coeffs.length - 1] != 0)
+			s = String.valueOf(coeffs[coeffs.length - 1]);
+		
+		for (int i = coeffs.length - 2; i >= 0; i--) {
+			if (coeffs[i] != 0) {
+				if (coeffs[i] == 1)
+					s = 
+			}
+		}
+		
+		return s;
+	}
+	*/
 }
