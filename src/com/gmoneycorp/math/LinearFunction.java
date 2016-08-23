@@ -39,6 +39,13 @@ public class LinearFunction {
 		return (-1 * b) / m;
 	}
 
+	/*
+	public static Fraction[] findIntersect(LinearFunction l1, LinearFunction l2) {
+		Fraction[] intersect = new Fraction[2];
+		
+	}
+	*/
+	
 	public double getM() {
 		return m;
 	}

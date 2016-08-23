@@ -194,7 +194,7 @@ public class Runner {
 				
 				Polynomial p2 = new Polynomial(coeffs2);
 				
-				System.out.println("The integral of f(x) over (" + interval[0] + ", " + interval[1] + ") is " + p2.integral(interval[0], interval[1]));
+				System.out.println("The integral of " + p2 + " over (" + interval[0] + ", " + interval[1] + ") is " + p2.integral(interval[0], interval[1]));
 				break;
 				
 			//Return usage
