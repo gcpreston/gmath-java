@@ -1,6 +1,7 @@
 package com.gmoneycorp.math;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Graham Preston
@@ -14,7 +15,15 @@ public class Polynomial {
 	 * @param coeffs	coefficients of the polynomial
 	 */
 	public Polynomial(int[] coeffs) {
-		this.coeffs = coeffs;
+		int index = 0;
+		for (int i = 0; i < coeffs.length; i++) {
+			if (coeffs[i] == 0)
+				index++;
+			else
+				break;
+		}
+		
+		this.coeffs = Arrays.copyOfRange(coeffs, index, coeffs.length);
 	}
 
 	/**
@@ -88,24 +97,45 @@ public class Polynomial {
 		return x;
 	}
 
-	/*
+	/**
+	 * Returns the polynomial in standard polynomial notation.
+	 */
 	public String toString() {
 		if (coeffs.length == 0)
 			return "0";
 		
 		String s = "";
 		
-		if (coeffs[coeffs.length - 1] != 0)
-			s = String.valueOf(coeffs[coeffs.length - 1]);
+		if (coeffs.length == 1)
+			return String.valueOf(coeffs[0]);
 		
-		for (int i = coeffs.length - 2; i >= 0; i--) {
+		if (coeffs.length == 2) {
+			if (coeffs[1] == 0)
+				return coeffs[0] + "x";
+			else if (coeffs[1] < 0)
+				return coeffs[0] + "x - " + Math.abs(coeffs[1]);
+			else
+				return coeffs[0] + "x + " + coeffs[1];
+		}
+		
+		s += coeffs[0] + "x^" + (coeffs.length - 1);
+		
+		for (int i = 1; i < coeffs.length; i++) {
 			if (coeffs[i] != 0) {
-				if (coeffs[i] == 1)
-					s = 
+				if (coeffs[i] < 0)
+					s += " - ";
+				else
+					s += " + ";
+				
+				s += String.valueOf(Math.abs(coeffs[i]));
+				
+				if (i < coeffs.length - 2)
+					s += "x^" + (coeffs.length - 1 - i);
+				else if (i == coeffs.length - 2)
+					s += "x";
 			}
 		}
 		
 		return s;
 	}
-	*/
 }

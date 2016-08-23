@@ -162,7 +162,7 @@ public class Quadratic {
 	}
 
 	/**
-	 * Returns the quadratic in the formula ax^2 + bx + c.
+	 * Returns the quadratic in the form ax^2 + bx + c.
 	 */
 	public String toString() {
 		String str = a + "x^2 ";
