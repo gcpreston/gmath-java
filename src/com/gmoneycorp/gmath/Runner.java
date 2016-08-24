@@ -1,4 +1,4 @@
-package com.gmoneycorp.math;
+package com.gmoneycorp.gmath;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -197,6 +197,17 @@ public class Runner {
 				System.out.println("The integral of " + p2 + " over (" + interval[0] + ", " + interval[1] + ") is " + p2.integral(interval[0], interval[1]));
 				break;
 				
+			case "derive":
+				int point = parseInt(args[args.length - 1]);
+				int[] coeffs3 = new int[args.length - 2];
+				for (int i = 1; i < args.length - 1; i++)
+					coeffs3[i - 1] = parseInt(args[i]);
+				
+				Polynomial p3 = new Polynomial(coeffs3);
+				
+				System.out.println("The derivative of " + p3 + " at x = " + point + " is " + p3.derivative(point));
+				break;
+				
 			//Return usage
 			default:
 				returnUsage();
@@ -225,7 +236,8 @@ public class Runner {
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
 				+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
-				+ "integrate\treturn the integral of a polynomial over an interval";
+				+ "integrate\treturn the integral of a polynomial over an interval\n\t"
+				+ "derive\t\treturn the derivative of a polynomial at a point";
 
 		if (operation == null) {
 			System.out.println(usage);
@@ -234,72 +246,78 @@ public class Runner {
 
 		switch (operation) {
 		case "factor":
-			System.out.println("Usage: java -jar gmath.jar factor [input]\n"
+			System.out.println("Usage: java -jar gmath.jar factor [input]\n\n"
 					+ "where input is a positive integer.");
 			break;
 
 		case "primefactor":
-			System.out.println("Usage: java -jar gmath.jar primefactor [input]\n"
+			System.out.println("Usage: java -jar gmath.jar primefactor [input]\n\n"
 					+ "where input is a positive integer.");
 			break;
 			
 		case "isprime":
-			System.out.println("Usage: java -jar gmath.jar isprime [input]\n"
+			System.out.println("Usage: java -jar gmath.jar isprime [input]\n\n"
 					+ "where input is a positive integer.");
 			break;
 			
 		case "gcf":
-			System.out.println("Usage: java -jar gmath.jar gcf [input]\n"
+			System.out.println("Usage: java -jar gmath.jar gcf [input]\n\n"
 					+ "where input is two positive integers.");
 			break;
 
 		case "lcm":
-			System.out.println("Usage: java -jar gmath.jar lcm [input]\n"
+			System.out.println("Usage: java -jar gmath.jar lcm [input]\n\n"
 					+ "where input is two positive integers.");
 			break;
 			
 		case "fraction":
-			System.out.println("Usage: java -jar gmath.jar fraction [input]\n"
+			System.out.println("Usage: java -jar gmath.jar fraction [input]\n\n"
 					+ "where input one number.");
 			break;
 
 		case "decimal":
-			System.out.println("Usage: java -jar gmath.jar decimal [input]\n"
+			System.out.println("Usage: java -jar gmath.jar decimal [input]\n\n"
 					+ "where input a fraction in the form numerator/denominaor.");
 			break;
 			
 		case "x-int":
-			System.out.println("Usage: java -jar gmath.jar x-int [input]\n"
+			System.out.println("Usage: java -jar gmath.jar x-int [input]\n\n"
 					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
 			break;
 			
 		case "calcline":
-			System.out.println("Usage: java -jar gmath.jar calcline [input]\n"
+			System.out.println("Usage: java -jar gmath.jar calcline [input]\n\n"
 					+ "where input is two coordinates in the format (x1,y1) (x2,y2)");
 			break;
 			
 		case "quadratic":
-			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n"
+			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n\n"
 					+ "where input is three integers a, b, and c, from the quadratic\n"
 					+ "f(x) = ax^2 + bx + c.");
 			break;
 
 		case "discrim":
-			System.out.println("Usage: java -jar gmath.jar discrim [input]\n"
+			System.out.println("Usage: java -jar gmath.jar discrim [input]\n\n"
 					+ "where input is three integers a, b, and c, from the quadratic\n"
 					+ "f(x) = ax^2 + bx + c.");
 			break;
 			
 		case "rationalroot":
-			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n"
+			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n\n"
 					+ "where input is the coefficients of a polynomial function.");
 			break;
 			
 		case "integrate":
-			System.out.println("Usage: java -jar gmath.jar integrate [coefficients] [interval]\n"
+			System.out.println("Usage: java -jar gmath.jar integrate [coefficients] [interval]\n\n"
 					+ "where coefficients are any number of integers representing the coefficients of a"
 					+ "polynomial and interval is two integers representing the start and end of the\n"
 					+ "interval to integrate over, respecitvely.");
+			break;
+			
+		case "derive":
+			System.out.println("Usage: java -jar gmath.jar derive [coefficients] [point]\n\n"
+					+ "where coefficients are any number of integers representing the coefficients of a"
+					+ "polynomial and point is the x value to derive at.");
 			break;
 			
 		default:

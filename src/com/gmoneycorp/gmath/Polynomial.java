@@ -1,4 +1,4 @@
-package com.gmoneycorp.math;
+package com.gmoneycorp.gmath;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +76,7 @@ public class Polynomial {
 	}
 
 	/**
-	 * Integrates a polynomial at a certain interval.
+	 * Integrates a polynomial at a certain interval. Original algorithm by Matthew Rose.
 	 * @param begin		the start of the interval
 	 * @param end		the end of the interval
 	 * @return			the integral of the polynomial on (begin, end)
@@ -97,6 +97,21 @@ public class Polynomial {
 		return x;
 	}
 
+	/**
+	 * Returns the derivative of a polynomial at a certain value of x. Original algorithm
+	 * by Matthew Rose.
+	 * @param point
+	 * @return
+	 */
+	public double derivative(int point) {
+		double q = 0;
+		
+		for (int i = 0; i < coeffs.length - 1; i++)
+			q += coeffs[i] * (coeffs.length - 1 - i) * Math.pow(point, coeffs.length - 2 - i);
+		
+		return q;
+	}
+	
 	/**
 	 * Returns the polynomial in standard polynomial notation.
 	 */
