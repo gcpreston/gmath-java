@@ -56,6 +56,7 @@ public class Polynomial {
 	 * Uses synthetic division to find which of the possible roots are real roots.
 	 * @return			a List of real roots in the form of Fractions
 	 */
+	//KNOWN BUG: Does not recognize when roots have a multiplicity of more than 1
 	public List<Fraction> realRoots() {
 		double temp = coeffs[0];
 		List<Fraction> possibleRoots = possibleRoots();
@@ -73,6 +74,27 @@ public class Polynomial {
 		}
 
 		return roots;
+	}
+	
+	/**
+	 * Uses synthetic substitution to divide a given Polynomial by (x - f).
+	 * @param p			Polynomial to be divided
+	 * @param f			Fraction representing f in (x - f)
+	 * @return			a Fraction array representing the divided polynomial
+	 */
+	//To be implemented
+	public Fraction[] syntheticSub(Fraction f) {
+		double temp = coeffs[0];
+		Fraction[] divided = new Fraction[coeffs.length - 1];
+		divided[0] = Fraction.toFraction(coeffs[0]);
+		
+		for (int i = 1; i < coeffs.length - 1; i++) {
+			temp *= f.toDecimal();
+			temp += coeffs[i];
+			divided[i] = Fraction.toFraction(temp);
+		}
+		
+		return divided;
 	}
 
 	/**
