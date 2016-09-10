@@ -185,6 +185,30 @@ public class Runner {
 				}
 				break;
 				
+			//Return a polynomial divided by a value
+			case "syntheticdiv":
+				double[] coeffs4 = new double[args.length - 2];
+				
+				int k = 0;
+				for (int i = 1; i < args.length - 1; i++) {
+					coeffs4[k] = parseDouble(args[i]);
+					k++;
+				}
+				
+				Polynomial q = new Polynomial(coeffs4);
+				
+				Fraction f;
+				if (args[args.length - 1].contains("/")) {
+					f = new Fraction(args[args.length - 1]);
+				}
+				else {
+					f = new Fraction(parseDouble(args[args.length - 1]), 1);
+				}
+				List<Fraction> divided = Polynomial.syntheticSub(f, q);
+				
+				System.out.println(new Polynomial(divided));
+				break;
+				
 			//Return the integral of a polynomial over a certain interval
 			case "integrate":
 				int[] interval = {parseInt(args[args.length - 2]), parseInt(args[args.length - 1])};
@@ -236,6 +260,7 @@ public class Runner {
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
 				+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
+				+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
 				+ "integrate\treturn the integral of a polynomial over an interval\n\t"
 				+ "derive\t\treturn the derivative of a polynomial at a point";
 
@@ -304,6 +329,11 @@ public class Runner {
 			
 		case "rationalroot":
 			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n\n"
+					+ "where input is the coefficients of a polynomial function.");
+			break;
+			
+		case "synteticdiv":
+			System.out.println("Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
 					+ "where input is the coefficients of a polynomial function.");
 			break;
 			

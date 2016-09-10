@@ -66,6 +66,21 @@ public class Fraction {
 		this.denominator = Math.abs(denominator);
 		this.isNegative = isNegative;
 	}
+	
+	/**
+	 * Constructs Fraction object from String in format "numerator/denominator".
+	 * @param s				String in format "numerator/denominator"
+	 */
+	public Fraction(String s) {
+		String[] fraction = s.split("/");
+		this.numerator = Integer.parseInt(fraction[0]);
+		this.denominator = Integer.parseInt(fraction[1]);
+		
+		if (this.numerator < 0) {
+			this.isNegative = true;
+			this.numerator *= -1;
+		}
+	}
 
 	/**
 	 * Adds two Fraction objects.
@@ -117,10 +132,8 @@ public class Fraction {
 	 * @return		s in decimal form as a double
 	 */
 	public static double toDecimal(String s) {
-		String[] fraction = s.split("/");
-		int numerator = Integer.parseInt(fraction[0]);
-		int denominator = Integer.parseInt(fraction[1]);
-		double d = (double)numerator / (double)denominator;
+		Fraction f = new Fraction(s);
+		double d = (double)f.getNumerator() / (double)f.getDenominator();
 
 		return d;
 	}
@@ -131,7 +144,7 @@ public class Fraction {
 	 * @return		s in decimal form as a double
 	 */
 	public static double toDecimal(Fraction f) {
-		return f.getNumerator() / f.getDenominator();
+		return (double)f.getNumerator() / (double)f.getDenominator();
 	}
 	
 	/**
