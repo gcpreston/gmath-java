@@ -237,6 +237,9 @@ public class Runner {
 				returnUsage();
 				break;
 			}
+		} catch (NegativeArraySizeException e) {
+			returnUsage();
+			System.exit(0);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			returnUsage();
 			System.exit(0);
@@ -332,9 +335,11 @@ public class Runner {
 					+ "where input is the coefficients of a polynomial function.");
 			break;
 			
-		case "synteticdiv":
+		case "syntheticdiv":
 			System.out.println("Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
-					+ "where input is the coefficients of a polynomial function.");
+					+ "where polynomial are the coefficients of the polynomial to be divided and\n"
+					+ "divisor is the factor to divide the polynomial by.\n"
+					+ "Executes (polynomial) / (x - divisor) using synthetic division.");
 			break;
 			
 		case "integrate":
