@@ -126,6 +126,15 @@ public class Fraction {
 	}
 	
 	/**
+	 * Returns the decimal equivalent of a given Fraction object.
+	 * @param f		a Fraction object
+	 * @return		s in decimal form as a double
+	 */
+	public static double toDecimal(Fraction f) {
+		return f.getNumerator() / f.getDenominator();
+	}
+	
+	/**
 	 * Returns the decimal equivalent of a Fraction
 	 * @return		f in decimal form as a double
 	 */

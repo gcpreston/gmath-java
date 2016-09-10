@@ -148,7 +148,7 @@ public class Runner {
 				
 			//Return the possible roots of a polynomial (rational root formula)
 			case "rationalroot":
-				int[] coeffs = new int[args.length - 1];
+				double[] coeffs = new double[args.length - 1];
 				
 				int j = 0;
 				for (int i = 1; i < args.length; i++) {
@@ -176,7 +176,7 @@ public class Runner {
 					}
 				}
 				
-				System.out.println("Rational roots:");
+				System.out.println("Real roots:");
 				for (int i = 0; i < realRoots.size(); i++) {
 					if (i == realRoots.size() - 1)
 						System.out.println(realRoots.get(i));
@@ -188,9 +188,9 @@ public class Runner {
 			//Return the integral of a polynomial over a certain interval
 			case "integrate":
 				int[] interval = {parseInt(args[args.length - 2]), parseInt(args[args.length - 1])};
-				int[] coeffs2 = new int[args.length - 3];
+				double[] coeffs2 = new double[args.length - 3];
 				for (int i = 1; i < args.length - 2; i++)
-					coeffs2[i - 1] = parseInt(args[i]);
+					coeffs2[i - 1] = parseDouble(args[i]);
 				
 				Polynomial p2 = new Polynomial(coeffs2);
 				
@@ -199,9 +199,9 @@ public class Runner {
 				
 			case "derive":
 				int point = parseInt(args[args.length - 1]);
-				int[] coeffs3 = new int[args.length - 2];
+				double[] coeffs3 = new double[args.length - 2];
 				for (int i = 1; i < args.length - 1; i++)
-					coeffs3[i - 1] = parseInt(args[i]);
+					coeffs3[i - 1] = parseDouble(args[i]);
 				
 				Polynomial p3 = new Polynomial(coeffs3);
 				
