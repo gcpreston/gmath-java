@@ -115,7 +115,7 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					Quadratic q = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseInt(args[3]));
+					Quadratic q = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseDouble(args[3]));
 					System.out.print(q + " = ");
 
 					if (q.factorQuadratic() == null)
