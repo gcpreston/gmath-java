@@ -190,7 +190,7 @@ public class Polynomial {
 			else if (coeffs[1] < 0)
 				return disp(coeffs[0]) + "x - " + Math.abs(coeffs[1]);
 			else
-				return disp(0) + "x + " + disp(1);
+				return disp(coeffs[0]) + "x + " + disp(coeffs[1]);
 		}
 
 		s += disp(coeffs[0]) + "x^" + (coeffs.length - 1);
