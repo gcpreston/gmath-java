@@ -16,21 +16,31 @@ public class Fraction {
 	public Fraction(int numerator, int denominator) {
 		this.numerator = Math.abs(numerator);
 		this.denominator = Math.abs(denominator);
-		
+
 		if ((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0))
 			this.isNegative = true;
 		else
 			this.isNegative = false;
 	}
-	
+
 	/**
 	 * Constructs a Fraction object using doubles.
 	 * @param numerator		the numerator of the fraction
 	 * @param denominator	the denominator of the fraction
 	 */
 	public Fraction(double numerator, double denominator) {
-		int numDecimalsNumer = String.valueOf(numerator).length() - 1 - String.valueOf(numerator).indexOf('.');
-		int numDecimalsDenom = String.valueOf(denominator).length() - 1 - String.valueOf(denominator).indexOf('.');
+		int numDecimalsNumer;
+		int numDecimalsDenom;
+		
+		if ((int)numerator == numerator)
+			numDecimalsNumer = 0;
+		else
+			numDecimalsNumer = String.valueOf(numerator).length() - 1 - String.valueOf(numerator).indexOf('.');
+		
+		if ((int)denominator == denominator)
+			numDecimalsDenom = 0;
+		else
+			numDecimalsDenom = String.valueOf(denominator).length() - 1 - String.valueOf(denominator).indexOf('.');
 
 		if (numDecimalsNumer > numDecimalsDenom){
 			numerator *= Math.pow(10, numDecimalsNumer);
@@ -40,20 +50,20 @@ public class Fraction {
 			numerator *= Math.pow(10, numDecimalsDenom);
 			denominator *= Math.pow(10, numDecimalsDenom);
 		}
-		
+
 		int GCF = Factor.findGCF((int)numerator, (int)denominator);
 		numerator /= GCF;
 		denominator /= GCF;
-		
+
 		this.numerator = Math.abs((int)numerator);
 		this.denominator = Math.abs((int)denominator);
-		
+
 		if ((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0))
 			this.isNegative = true;
 		else
 			this.isNegative = false;
 	}
-	
+
 	/**
 	 * Constructor that specifies whether or not the fraction is negative via a separate parameter instead of
 	 * the signs of the numerator and denominator.
@@ -66,7 +76,7 @@ public class Fraction {
 		this.denominator = Math.abs(denominator);
 		this.isNegative = isNegative;
 	}
-	
+
 	/**
 	 * Constructs Fraction object from String in format "numerator/denominator".
 	 * @param s				String in format "numerator/denominator"
@@ -75,7 +85,7 @@ public class Fraction {
 		String[] fraction = s.split("/");
 		this.numerator = Integer.parseInt(fraction[0]);
 		this.denominator = Integer.parseInt(fraction[1]);
-		
+
 		if (this.numerator < 0) {
 			this.isNegative = true;
 			this.numerator *= -1;
@@ -114,7 +124,7 @@ public class Fraction {
 		Fraction answer = new Fraction(f.getNumerator() * g.getNumerator(), f.getDenominator() * g.getDenominator());
 		return answer.simplify();
 	}
-	
+
 	/**
 	 * Divides one Fraction by another
 	 * @param f		Fraction to be divided by g
@@ -125,7 +135,7 @@ public class Fraction {
 		Fraction answer = new Fraction(f.getNumerator() * g.getDenominator(), f.getDenominator() * g.getNumerator());
 		return answer.simplify();
 	}
-	
+
 	/**
 	 * Returns the decimal equivalent of a given fraction.
 	 * @param s		a String in the format "numerator/denominator"
@@ -137,7 +147,7 @@ public class Fraction {
 
 		return d;
 	}
-	
+
 	/**
 	 * Returns the decimal equivalent of a given Fraction object.
 	 * @param f		a Fraction object
@@ -146,7 +156,7 @@ public class Fraction {
 	public static double toDecimal(Fraction f) {
 		return (double)f.getNumerator() / (double)f.getDenominator();
 	}
-	
+
 	/**
 	 * Returns the decimal equivalent of a Fraction
 	 * @return		f in decimal form as a double
@@ -211,6 +221,36 @@ public class Fraction {
 	}
 
 	/**
+	 * Returns the given input in fraction form. Input represents a repeating decimal and has the notation of
+	 * "x.x(yy)" with x representing digits that do not repeat and y representing repeating digits.
+	 * @param s		double represented as a String to be converted to a fraction
+	 * @return		the fraction form of s, null if s is not in the correct format
+	 */
+	public static Fraction toFractionRepeating(String s) {
+		if (s.length() - s.replace(".", "").length() != 1 ||
+				s.length() - s.replace("(", "").length() != 1 ||
+				s.length() - s.replace(")", "").length() != 1 ||
+				!s.substring(s.length() - 1, s.length()).equals(")"))
+			return null;
+
+		int pow1 = s.substring(s.indexOf(".") + 1, s.indexOf(")")).length() - 1;
+		int pow2 = s.substring(s.indexOf(".") + 1, s.indexOf("(")).length();
+		
+		String temp = s.replace(".", "");
+		temp = temp.replace("(", "");
+		temp = temp.replace(")", "");
+		
+		int num1 = Integer.parseInt(temp);
+		
+		temp = s.replace(".", "");
+		temp = temp.substring(0, temp.indexOf("("));
+		
+		int num2 = Integer.parseInt(temp);
+		
+		return new Fraction(num1 - num2, Math.pow(10, pow1) - Math.pow(10, pow2));
+	}
+
+	/**
 	 * Returns a simplified version of a given fraction.
 	 * @param s		a fraction in the form numerator/denominator
 	 * @return		s simplified
@@ -272,25 +312,25 @@ public class Fraction {
 	public int getDenominator() {
 		return denominator;
 	}
-	
+
 	public boolean isNegative() {
 		return isNegative;
 	}
 
 	public boolean equals(Object obj) {
 		if (numerator == ((Fraction) obj).getNumerator() &&
-			denominator == ((Fraction) obj).getDenominator() &&
-			isNegative == ((Fraction) obj).isNegative()) {
+				denominator == ((Fraction) obj).getDenominator() &&
+				isNegative == ((Fraction) obj).isNegative()) {
 			return true;
 		}
 		else
 			return false;
 	}
-	
+
 	public String toString() {
 		if (numerator == 0)
 			return "0";
-		
+
 		if (isNegative) {
 			if (denominator == 1)
 				return "-" + (int)numerator;
