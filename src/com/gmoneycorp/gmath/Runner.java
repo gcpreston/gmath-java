@@ -83,7 +83,7 @@ public class Runner {
 				if (args.length > 2)
 					returnUsage();
 				else {
-					if (String.valueOf(Fraction.toDecimal(args[1])).length() == 18)
+					if (String.valueOf(Fraction.toDecimal(args[1])).length() >= 18)
 						System.out.println(args[1] + " = " + Fraction.toRepeatingDecimal(args[1]));
 					else
 						System.out.println(args[1] + " = " + Fraction.toDecimal(args[1]));
