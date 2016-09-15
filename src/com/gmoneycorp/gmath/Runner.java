@@ -74,8 +74,12 @@ public class Runner {
 				else
 					if (args[1].length() > 9)
 						System.out.println("Please enter a number with 7 decimals or less.");
-					else
-						System.out.println(args[1] + " = " + Fraction.toFraction(parseDouble(args[1])));
+					else {
+						if (args[1].contains("("))
+							System.out.println(args[1] + " = " + Fraction.toFractionRepeating(args[1]));
+						else	
+							System.out.println(args[1] + " = " + Fraction.toFraction(parseDouble(args[1])));
+					}
 				break;
 				
 			//Return the decimal form of a fraction
@@ -300,7 +304,11 @@ public class Runner {
 			
 		case "fraction":
 			System.out.println("Usage: java -jar gmath.jar fraction [input]\n\n"
-					+ "where input one number.");
+					+ "where input is one number. For a repeating decimal, put parenthesis\n"
+					+ "around the repeating section.\n\n"
+					+ "EXAMPLE:\n"
+					+ "0.125 = 1/8\n"
+					+ "0.1(6) = 1/6");
 			break;
 
 		case "decimal":
