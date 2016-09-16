@@ -120,20 +120,23 @@ public class Runner {
 					returnUsage();
 				else {
 					Quadratic q = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseDouble(args[3]));
+				
 					System.out.print(q + " = ");
 
 					if (q.factorQuadratic() == null)
 						System.out.println("Not factorable.\n");
-					else
+					else {
 						System.out.println(q.factorToString() + "\n");
+					}
 
+					double[] solved = q.solveQuadratic();
 					if (q.solveDiscriminant() > 0) {
 						System.out.println("Two real solutions:");
-						System.out.println("x = " + q.solveQuadratic()[0] + ", " + q.solveQuadratic()[1]);
+						System.out.println("x = " + solved[0] + ", " + solved[1]);
 					}
 					else if (q.solveDiscriminant() == 0) {
 						System.out.println("One real solution (duplicate solutions):");
-						System.out.println("x = " + q.solveQuadratic()[0]);
+						System.out.println("x = " + solved[0]);
 					}
 					else if (q.solveDiscriminant() < 0)
 						System.out.println("Two imaginary solutions.");

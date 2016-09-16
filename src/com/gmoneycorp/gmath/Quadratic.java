@@ -100,8 +100,23 @@ public class Quadratic {
 	 */
 	public String factorToString() {
 		int[] factoredEquation = factorQuadratic();
+		int totalGCF = 1;
+		
+		int GCF1 = Factor.findGCF(factoredEquation[0], factoredEquation[1]);
+		totalGCF *= GCF1;
+		factoredEquation[0] /= GCF1;
+		factoredEquation[1] /= GCF1;
+		
+		int GCF2 = Factor.findGCF(factoredEquation[2], factoredEquation[3]);
+		totalGCF *= GCF2;
+		factoredEquation[2] /= GCF2;
+		factoredEquation[3] /= GCF2;
+		
 		String factoredForm = "";
 
+		if (totalGCF != 1)
+			factoredForm += String.valueOf(totalGCF);
+		
 		factoredForm += "(" + factoredEquation[0] + "x ";
 		if (factoredEquation[1] > 0)
 			factoredForm += "+ " + factoredEquation[1] + ")(" + factoredEquation[2] + "x ";
