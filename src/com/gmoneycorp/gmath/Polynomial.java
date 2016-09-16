@@ -71,7 +71,7 @@ public class Polynomial {
 	 * Uses synthetic division to find which of the possible roots are real roots.
 	 * @return			a List of real roots in the form of Fractions
 	 */
-	public List<Fraction> realRoots() {
+	public List<Fraction> rationalRoots() {
 		List<Fraction> coeffsTemp = arrayToList(coeffs);
 		List<Fraction> possibleRoots = possibleRoots();
 		List<Fraction> roots = new ArrayList<>();
@@ -91,6 +91,39 @@ public class Polynomial {
 		}
 
 		return roots;
+	}
+	
+	/**
+	 * Uses synthetic substitution to factor a Polynomial object.
+	 * @return			a 2D List that represents multiple polynomials being multiplied
+	 */
+	public List<List<Fraction>> factorPolynomial() {
+		//Can probably be cleaned up
+		List<Fraction> coeffsTemp = arrayToList(coeffs);
+		List<Fraction> possibleRoots = possibleRoots();
+		List<List<Fraction>> factored = new ArrayList<>();
+
+		int i = 0;
+		while (i < possibleRoots.size()) {
+			Fraction f = possibleRoots.get(i);
+			Polynomial p = new Polynomial(coeffsTemp);
+			List<Fraction> subbed = syntheticSub(f, p);
+			
+			if (subbed.size() == coeffsTemp.size() - 1) {
+				factored.add(new ArrayList<>());
+				factored.get(factored.size() - 1).add(new Fraction(f.getDenominator(), 1));
+				factored.get(factored.size() - 1).add(Fraction.negate(Fraction.multiply(f, new Fraction(f.getDenominator(), 1))));
+				
+				for (int j = 0; j < subbed.size(); j++)
+					 subbed.set(j, Fraction.divide(subbed.get(j), new Fraction(f.getDenominator(), 1)));
+				coeffsTemp = subbed;
+				i--;
+			}
+			i++;
+		}
+		factored.add(coeffsTemp);
+
+		return factored;
 	}
 
 	/**
@@ -188,7 +221,7 @@ public class Polynomial {
 			if (coeffs[1] == 0)
 				return disp(coeffs[0]) + "x";
 			else if (coeffs[1] < 0)
-				return disp(coeffs[0]) + "x - " + Math.abs(coeffs[1]);
+				return disp(coeffs[0]) + "x - " + disp(Math.abs(coeffs[1]));
 			else
 				return disp(coeffs[0]) + "x + " + disp(coeffs[1]);
 		}

@@ -154,11 +154,8 @@ public class Runner {
 			case "rationalroot":
 				double[] coeffs = new double[args.length - 1];
 				
-				int j = 0;
-				for (int i = 1; i < args.length; i++) {
-					coeffs[j] = parseInt(args[i]);
-					j++;
-				}
+				for (int i = 1; i < args.length; i++)
+					coeffs[i - 1] = parseInt(args[i]);
 				
 				Polynomial p = new Polynomial(coeffs);
 				List<Fraction> possibleRoots = new ArrayList<>();
@@ -167,7 +164,7 @@ public class Runner {
 				for (Fraction f : p.possibleRoots())
 					possibleRoots.add(f);
 				
-				for (Fraction f : p.realRoots())
+				for (Fraction f : p.rationalRoots())
 					realRoots.add(f);
 				
 				System.out.print("Possible roots:\n+/- ");
@@ -189,15 +186,28 @@ public class Runner {
 				}
 				break;
 				
+			//Returns factored version of a polynomial
+			case "factorpoly":
+				double[] coeffs5 = new double[args.length - 1];
+				
+				for (int i = 1; i < args.length; i++)
+					coeffs5[i - 1] = parseDouble(args[i]);
+				
+				Polynomial r = new Polynomial(coeffs5);
+				List<List<Fraction>> factored = r.factorPolynomial();
+				
+				System.out.println(r + " = ");
+				for(List<Fraction> l : factored)
+					System.out.print("(" + new Polynomial(l) + ")");
+				System.out.println();
+				break;
+				
 			//Return a polynomial divided by a value
 			case "syntheticdiv":
 				double[] coeffs4 = new double[args.length - 2];
 				
-				int k = 0;
-				for (int i = 1; i < args.length - 1; i++) {
-					coeffs4[k] = parseDouble(args[i]);
-					k++;
-				}
+				for (int i = 1; i < args.length - 1; i++)
+					coeffs4[i - 1] = parseDouble(args[i]);
 				
 				Polynomial q = new Polynomial(coeffs4);
 				

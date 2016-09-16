@@ -126,7 +126,7 @@ public class Fraction {
 	}
 
 	/**
-	 * Divides one Fraction by another
+	 * Divides one Fraction by another.
 	 * @param f		Fraction to be divided by g
 	 * @param g		second Fraction object 
 	 * @return		a Fraction equal to f / g
@@ -136,6 +136,15 @@ public class Fraction {
 		return answer.simplify();
 	}
 
+	/**
+	 * Negates a given Fraction.
+	 * @param f		Fraction to be negated
+	 * @return		f negated
+	 */
+	public static Fraction negate(Fraction f) {
+		return new Fraction(-1 * f.getNumerator(), f.getDenominator());
+	}
+	
 	/**
 	 * Returns the decimal equivalent of a given fraction.
 	 * @param s		a String in the format "numerator/denominator"
