@@ -277,6 +277,7 @@ public class Runner {
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
 				+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
+				+ "factorpoly\treturn the factored version of a polynomial\n\t"
 				+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
 				+ "integrate\treturn the integral of a polynomial over an interval\n\t"
 				+ "derive\t\treturn the derivative of a polynomial at a point";
@@ -350,6 +351,11 @@ public class Runner {
 			
 		case "rationalroot":
 			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n\n"
+					+ "where input is the coefficients of a polynomial function.");
+			break;
+			
+		case "factorpoly":
+			System.out.println("Usage: java -jar gmath.jar factorpoly [input]\n\n"
 					+ "where input is the coefficients of a polynomial function.");
 			break;
 			
