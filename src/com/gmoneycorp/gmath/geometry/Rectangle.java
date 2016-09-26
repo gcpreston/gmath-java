@@ -18,4 +18,8 @@ public class Rectangle implements Shape {
 	public double perimeter() {
 		return (2 * length) + (2 * width);
 	}
+	
+	public double diagonal() {
+		return Math.sqrt((length * length) + (width * width));
+	}
 }

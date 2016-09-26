@@ -1,4 +1,5 @@
 package com.gmoneycorp.gmath;
+import com.gmoneycorp.gmath.geometry.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,11 +10,31 @@ public class Runner {
 	public static void main(String[] args) {
 
 		try {
-			String op = args[0].toLowerCase();
-			operation = op;
+			operation = args[0].toLowerCase();
 
 			switch (operation) {
 
+			//Return the area of a specified shape
+			case "area":
+				switch (args[1]) {
+				
+				case "triangle":
+					Shape t = new Triangle(parseInt(args[2]), parseInt(args[3]), parseInt(args[4]));
+					System.out.println("A = " + t.area());
+					break;
+					
+				case "rectangle":
+					Shape r = new Rectangle (parseInt(args[2]), parseInt(args[3]));
+					System.out.println("A = " + r.area());
+					break;
+					
+				case "circle":
+					Shape c = new Circle(parseInt(args[2]));
+					System.out.println("A = " + c.area());
+					break;
+				}
+				break;
+			
 			//Return a list of factors of an integer
 			case "factor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
