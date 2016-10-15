@@ -133,7 +133,6 @@ public abstract class Factor {
 				a *= current;
 				primes.remove(i);
 				primes.remove(i - 1);
-				i--;
 			}
 		}
 		
