@@ -14,7 +14,7 @@ public class Runner {
 
 			switch (operation) {
 
-			//Return the area of a specified shape
+			// Return the area of a specified shape
 			case "area":
 				switch (args[1]) {
 				
@@ -35,7 +35,7 @@ public class Runner {
 				}
 				break;
 			
-			//Return a list of factors of an integer
+			// Return a list of factors of an integer
 			case "factor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
@@ -43,7 +43,7 @@ public class Runner {
 					System.out.println("Factors of " + args[1] + ": " + Factor.factor(parseInt(args[1])));
 				break;
 
-			//Return prime factorization of an integer
+			// Return prime factorization of an integer
 			case "primefactor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
@@ -60,7 +60,7 @@ public class Runner {
 				}
 				break;
 				
-			//Return true if an integer is prime, otherwise false
+			// Return true if an integer is prime, otherwise false
 			case "isprime":
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
@@ -72,7 +72,7 @@ public class Runner {
 				}
 				break;
 				
-			//Return the gcf of two positive integers
+			// Return the gcf of two positive integers
 			case "gcf":
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
@@ -80,7 +80,7 @@ public class Runner {
 					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + Factor.findGCF(parseInt(args[1]), parseInt(args[2])));
 				break;
 				
-			//Return the lcm of two positive integers
+			// Return the lcm of two positive integers
 			case "lcm":
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
@@ -88,7 +88,7 @@ public class Runner {
 					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + Factor.findLCM(parseInt(args[1]), parseInt(args[2])));
 				break;
 			
-			//Return the fraction form of a number
+			// Return the fraction form of a number
 			case "fraction":
 				if (args.length > 2)
 					returnUsage();
@@ -103,7 +103,7 @@ public class Runner {
 					}
 				break;
 				
-			//Return the decimal form of a fraction
+			// Return the decimal form of a fraction
 			case "decimal":
 				if (args.length > 2)
 					returnUsage();
@@ -112,6 +112,22 @@ public class Runner {
 						System.out.println(args[1] + " = " + Fraction.toRepeatingDecimal(args[1]));
 					else
 						System.out.println(args[1] + " = " + Fraction.toDecimal(args[1]));
+				}
+				break;
+				
+			// Return a simplified version of the given radical
+			case "simplifyrad":
+				if (args.length > 2)
+					returnUsage();
+				else {
+					int[] rad = Factor.simplifyRadical(parseInt(args[1]));
+					System.out.print("sqrt(" + args[1] + ")");
+					if (rad[0] == 1)
+						System.out.println(" cannot be simplified.");
+					else if (rad[1] == 1)
+						System.out.println(" = " + rad[0]);
+					else
+						System.out.println(" = " + rad[0] + "sqrt(" + rad[1] + ")");
 				}
 				break;
 				
@@ -296,6 +312,7 @@ public class Runner {
 				+ "lcm\t\treturn the LCM of two positive integers\n\t"
 				+ "fraction\treturn the fraction form of a number\n\t"
 				+ "decimal\t\treturn the decimal form of a fraction\n\t"
+				+ "simplifyrad\treturn the simplified form of a radical\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "calcline\treturn the formula of a line given two coordinates\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
@@ -348,7 +365,12 @@ public class Runner {
 
 		case "decimal":
 			System.out.println("Usage: java -jar gmath.jar decimal [input]\n\n"
-					+ "where input a fraction in the form numerator/denominaor.");
+					+ "where input is a fraction in the form numerator/denominaor.");
+			break;
+			
+		case "simplifyrad":
+			System.out.println("Usage: java -jar gmath.jar simplifyrad [input]\n\n"
+					+ "where input is n in sqrt(n).");
 			break;
 			
 		case "x-int":
