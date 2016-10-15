@@ -115,6 +115,34 @@ public abstract class Factor {
 
 		return LCM;
 	}
+	
+	/**
+	 * Returns a simplified form of a given radical as a int[]. The returned
+	 * array {a, b} should be parsed as "a * sqrt(b)" or any equivalent variation.
+	 * @param n		number under the radical
+	 * @return		simplified version of the radical as an int[]
+	 */
+	public static int[] simplifyRadical(int n) {
+		List<Integer> primes = primeFactorize(n);
+		int a = 1;
+		int b = 1;
+		
+		for (int i = 1; i < primes.size(); i++) {
+			int current = primes.get(i);
+			if (primes.get(i - 1) == current) {
+				a *= current;
+				primes.remove(i);
+				primes.remove(i - 1);
+				i--;
+			}
+		}
+		
+		for (int x : primes)
+			b *= x;
+		
+		int[] simplified = {a, b};
+		return simplified;
+	}
 
 	/**
 	 * A utility to find the number of occurrences of a certain integer
