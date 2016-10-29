@@ -2,6 +2,7 @@ package com.gmoneycorp.gmath;
 import com.gmoneycorp.gmath.geometry.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Runner {
 
@@ -14,6 +15,25 @@ public class Runner {
 
 			switch (operation) {
 
+			//Calculate information about a specified shape
+			case "shape":
+				Shape s = null;
+				List<String> argsList = Arrays.asList(args);
+				
+				if (argsList.contains("triangle") || argsList.contains("-t"))
+					s = new Triangle(parseInt(args[3]), parseInt(args[4]), parseInt(args[5]));
+				else if (argsList.contains("rectangle") || argsList.contains("-r"))
+					s = new Rectangle (parseInt(args[3]), parseInt(args[4]));
+				else if (argsList.contains("circle") || argsList.contains("-c"))
+					s = new Circle(parseInt(args[3]));
+				else
+					returnUsage();
+				
+				if (argsList.contains("area") || argsList.contains("-a"))
+					System.out.println("Area = " + s.area());
+				else if (argsList.contains("perimeter") || argsList.contains("-p"))
+					System.out.println("Perimeter = " + s.perimeter());
+				
 			// Return the area of a specified shape
 			case "area":
 				switch (args[1]) {
@@ -305,6 +325,7 @@ public class Runner {
 
 	private static void returnUsage() {
 		String usage = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
+				+ "shape\t\tperform a specified calcualtion for a specfied shape\n\t"
 				+ "factor\t\treturn a list of factors of a positive integer\n\t"
 				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
 				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
@@ -329,6 +350,17 @@ public class Runner {
 		}
 
 		switch (operation) {
+		case "shape":
+			System.out.println("Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
+					+ "where shapes include\n\t"
+					+ "triangle (-t)\tinput is three side lengths\n\t"
+					+ "rectangle (-r)\tinput is length and width\n\t"
+					+ "circle (-c)\tinput is radius\n\n"
+					+ "where functions include\n\t"
+					+ "area (-a)\n\t"
+					+ "perimeter (-p)\n\n");
+			break;
+			
 		case "factor":
 			System.out.println("Usage: java -jar gmath.jar factor [input]\n\n"
 					+ "where input is a positive integer.");
