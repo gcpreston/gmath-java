@@ -17,15 +17,30 @@ public class Runner {
 
 			//Calculate information about a specified shape
 			case "shape":
-				Shape s = null;
 				List<String> argsList = Arrays.asList(args);
+				if ((argsList.contains("-a") && argsList.contains("-p"))
+						|| (argsList.contains("-t") && argsList.contains("-r"))
+						|| (argsList.contains("-r") && argsList.contains("-c"))
+						|| (argsList.contains("-t") && argsList.contains("-c")))
+					returnUsage();
 				
-				if (argsList.contains("triangle") || argsList.contains("-t"))
+				Shape s = null;
+				
+				if (argsList.contains("-t")) {
+					if (args.length != 6)
+						returnUsage();
 					s = new Triangle(parseInt(args[3]), parseInt(args[4]), parseInt(args[5]));
-				else if (argsList.contains("rectangle") || argsList.contains("-r"))
+				}
+				else if (argsList.contains("-r")) {
+					if (args.length != 5)
+						returnUsage();
 					s = new Rectangle (parseInt(args[3]), parseInt(args[4]));
-				else if (argsList.contains("circle") || argsList.contains("-c"))
+				}
+				else if (argsList.contains("-c")) {
+					if (args.length != 4)
+						returnUsage();
 					s = new Circle(parseInt(args[3]));
+				}
 				else
 					returnUsage();
 				
@@ -33,28 +48,8 @@ public class Runner {
 					System.out.println("Area = " + s.area());
 				else if (argsList.contains("perimeter") || argsList.contains("-p"))
 					System.out.println("Perimeter = " + s.perimeter());
-				
-			// Return the area of a specified shape
-			case "area":
-				switch (args[1]) {
-				
-				case "triangle":
-					Shape t = new Triangle(parseInt(args[2]), parseInt(args[3]), parseInt(args[4]));
-					System.out.println("A = " + t.area());
-					break;
-					
-				case "rectangle":
-					Shape r = new Rectangle (parseInt(args[2]), parseInt(args[3]));
-					System.out.println("A = " + r.area());
-					break;
-					
-				case "circle":
-					Shape c = new Circle(parseInt(args[2]));
-					System.out.println("A = " + c.area());
-					break;
-				}
 				break;
-			
+				
 			// Return a list of factors of an integer
 			case "factor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
@@ -353,12 +348,12 @@ public class Runner {
 		case "shape":
 			System.out.println("Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
 					+ "where shapes include\n\t"
-					+ "triangle (-t)\tinput is three side lengths\n\t"
-					+ "rectangle (-r)\tinput is length and width\n\t"
-					+ "circle (-c)\tinput is radius\n\n"
+					+ "-t (triangle)\tinput is three side lengths\n\t"
+					+ "-r (rectangle)\tinput is length and width\n\t"
+					+ "-c (circle)\tinput is radius\n\n"
 					+ "where functions include\n\t"
-					+ "area (-a)\n\t"
-					+ "perimeter (-p)\n\n");
+					+ "-a (area)\n\t"
+					+ "-p (perimeter)\n\n");
 			break;
 			
 		case "factor":
