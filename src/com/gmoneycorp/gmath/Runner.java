@@ -17,12 +17,13 @@ public class Runner {
 
 			//Calculate information about a specified shape
 			case "shape":
-				List<String> argsList = Arrays.asList(args);
-				if ((argsList.contains("-a") && argsList.contains("-p"))
-						|| (argsList.contains("-t") && argsList.contains("-r"))
-						|| (argsList.contains("-r") && argsList.contains("-c"))
-						|| (argsList.contains("-t") && argsList.contains("-c")))
+				String[] shapes = {"-t", "-r", "-c"};
+				String[] functions = {"-a", "-p"};
+				
+				if (!(checkArgs(shapes, args) && checkArgs(functions, args)))
 					returnUsage();
+				
+				List<String> argsList = Arrays.asList(args);
 				
 				Shape s = null;
 				
@@ -44,9 +45,9 @@ public class Runner {
 				else
 					returnUsage();
 				
-				if (argsList.contains("area") || argsList.contains("-a"))
+				if (argsList.contains("-a"))
 					System.out.println("Area = " + s.area());
-				else if (argsList.contains("perimeter") || argsList.contains("-p"))
+				else if (argsList.contains("-p"))
 					System.out.println("Perimeter = " + s.perimeter());
 				break;
 				
@@ -455,6 +456,7 @@ public class Runner {
 		default:
 			System.out.println(usage);
 		}
+		System.exit(0);
 	}
 
 	private static int parseInt(String s) {
@@ -487,5 +489,19 @@ public class Runner {
 			System.exit(0);
 			return 0;
 		}
+	}
+	
+	private static boolean checkArgs(String[] arr1, String[] arr2) {
+		int count = 0;
+		
+		for (String s : arr1) {
+			for (String t : arr2) {
+				if (s.equals(t))
+					count++;
+				if (count > 1)
+					return false;
+			}
+		}
+		return true;
 	}
 }
