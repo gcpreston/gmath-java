@@ -131,7 +131,15 @@ public class Runner {
 				}
 				break;
 				
-			// Return a simplified version of the given radical
+			// Return the simplified version of the given fraction
+			case "simplify":
+				if (args.length > 2)
+					returnUsage();
+				else
+					System.out.println(args[1] + " = " + new Fraction(args[1]).simplify());
+				break;
+				
+			// Return the simplified version of the given radical
 			case "simplifyrad":
 				if (args.length > 2)
 					returnUsage();
@@ -329,6 +337,7 @@ public class Runner {
 				+ "lcm\t\treturn the LCM of two positive integers\n\t"
 				+ "fraction\treturn the fraction form of a number\n\t"
 				+ "decimal\t\treturn the decimal form of a fraction\n\t"
+				+ "simplify\t\treturn the simplified form of a fraction\n\t"
 				+ "simplifyrad\treturn the simplified form of a radical\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "calcline\treturn the formula of a line given two coordinates\n\t"
@@ -339,11 +348,6 @@ public class Runner {
 				+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
 				+ "integrate\treturn the integral of a polynomial over an interval\n\t"
 				+ "derive\t\treturn the derivative of a polynomial at a point";
-
-		if (operation == null) {
-			System.out.println(usage);
-			System.exit(0);
-		}
 
 		switch (operation) {
 		case "shape":
@@ -393,8 +397,12 @@ public class Runner {
 
 		case "decimal":
 			System.out.println("Usage: java -jar gmath.jar decimal [input]\n\n"
-					+ "where input is a fraction in the form numerator/denominaor.");
+					+ "where input is a fraction in the form numerator/denominator.");
 			break;
+			
+		case "simplify":
+			System.out.println("Usage: java -jar gmath.jar simplfy [input]\n\n"
+					+ "where input is a fraction in the form numerator/denominator.");
 			
 		case "simplifyrad":
 			System.out.println("Usage: java -jar gmath.jar simplifyrad [input]\n\n"
