@@ -1,4 +1,4 @@
-# GMath
+#GMath
 The main functionality of GMath is to be used as a command line calculator, doing things that a regular calculator would not be able to do. GMath can also double as an external reference library if all classes except Runner are made into a JAR file.
 
 ##Build
