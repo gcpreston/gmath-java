@@ -136,7 +136,7 @@ public class Runner {
 				if (args.length > 2)
 					returnUsage();
 				else
-					System.out.println(args[1] + " = " + new Fraction(args[1]).simplify());
+					System.out.println(args[1] + " = " + Fraction.simplify(args[1]));
 				break;
 				
 			// Return the simplified version of the given radical

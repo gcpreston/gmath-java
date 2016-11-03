@@ -264,44 +264,21 @@ public class Fraction {
 	 * @param s		a fraction in the form numerator/denominator
 	 * @return		s simplified
 	 */
-	public static String simplify(String s) {
+	public static Fraction simplify(String s) {
 		String[] fraction = s.split("/");
 		double numerator = Double.parseDouble(fraction[0]);
 		double denominator = Double.parseDouble(fraction[1]);
 
 		if (numerator == 0)
-			return "0";
+			return new Fraction(0, 1);
 
-		String numerStr = String.valueOf(numerator);
-		String denomStr = String.valueOf(denominator);
-		int numDecimalsNumer = numerStr.length() - 1 - numerStr.indexOf('.');
-		int numDecimalsDenom = denomStr.length() - 1 - denomStr.indexOf('.');
-
-		if (numDecimalsNumer > numDecimalsDenom){
-			numerator *= Math.pow(10, numDecimalsNumer);
-			denominator *= Math.pow(10, numDecimalsNumer);
-		}
-		else {
-			numerator *= Math.pow(10, numDecimalsDenom);
-			denominator *= Math.pow(10, numDecimalsDenom);
-		}
-
-		int GCF = Factor.findGCF((int)numerator, (int)denominator);
-		numerator /= GCF;
-		denominator /= GCF;
-
-		if ((denominator < 0 && numerator > 0) || (denominator > 0 && numerator < 0)) {
-			denominator = Math.abs(denominator);
-			numerator = Math.abs(numerator);
-			return "- " + (int)numerator + "/" + (int)denominator;
-		}
-		else {
-			denominator = Math.abs(denominator);
-			numerator = Math.abs(numerator);
-			return (int)numerator + "/" + (int)denominator;
-		}
+		return new Fraction(numerator, denominator).simplify();
 	}
 
+	/**
+	 * Returns a simplified version of the Fraction object.
+	 * @return		the Fraction object simplified
+	 */
 	public Fraction simplify() {
 		int GCF = Factor.findGCF(numerator, denominator);
 		int newNumer = numerator / GCF;
