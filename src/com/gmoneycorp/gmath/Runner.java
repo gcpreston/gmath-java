@@ -337,7 +337,7 @@ public class Runner {
 				+ "lcm\t\treturn the LCM of two positive integers\n\t"
 				+ "fraction\treturn the fraction form of a number\n\t"
 				+ "decimal\t\treturn the decimal form of a fraction\n\t"
-				+ "simplify\t\treturn the simplified form of a fraction\n\t"
+				+ "simplify\treturn the simplified form of a fraction\n\t"
 				+ "simplifyrad\treturn the simplified form of a radical\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "calcline\treturn the formula of a line given two coordinates\n\t"
@@ -349,6 +349,9 @@ public class Runner {
 				+ "integrate\treturn the integral of a polynomial over an interval\n\t"
 				+ "derive\t\treturn the derivative of a polynomial at a point";
 
+		if (operation == null)
+			System.out.println(usage);
+		
 		switch (operation) {
 		case "shape":
 			System.out.println("Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
