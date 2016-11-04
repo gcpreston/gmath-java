@@ -351,121 +351,119 @@ public class Runner {
 
 		if (operation == null)
 			System.out.println(usage);
-		
-		switch (operation) {
-		case "shape":
-			System.out.println("Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
-					+ "where shapes include\n\t"
-					+ "-t (triangle)\tinput is three side lengths\n\t"
-					+ "-r (rectangle)\tinput is length and width\n\t"
-					+ "-c (circle)\tinput is radius\n\n"
-					+ "where functions include\n\t"
-					+ "-a (area)\n\t"
-					+ "-p (perimeter)\n\n");
-			break;
-			
-		case "factor":
-			System.out.println("Usage: java -jar gmath.jar factor [input]\n\n"
-					+ "where input is a positive integer.");
-			break;
-
-		case "primefactor":
-			System.out.println("Usage: java -jar gmath.jar primefactor [input]\n\n"
-					+ "where input is a positive integer.");
-			break;
-			
-		case "isprime":
-			System.out.println("Usage: java -jar gmath.jar isprime [input]\n\n"
-					+ "where input is a positive integer.");
-			break;
-			
-		case "gcf":
-			System.out.println("Usage: java -jar gmath.jar gcf [input]\n\n"
-					+ "where input is two positive integers.");
-			break;
-
-		case "lcm":
-			System.out.println("Usage: java -jar gmath.jar lcm [input]\n\n"
-					+ "where input is two positive integers.");
-			break;
-			
-		case "fraction":
-			System.out.println("Usage: java -jar gmath.jar fraction [input]\n\n"
-					+ "where input is one number. For a repeating decimal, put parenthesis\n"
-					+ "around the repeating section.\n\n"
-					+ "EXAMPLE:\n"
-					+ "0.125 = 1/8\n"
-					+ "0.1(6) = 1/6");
-			break;
-
-		case "decimal":
-			System.out.println("Usage: java -jar gmath.jar decimal [input]\n\n"
-					+ "where input is a fraction in the form numerator/denominator.");
-			break;
-			
-		case "simplify":
-			System.out.println("Usage: java -jar gmath.jar simplfy [input]\n\n"
-					+ "where input is a fraction in the form numerator/denominator.");
-			
-		case "simplifyrad":
-			System.out.println("Usage: java -jar gmath.jar simplifyrad [input]\n\n"
-					+ "where input is n in sqrt(n).");
-			break;
-			
-		case "x-int":
-			System.out.println("Usage: java -jar gmath.jar x-int [input]\n\n"
-					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
-			break;
-			
-		case "calcline":
-			System.out.println("Usage: java -jar gmath.jar calcline [input]\n\n"
-					+ "where input is two coordinates in the format (x1,y1) (x2,y2)");
-			break;
-			
-		case "quadratic":
-			System.out.println("Usage: java -jar gmath.jar quadratic [input]\n\n"
-					+ "where input is three integers a, b, and c, from the quadratic\n"
-					+ "f(x) = ax^2 + bx + c.");
-			break;
-
-		case "discrim":
-			System.out.println("Usage: java -jar gmath.jar discrim [input]\n\n"
-					+ "where input is three integers a, b, and c, from the quadratic\n"
-					+ "f(x) = ax^2 + bx + c.");
-			break;
-			
-		case "rationalroot":
-			System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n\n"
-					+ "where input is the coefficients of a polynomial function.");
-			break;
-			
-		case "factorpoly":
-			System.out.println("Usage: java -jar gmath.jar factorpoly [input]\n\n"
-					+ "where input is the coefficients of a polynomial function.");
-			break;
-			
-		case "syntheticdiv":
-			System.out.println("Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
-					+ "where polynomial are the coefficients of the polynomial to be divided and\n"
-					+ "divisor is the factor to divide the polynomial by.\n"
-					+ "Executes (polynomial) / (x - divisor) using synthetic division.");
-			break;
-			
-		case "integrate":
-			System.out.println("Usage: java -jar gmath.jar integrate [coefficients] [interval]\n\n"
-					+ "where coefficients are any number of integers representing the coefficients of a"
-					+ "polynomial and interval is two integers representing the start and end of the\n"
-					+ "interval to integrate over, respecitvely.");
-			break;
-			
-		case "derive":
-			System.out.println("Usage: java -jar gmath.jar derive [coefficients] [point]\n\n"
-					+ "where coefficients are any number of integers representing the coefficients of a"
-					+ "polynomial and point is the x value to derive at.");
-			break;
-			
-		default:
-			System.out.println(usage);
+		else {
+			switch (operation) {
+			case "shape":
+				System.out.println("Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
+						+ "where shapes include\n\t"
+						+ "-t (triangle)\tinput is three side lengths\n\t"
+						+ "-r (rectangle)\tinput is length and width\n\t"
+						+ "-c (circle)\tinput is radius\n\n"
+						+ "where functions include\n\t"
+						+ "-a (area)\n\t"
+						+ "-p (perimeter)\n\n");
+				break;
+				
+			case "factor":
+				System.out.println("Usage: java -jar gmath.jar factor [input]\n\n"
+						+ "where input is a positive integer.");
+				break;
+	
+			case "primefactor":
+				System.out.println("Usage: java -jar gmath.jar primefactor [input]\n\n"
+						+ "where input is a positive integer.");
+				break;
+				
+			case "isprime":
+				System.out.println("Usage: java -jar gmath.jar isprime [input]\n\n"
+						+ "where input is a positive integer.");
+				break;
+				
+			case "gcf":
+				System.out.println("Usage: java -jar gmath.jar gcf [input]\n\n"
+						+ "where input is two positive integers.");
+				break;
+	
+			case "lcm":
+				System.out.println("Usage: java -jar gmath.jar lcm [input]\n\n"
+						+ "where input is two positive integers.");
+				break;
+				
+			case "fraction":
+				System.out.println("Usage: java -jar gmath.jar fraction [input]\n\n"
+						+ "where input is one number. For a repeating decimal, put parenthesis\n"
+						+ "around the repeating section.\n\n"
+						+ "EXAMPLE:\n"
+						+ "0.125 = 1/8\n"
+						+ "0.1(6) = 1/6");
+				break;
+	
+			case "decimal":
+				System.out.println("Usage: java -jar gmath.jar decimal [input]\n\n"
+						+ "where input is a fraction in the form numerator/denominator.");
+				break;
+				
+			case "simplify":
+				System.out.println("Usage: java -jar gmath.jar simplfy [input]\n\n"
+						+ "where input is a fraction in the form numerator/denominator.");
+				
+			case "simplifyrad":
+				System.out.println("Usage: java -jar gmath.jar simplifyrad [input]\n\n"
+						+ "where input is n in sqrt(n).");
+				break;
+				
+			case "x-int":
+				System.out.println("Usage: java -jar gmath.jar x-int [input]\n\n"
+						+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
+				break;
+				
+			case "calcline":
+				System.out.println("Usage: java -jar gmath.jar calcline [input]\n\n"
+						+ "where input is two coordinates in the format (x1,y1) (x2,y2)");
+				break;
+				
+			case "quadratic":
+				System.out.println("Usage: java -jar gmath.jar quadratic [input]\n\n"
+						+ "where input is three integers a, b, and c, from the quadratic\n"
+						+ "f(x) = ax^2 + bx + c.");
+				break;
+	
+			case "discrim":
+				System.out.println("Usage: java -jar gmath.jar discrim [input]\n\n"
+						+ "where input is three integers a, b, and c, from the quadratic\n"
+						+ "f(x) = ax^2 + bx + c.");
+				break;
+				
+			case "rationalroot":
+				System.out.println("Usage: java -jar gmath.jar rationalroot [input]\n\n"
+						+ "where input is the coefficients of a polynomial function.");
+				break;
+				
+			case "factorpoly":
+				System.out.println("Usage: java -jar gmath.jar factorpoly [input]\n\n"
+						+ "where input is the coefficients of a polynomial function.");
+				break;
+				
+			case "syntheticdiv":
+				System.out.println("Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
+						+ "where polynomial are the coefficients of the polynomial to be divided and\n"
+						+ "divisor is the factor to divide the polynomial by.\n"
+						+ "Executes (polynomial) / (x - divisor) using synthetic division.");
+				break;
+				
+			case "integrate":
+				System.out.println("Usage: java -jar gmath.jar integrate [coefficients] [interval]\n\n"
+						+ "where coefficients are any number of integers representing the coefficients of a"
+						+ "polynomial and interval is two integers representing the start and end of the\n"
+						+ "interval to integrate over, respecitvely.");
+				break;
+				
+			case "derive":
+				System.out.println("Usage: java -jar gmath.jar derive [coefficients] [point]\n\n"
+						+ "where coefficients are any number of integers representing the coefficients of a"
+						+ "polynomial and point is the x value to derive at.");
+				break;
+			}
 		}
 		System.exit(0);
 	}
