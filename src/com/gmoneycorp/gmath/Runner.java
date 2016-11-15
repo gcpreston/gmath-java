@@ -51,7 +51,7 @@ public class Runner {
 					System.out.println("Perimeter = " + s.perimeter());
 				break;
 				
-			// Return a list of factors of an integer
+			//Return a list of factors of an integer
 			case "factor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
@@ -59,7 +59,7 @@ public class Runner {
 					System.out.println("Factors of " + args[1] + ": " + Factor.factor(parseInt(args[1])));
 				break;
 
-			// Return prime factorization of an integer
+			//Return prime factorization of an integer
 			case "primefactor":
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
@@ -76,7 +76,7 @@ public class Runner {
 				}
 				break;
 				
-			// Return true if an integer is prime, otherwise false
+			//Return true if an integer is prime, otherwise false
 			case "isprime":
 				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
@@ -88,7 +88,7 @@ public class Runner {
 				}
 				break;
 				
-			// Return the gcf of two positive integers
+			//Return the gcf of two positive integers
 			case "gcf":
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
@@ -96,7 +96,7 @@ public class Runner {
 					System.out.println("GCF of " + args[1] + " and " + args[2] + ": " + Factor.findGCF(parseInt(args[1]), parseInt(args[2])));
 				break;
 				
-			// Return the lcm of two positive integers
+			//Return the lcm of two positive integers
 			case "lcm":
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
@@ -104,7 +104,7 @@ public class Runner {
 					System.out.println("LCM of " + args[1] + " and " + args[2] + ": " + Factor.findLCM(parseInt(args[1]), parseInt(args[2])));
 				break;
 			
-			// Return the fraction form of a number
+			//Return the fraction form of a number
 			case "fraction":
 				if (args.length > 2)
 					returnUsage();
@@ -119,7 +119,7 @@ public class Runner {
 					}
 				break;
 				
-			// Return the decimal form of a fraction
+			//Return the decimal form of a fraction
 			case "decimal":
 				if (args.length > 2)
 					returnUsage();
@@ -131,7 +131,7 @@ public class Runner {
 				}
 				break;
 				
-			// Return the simplified version of the given fraction
+			//Return the simplified version of the given fraction
 			case "simplify":
 				if (args.length > 2)
 					returnUsage();
@@ -139,7 +139,7 @@ public class Runner {
 					System.out.println(args[1] + " = " + Fraction.simplify(args[1]));
 				break;
 				
-			// Return the simplified version of the given radical
+			//Return the simplified version of the given radical
 			case "simplifyrad":
 				if (args.length > 2)
 					returnUsage();
@@ -155,13 +155,13 @@ public class Runner {
 				}
 				break;
 				
-			// Return the x-intercept of a linear function
+			//Return the x-intercept of a linear function
 			case "x-int":
-				if (args.length > 3)
+				if (args.length > 4)
 					returnUsage();
 				else {
 					Polynomial func = new Polynomial(parseDouble(args[1]), parseDouble(args[2]));
-					System.out.println("The x-intercept of " + func + " is " + func.findXInt());
+					System.out.println("The x-intercept of " + func + " is " + func.findXInt());	
 				}
 				break;
 				
@@ -212,6 +212,7 @@ public class Runner {
 				else {
 					double[] coeffs = {parseInt(args[1]), parseInt(args[2]), parseInt(args[3])};
 					Polynomial q = new Polynomial(coeffs);
+					
 					System.out.println("The discriminant of " + q + " is " + q.solveDiscriminant());
 				}
 				break;
@@ -319,13 +320,12 @@ public class Runner {
 			}
 		} catch (NegativeArraySizeException e) {
 			returnUsage();
-			System.exit(0);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			returnUsage();
-			System.exit(0);
 		} catch (NumberFormatException e) {
 			returnUsage();
-			System.exit(0);
+		} catch (PolynomialPowerException e) {
+			returnUsage();
 		}
 	}
 
@@ -357,7 +357,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_106");
+				System.out.println("GMath version 0.1.2_107");
 				break;
 				
 			case "shape":

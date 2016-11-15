@@ -79,7 +79,9 @@ public class Polynomial {
 	
 	//LINEAR FUNCTIONS
 	
-	public double findXInt() {
+	public double findXInt() throws PolynomialPowerException {
+		if (coeffs.length != 2)
+			throw new PolynomialPowerException("Function power must be 1.");
 		return (-1 * coeffs[1]) / coeffs[0];
 	}
 
@@ -90,19 +92,31 @@ public class Polynomial {
 	}
 	*/
 	
-	public double getM() {
+	public double getM() throws PolynomialPowerException {
+		if (coeffs.length != 2)
+			throw new PolynomialPowerException("Function power must be 1.");
+		
 		return coeffs[0];
 	}
 
-	public double getYInt() {
+	public double getYInt() throws PolynomialPowerException{
+		if (coeffs.length != 2)
+			throw new PolynomialPowerException("Function power must be 1.");
+		
 		return coeffs[1];
 	}
 	
-	public Fraction getMFraction() {
+	public Fraction getMFraction() throws PolynomialPowerException {
+		if (coeffs.length != 2)
+			throw new PolynomialPowerException("Function power must be 1.");
+		
 		return mFraction;
 	}
 	
-	public Fraction getBFraction() {
+	public Fraction getBFraction() throws PolynomialPowerException {
+		if (coeffs.length != 2)
+			throw new PolynomialPowerException("Function power must be 1.");
+		
 		return bFraction;
 	}
 
@@ -113,7 +127,10 @@ public class Polynomial {
 	 * @return		an integer array with containing two factors of c that add
 	 * 				up to b
 	 */
-	private int[] findWorkingFactors() {
+	private int[] findWorkingFactors() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		List<Integer> factors = Factor.factor((int)coeffs[0]*(int)coeffs[2]);
 
 		int[] workingFactors = new int[2];
@@ -156,7 +173,10 @@ public class Polynomial {
 	 * 				as its four indexes
 	 * @throws InputMismatchException
 	 */
-	public int[] factorQuadratic() {
+	public int[] factorQuadratic() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		if (!(coeffs[0] == Math.floor(coeffs[0])) ||
 			!(coeffs[1] == Math.floor(coeffs[1])) ||
 			!(coeffs[2] == Math.floor(coeffs[2]))) {
@@ -183,7 +203,10 @@ public class Polynomial {
 	 * Returns the factored form of the quadratic as a String.
 	 * @return		a String containing the factored form of the given Quadratic
 	 */
-	public String factorToString() {
+	public String factorToString() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		int[] factoredEquation = factorQuadratic();
 		int totalGCF = 1;
 		
@@ -220,7 +243,10 @@ public class Polynomial {
 	 * @return		a double array containing the two possible values of x. Any
 	 * 				imaginary x values are entered as NaN
 	 */
-	public double[] solveQuadratic() {
+	public double[] solveQuadratic() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		double [] answers = new double [2];
 
 		answers[0] = ((-1*coeffs[1]) + Math.sqrt(Math.pow(coeffs[1], 2) - (4 * coeffs[0] * coeffs[2]))) / (2 * coeffs[0]);
@@ -233,7 +259,10 @@ public class Polynomial {
 	 * Returns the discriminant using b^2 - 4ac.
 	 * @return		a double containing the value of the discriminant
 	 */
-	public double solveDiscriminant()  {
+	public double solveDiscriminant() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		return Math.pow(coeffs[1], 2) - (4 * coeffs[0] * coeffs[2]);
 	}
 
@@ -241,7 +270,10 @@ public class Polynomial {
 	 * Returns the value of a
 	 * @return		the value of a
 	 */
-	public double getA() {
+	public double getA() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		return coeffs[0];
 	}
 
@@ -249,7 +281,10 @@ public class Polynomial {
 	 * Returns the value of b
 	 * @return		the value of b
 	 */
-	public double getB() {
+	public double getB() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		return coeffs[1];
 	}
 
@@ -257,7 +292,10 @@ public class Polynomial {
 	 * Returns the value of c
 	 * @return		the value of c
 	 */
-	public double getC() {
+	public double getC() throws PolynomialPowerException {
+		if (coeffs.length != 3)
+			throw new PolynomialPowerException("Function power must be 2.");
+		
 		return coeffs[2];
 	}
 	
