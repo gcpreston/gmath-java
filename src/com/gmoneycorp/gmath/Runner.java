@@ -175,6 +175,26 @@ public class Runner {
 				}
 				break;
 				
+			//Calculate the point of intersection of two lines
+			case "intersect":
+				if (args.length > 5)
+					returnUsage();
+				else {
+					Polynomial line1 = new Polynomial(parseDouble(args[1]), parseDouble(args[2]));
+					Polynomial line2 = new Polynomial(parseDouble(args[3]), parseDouble(args[4]));
+					
+					if (line1.getSlope() == line2.getSlope()) {
+						if (line1.getYInt() == line2.getYInt())
+							System.out.println("The lines are equal.");
+						else
+							System.out.println("The lines are parallel.");
+					}
+					else {
+						double[] intersect = Polynomial.findIntersect(line1, line2);
+						System.out.println(line1 + " and " + line2 + " intersect at (" + intersect[0] + ", " + intersect[1] + ").");;
+					}
+				}
+				
 			//Factor quadratic and return the answer(s)
 			case "quadratic":
 				if (args.length > 4)
@@ -358,7 +378,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_108");
+				System.out.println("GMath version 0.1.2_109");
 				break;
 				
 			case "shape":

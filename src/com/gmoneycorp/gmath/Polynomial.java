@@ -85,14 +85,22 @@ public class Polynomial {
 		return (-1 * coeffs[1]) / coeffs[0];
 	}
 
-	/*
-	public static Fraction[] findIntersect(LinearFunction l1, LinearFunction l2) {
-		Fraction[] intersect = new Fraction[2];
+	public static double[] findIntersect(Polynomial l1, Polynomial l2) {
+		double[] intersect = new double[2];
 		
+		try {
+			intersect[0] = (l2.getYInt() - l1.getYInt()) / (l1.getSlope() - l2.getSlope());
+			intersect[1] = (l1.getSlope() * intersect[0]) + l1.getYInt();
+		} catch (PolynomialPowerException e) {
+			e.printStackTrace();
+		} catch (ArithmeticException e) {
+			return null;
+		}
+		
+		return intersect;
 	}
-	*/
 	
-	public double getM() throws PolynomialPowerException {
+	public double getSlope() throws PolynomialPowerException {
 		if (coeffs.length != 2)
 			throw new PolynomialPowerException("Function power must be 1.");
 		
