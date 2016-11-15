@@ -9,6 +9,8 @@ import java.util.Arrays;
 public class Polynomial {
 
 	private double[] coeffs;
+	private Fraction mFraction;
+	private Fraction bFraction;
 
 	/**
 	 * Constructor that initializes the coefficients of the polynomial.
@@ -26,6 +28,10 @@ public class Polynomial {
 		this.coeffs = Arrays.copyOfRange(coeffs, index, coeffs.length);
 	}
 	
+	/**
+	 * Constructor using List<Fraction> instead of an array.
+	 * @param coeffs	coefficients of the polynomial
+	 */
 	public Polynomial(List<Fraction> coeffs) {
 		int index = 0;
 		for (int i = 0; i < coeffs.size(); i++) {
@@ -39,7 +45,224 @@ public class Polynomial {
 		for (int i = index; i < coeffs.size(); i++)
 			this.coeffs[i] = Fraction.toDecimal(coeffs.get(i + index));
 	}
+	
+	public Polynomial(double m, double b) {
+		this.coeffs = new double[2];
+		this.coeffs[0] = m;
+		this.coeffs[1] = b;
+		this.mFraction = Fraction.toFraction(m).simplify();
+		this.bFraction = Fraction.toFraction(b).simplify();
+	}
 
+	public Polynomial(String coord1, String coord2) {
+
+		double x1, x2, y1, y2;
+		coord1 = coord1.replace("(", "");
+		coord1 = coord1.replace(")", "");
+		coord2 = coord2.replace("(", "");
+		coord2 = coord2.replace(")", "");
+
+		x1 = Double.parseDouble(coord1.split(",")[0]);
+		x2 = Double.parseDouble(coord2.split(",")[0]);
+		y1 = Double.parseDouble(coord1.split(",")[1]);
+		y2 = Double.parseDouble(coord2.split(",")[1]);
+
+		coeffs = new double[2];
+		
+		this.coeffs[0] = (y2 - y1) / (x2 - x1);
+		this.coeffs[1] = y1 - (this.coeffs[0] * x1);
+		this.mFraction = new Fraction(y2 - y1, x2 - x1).simplify();
+		
+		Fraction y1Fraction = Fraction.multiply(mFraction, new Fraction(x1, 1));
+		this.bFraction = Fraction.subtract(new Fraction(y1, 1), y1Fraction).simplify();
+	}
+	
+	//LINEAR FUNCTIONS
+	
+	public double findXInt() {
+		return (-1 * coeffs[1]) / coeffs[0];
+	}
+
+	/*
+	public static Fraction[] findIntersect(LinearFunction l1, LinearFunction l2) {
+		Fraction[] intersect = new Fraction[2];
+		
+	}
+	*/
+	
+	public double getM() {
+		return coeffs[0];
+	}
+
+	public double getYInt() {
+		return coeffs[1];
+	}
+	
+	public Fraction getMFraction() {
+		return mFraction;
+	}
+	
+	public Fraction getBFraction() {
+		return bFraction;
+	}
+
+	//QUADRATIC FUNCTIONS
+	
+	/**
+	 * Returns the two factors of c that add up to b.
+	 * @return		an integer array with containing two factors of c that add
+	 * 				up to b
+	 */
+	private int[] findWorkingFactors() {
+		List<Integer> factors = Factor.factor((int)coeffs[0]*(int)coeffs[2]);
+
+		int[] workingFactors = new int[2];
+
+		if (coeffs[2] > 0) {
+			for (int i = 0; i < factors.size(); i++) {
+				if (factors.get(i) + factors.get(factors.size() - 1 - i) == coeffs[1]) {
+					workingFactors[0] = factors.get(i);
+					workingFactors[1] = factors.get(factors.size() - 1 - i);
+					return workingFactors;
+				}
+			}
+
+			for (int i = 0; i < factors.size(); i++) {
+				if ((factors.get(i) * -1) + (factors.get(factors.size() - 1 - i) * -1) == coeffs[1]) {
+					workingFactors[0] = (factors.get(i) * -1);
+					workingFactors[1] = (factors.get(factors.size() - 1 - i) * -1);
+					return workingFactors;
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < factors.size(); i++) {
+				if (factors.get(i) + (factors.get(factors.size() - 1 - i) * -1) == coeffs[1]) {
+					workingFactors[0] = factors.get(i);
+					workingFactors[1] = (factors.get(factors.size() - 1 - i) * -1);
+					return workingFactors;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the factored version of the quadratic in the form of an integer array
+	 * with four indexes holding the coefficients. To invoke this function, the values
+	 * of a, b, and c, must be integers.
+	 * @return		an integer array with the coefficients of the factored equation
+	 * 				as its four indexes
+	 * @throws InputMismatchException
+	 */
+	public int[] factorQuadratic() {
+		if (!(coeffs[0] == Math.floor(coeffs[0])) ||
+			!(coeffs[1] == Math.floor(coeffs[1])) ||
+			!(coeffs[2] == Math.floor(coeffs[2]))) {
+			return null;
+		}
+
+		int[] workingFactors = findWorkingFactors();
+
+		if (workingFactors == null)
+			return null;
+
+		int group1GCF = Factor.findGCF((int)coeffs[0], workingFactors[0]);
+		int group2GCF = Factor.findGCF(workingFactors[1], (int)coeffs[2]);
+
+		if ((coeffs[1]/group1GCF) != (workingFactors[1]/group2GCF) || (workingFactors[0]/group1GCF) != (coeffs[2]/group2GCF)) {
+			group2GCF *= -1;
+		}
+		int[] finalEquation = {group1GCF, group2GCF, ((int)coeffs[0]/group1GCF), (workingFactors[0]/group1GCF)};
+
+		return finalEquation;
+	}
+
+	/**
+	 * Returns the factored form of the quadratic as a String.
+	 * @return		a String containing the factored form of the given Quadratic
+	 */
+	public String factorToString() {
+		int[] factoredEquation = factorQuadratic();
+		int totalGCF = 1;
+		
+		int GCF1 = Factor.findGCF(factoredEquation[0], factoredEquation[1]);
+		totalGCF *= GCF1;
+		factoredEquation[0] /= GCF1;
+		factoredEquation[1] /= GCF1;
+		
+		int GCF2 = Factor.findGCF(factoredEquation[2], factoredEquation[3]);
+		totalGCF *= GCF2;
+		factoredEquation[2] /= GCF2;
+		factoredEquation[3] /= GCF2;
+		
+		String factoredForm = "";
+
+		if (totalGCF != 1)
+			factoredForm += String.valueOf(totalGCF);
+		
+		factoredForm += "(" + factoredEquation[0] + "x ";
+		if (factoredEquation[1] > 0)
+			factoredForm += "+ " + factoredEquation[1] + ")(" + factoredEquation[2] + "x ";
+		else
+			factoredForm += "- " + factoredEquation[1] * -1 + ")(" + factoredEquation[2] + "x ";
+		if (factoredEquation[3] > 0)
+			factoredForm += "+ " + factoredEquation[3] + ")";
+		else
+			factoredForm += "- " + factoredEquation[3] * -1 + ")";
+
+		return factoredForm;
+	}
+
+	/**
+	 * Returns the possible values of x using the quadratic formula.
+	 * @return		a double array containing the two possible values of x. Any
+	 * 				imaginary x values are entered as NaN
+	 */
+	public double[] solveQuadratic() {
+		double [] answers = new double [2];
+
+		answers[0] = ((-1*coeffs[1]) + Math.sqrt(Math.pow(coeffs[1], 2) - (4 * coeffs[0] * coeffs[2]))) / (2 * coeffs[0]);
+		answers[1] = ((-1*coeffs[1]) - Math.sqrt(Math.pow(coeffs[1], 2) - (4 * coeffs[0] * coeffs[2]))) / (2 * coeffs[0]);
+
+		return answers;
+	}
+	
+	/**
+	 * Returns the discriminant using b^2 - 4ac.
+	 * @return		a double containing the value of the discriminant
+	 */
+	public double solveDiscriminant()  {
+		return Math.pow(coeffs[1], 2) - (4 * coeffs[0] * coeffs[2]);
+	}
+
+	/**
+	 * Returns the value of a
+	 * @return		the value of a
+	 */
+	public double getA() {
+		return coeffs[0];
+	}
+
+	/**
+	 * Returns the value of b
+	 * @return		the value of b
+	 */
+	public double getB() {
+		return coeffs[1];
+	}
+
+	/**
+	 * Returns the value of c
+	 * @return		the value of c
+	 */
+	public double getC() {
+		return coeffs[2];
+	}
+	
+	//POLYNOMIAL FUNCTIONS
+	
 	/**
 	 * Uses the rational root theorem to return the possible roots of the polynomial as fractions.
 	 * Polynomial must contain whole numbers to work properly.
@@ -218,12 +441,27 @@ public class Polynomial {
 			return disp(coeffs[0]);
 
 		if (coeffs.length == 2) {
-			if (coeffs[1] == 0)
-				return disp(coeffs[0]) + "x";
-			else if (coeffs[1] < 0)
-				return disp(coeffs[0]) + "x - " + disp(Math.abs(coeffs[1]));
+			String eq = "y = ";
+
+			if (coeffs[0] == Math.floor(coeffs[0]))
+				eq += (int)coeffs[0] + "x ";
 			else
-				return disp(coeffs[0]) + "x + " + disp(coeffs[1]);
+				eq += "(" + mFraction + ")" + "x ";
+			if (coeffs[1] < 0) {
+				if (coeffs[1] == Math.floor(coeffs[1]))
+					eq += "- " + -1 * (int)coeffs[1];
+				else
+					eq += "- " + bFraction.toString().substring(1);
+			}
+			else {
+				eq += "+ ";
+				if (coeffs[1] == Math.floor(coeffs[1]))
+					eq += (int)coeffs[1];
+				else
+					eq += bFraction;
+			}
+
+			return eq;
 		}
 
 		s += disp(coeffs[0]) + "x^" + (coeffs.length - 1);

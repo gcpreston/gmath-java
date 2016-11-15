@@ -160,7 +160,7 @@ public class Runner {
 				if (args.length > 3)
 					returnUsage();
 				else {
-					LinearFunction func = new LinearFunction(parseDouble(args[1]), parseDouble(args[2]));
+					Polynomial func = new Polynomial(parseDouble(args[1]), parseDouble(args[2]));
 					System.out.println("The x-intercept of " + func + " is " + func.findXInt());
 				}
 				break;
@@ -170,7 +170,7 @@ public class Runner {
 				if (args.length > 3)
 					returnUsage();
 				else {
-					LinearFunction func = new LinearFunction(args[1], args[2]);
+					Polynomial func = new Polynomial(args[1], args[2]);
 					System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
 				}
 				break;
@@ -180,7 +180,8 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					Quadratic q = new Quadratic(parseDouble(args[1]), parseDouble(args[2]), parseDouble(args[3]));
+					double[] coeffs = {parseDouble(args[1]), parseDouble(args[2]), parseDouble(args[3])};
+					Polynomial q = new Polynomial(coeffs);
 				
 					System.out.print(q + " = ");
 
@@ -209,7 +210,8 @@ public class Runner {
 				if (args.length > 4)
 					returnUsage();
 				else {
-					Quadratic q = new Quadratic(parseInt(args[1]), parseInt(args[2]), parseInt(args[3]));
+					double[] coeffs = {parseInt(args[1]), parseInt(args[2]), parseInt(args[3])};
+					Polynomial q = new Polynomial(coeffs);
 					System.out.println("The discriminant of " + q + " is " + q.solveDiscriminant());
 				}
 				break;
