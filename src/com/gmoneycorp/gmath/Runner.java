@@ -364,6 +364,7 @@ public class Runner {
 				+ "simplifyrad\treturn the simplified form of a radical\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
 				+ "calcline\treturn the formula of a line given two coordinates\n\t"
+				+ "intersect\treturn the point of intersection of two lines\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
 				+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
@@ -378,7 +379,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_109");
+				System.out.println("GMath version 0.1.2_110");
 				break;
 				
 			case "shape":
@@ -447,7 +448,12 @@ public class Runner {
 				
 			case "calcline":
 				System.out.println("Usage: java -jar gmath.jar calcline [input]\n\n"
-						+ "where input is two coordinates in the format (x1,y1) (x2,y2)");
+						+ "where input is two coordinates in the format (x1,y1) (x2,y2).");
+				break;
+				
+			case "intersect":
+				System.out.println("Usage: java -jar gmath.jar intersect [input]\n\n"
+						+ "where input is the coefficients of two lines.");
 				break;
 				
 			case "quadratic":
