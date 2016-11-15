@@ -355,6 +355,11 @@ public class Runner {
 			System.out.println(usage);
 		else {
 			switch (operation) {
+			case "-v":
+			case "--version":
+				System.out.println("GMath version 0.1.2_106");
+				break;
+				
 			case "shape":
 				System.out.println("Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
 						+ "where shapes include\n\t"
