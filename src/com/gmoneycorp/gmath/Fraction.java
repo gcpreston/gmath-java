@@ -241,7 +241,10 @@ public class Fraction {
 				s.length() - s.replace(")", "").length() != 1 ||
 				!s.substring(s.length() - 1, s.length()).equals(")"))
 			return null;
-
+		
+		if (s.substring(0, 1).equals("."))
+			s = 0 + s;
+		
 		int pow1 = s.substring(s.indexOf(".") + 1, s.indexOf(")")).length() - 1;
 		int pow2 = s.substring(s.indexOf(".") + 1, s.indexOf("(")).length();
 		

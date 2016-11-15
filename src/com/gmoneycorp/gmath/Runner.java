@@ -302,6 +302,7 @@ public class Runner {
 				System.out.println("The integral of " + p2 + " over (" + interval[0] + ", " + interval[1] + ") is " + p2.integral(interval[0], interval[1]));
 				break;
 				
+			//Return the derivative of a polynomial at a point
 			case "derive":
 				int point = parseInt(args[args.length - 1]);
 				double[] coeffs3 = new double[args.length - 2];
@@ -357,7 +358,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_107");
+				System.out.println("GMath version 0.1.2_108");
 				break;
 				
 			case "shape":
