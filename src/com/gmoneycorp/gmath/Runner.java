@@ -379,7 +379,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_110");
+				System.out.println("GMath version 0.1.2_111");
 				break;
 				
 			case "shape":
@@ -390,7 +390,7 @@ public class Runner {
 						+ "-c (circle)\tinput is radius\n\n"
 						+ "where functions include\n\t"
 						+ "-a (area)\n\t"
-						+ "-p (perimeter)\n\n");
+						+ "-p (perimeter)");
 				break;
 				
 			case "factor":
