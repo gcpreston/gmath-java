@@ -166,17 +166,25 @@ public class Runner {
 				break;
 				
 			//Calculate function from of two or three coordinates
-			case "calcline":
+			case "calcfunction":
 				if (args.length > 4)
 					returnUsage();
 				else {
 					if (args.length == 3) {
-						Polynomial func = new Polynomial(args[1], args[2]);
-						System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
+						if (args[1].charAt(1) == args[2].charAt(1))
+							System.out.println(args[1] + " and " + args[2] + " are both on the line x = " + args[1].substring(1, 2));
+						else {
+							Polynomial func = new Polynomial(args[1], args[2]);
+							System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
+						}
 					}
 					else {
-						Polynomial func = new Polynomial(args[1], args[2], args[3]);
-						System.out.println(args[1] + ", " + args[2] + " and " + args[3] + " are on the parabola " + func);
+						if (args[1].charAt(1) == args[2].charAt(1) && args[2].charAt(1) == args[3].charAt(1))
+							System.out.println(args[1] + ", " + args[2] + " and " + args[3] + " are on the line x = " + args[1].substring(1, 2));
+						else {
+							Polynomial func = new Polynomial(args[1], args[2], args[3]);
+							System.out.println(args[1] + ", " + args[2] + " and " + args[3] + " are on the parabola " + func);
+						}
 					}
 				}
 				break;
@@ -369,7 +377,7 @@ public class Runner {
 				+ "simplify\treturn the simplified form of a fraction\n\t"
 				+ "simplifyrad\treturn the simplified form of a radical\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
-				+ "calcline\treturn the formula of a line or parabola given two or three coordinates\n\t"
+				+ "calcfunction\treturn the formula of a line or parabola given two or three coordinates\n\t"
 				+ "intersect\treturn the point of intersection of two lines\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
@@ -385,7 +393,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_113");
+				System.out.println("GMath version 0.1.2_114");
 				break;
 				
 			case "shape":
@@ -452,8 +460,8 @@ public class Runner {
 						+ "where input is two numbers m and b, from the linear function f(x) = mx + b.");
 				break;
 				
-			case "calcline":
-				System.out.println("Usage: java -jar gmath.jar calcline [input]\n\n"
+			case "calcfunction":
+				System.out.println("Usage: java -jar gmath.jar calcfunction [input]\n\n"
 						+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
 						+ "or (x1,y1) (x2,y2) (x3,y3) for three points.");
 				break;
