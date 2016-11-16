@@ -385,7 +385,7 @@ public class Runner {
 			switch (operation) {
 			case "-v":
 			case "--version":
-				System.out.println("GMath version 0.1.2_111");
+				System.out.println("GMath version 0.1.2_113");
 				break;
 				
 			case "shape":
