@@ -165,13 +165,19 @@ public class Runner {
 				}
 				break;
 				
-			//Calculate linear function from of two coordinates
+			//Calculate function from of two or three coordinates
 			case "calcline":
-				if (args.length > 3)
+				if (args.length > 4)
 					returnUsage();
 				else {
-					Polynomial func = new Polynomial(args[1], args[2]);
-					System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
+					if (args.length == 3) {
+						Polynomial func = new Polynomial(args[1], args[2]);
+						System.out.println(args[1] + " and " + args[2] + " are both on the line " + func);
+					}
+					else {
+						Polynomial func = new Polynomial(args[1], args[2], args[3]);
+						System.out.println(args[1] + ", " + args[2] + " and " + args[3] + " are on the parabola " + func);
+					}
 				}
 				break;
 				
@@ -363,7 +369,7 @@ public class Runner {
 				+ "simplify\treturn the simplified form of a fraction\n\t"
 				+ "simplifyrad\treturn the simplified form of a radical\n\t"
 				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
-				+ "calcline\treturn the formula of a line given two coordinates\n\t"
+				+ "calcline\treturn the formula of a line or parabola given two or three coordinates\n\t"
 				+ "intersect\treturn the point of intersection of two lines\n\t"
 				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
 				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
@@ -448,7 +454,8 @@ public class Runner {
 				
 			case "calcline":
 				System.out.println("Usage: java -jar gmath.jar calcline [input]\n\n"
-						+ "where input is two coordinates in the format (x1,y1) (x2,y2).");
+						+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
+						+ "or (x1,y1) (x2,y2) (x3,y3) for three points.");
 				break;
 				
 			case "intersect":

@@ -2,6 +2,8 @@ package com.gmoneycorp.gmath;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  * @author Graham Preston
@@ -55,7 +57,6 @@ public class Polynomial {
 	}
 
 	public Polynomial(String coord1, String coord2) {
-
 		double x1, x2, y1, y2;
 		coord1 = coord1.replace("(", "");
 		coord1 = coord1.replace(")", "");
@@ -67,7 +68,7 @@ public class Polynomial {
 		y1 = Double.parseDouble(coord1.split(",")[1]);
 		y2 = Double.parseDouble(coord2.split(",")[1]);
 
-		coeffs = new double[2];
+		this.coeffs = new double[2];
 		
 		this.coeffs[0] = (y2 - y1) / (x2 - x1);
 		this.coeffs[1] = y1 - (this.coeffs[0] * x1);
@@ -75,6 +76,28 @@ public class Polynomial {
 		
 		Fraction y1Fraction = Fraction.multiply(mFraction, new Fraction(x1, 1));
 		this.bFraction = Fraction.subtract(new Fraction(y1, 1), y1Fraction).simplify();
+	}
+	
+	public Polynomial(String coord1, String coord2, String coord3) {
+		double x1, x2, x3, y1, y2, y3;
+		coord1 = coord1.replace("(", "");
+		coord1 = coord1.replace(")", "");
+		coord2 = coord2.replace("(", "");
+		coord2 = coord2.replace(")", "");
+		coord3 = coord3.replace("(", "");
+		coord3 = coord3.replace(")", "");
+
+		x1 = Double.parseDouble(coord1.split(",")[0]);
+		x2 = Double.parseDouble(coord2.split(",")[0]);
+		x3 = Double.parseDouble(coord3.split(",")[0]);
+		y1 = Double.parseDouble(coord1.split(",")[1]);
+		y2 = Double.parseDouble(coord2.split(",")[1]);
+		y3 = Double.parseDouble(coord3.split(",")[1]);
+
+		this.coeffs = new double[3];
+		this.coeffs[0] = ((y1 * (x2 - x3)) + (y2 * (x3 - x1)) + (y3 * (x1 - x2))) / ((x1 - x2) * (x1 - x3) * (x2 - x3));
+		this.coeffs[1] = ((y1 * ((x3 * x3) - (x2 * x2))) + (y2 * ((x1 * x1) - (x3 * x3))) + (y3 * ((x2 * x2) - (x1 * x1)))) / ((x1 - x2) * (x1 - x3) * (x2 - x3));
+		this.coeffs[2] = y1 - (x1 * x1 * coeffs[0]) - (x1 * coeffs[1]);
 	}
 	
 	//LINEAR FUNCTIONS
@@ -478,6 +501,9 @@ public class Polynomial {
 	 * Returns the polynomial in standard polynomial notation.
 	 */
 	public String toString() {
+		DecimalFormat df = new DecimalFormat("#.####");
+		df.setRoundingMode(RoundingMode.CEILING);
+		
 		if (coeffs.length == 0)
 			return "0";
 
@@ -510,7 +536,7 @@ public class Polynomial {
 			return eq;
 		}
 
-		s += disp(coeffs[0]) + "x^" + (coeffs.length - 1);
+		s += df.format(coeffs[0]) + "x^" + (coeffs.length - 1);
 
 		for (int i = 1; i < coeffs.length; i++) {
 			if (coeffs[i] != 0) {
@@ -519,7 +545,7 @@ public class Polynomial {
 				else
 					s += " + ";
 
-				s += disp(Math.abs(coeffs[i]));
+				s += df.format(Math.abs(coeffs[i]));
 
 				if (i < coeffs.length - 2)
 					s += "x^" + (coeffs.length - 1 - i);
