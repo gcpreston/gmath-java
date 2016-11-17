@@ -408,154 +408,154 @@ public class Runner {
 	}
 
 	private static void returnUsage() {
-		String usage = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
-				+ "shape\t\tperform a specified calcualtion for a specfied shape\n\t"
-				+ "factor\t\treturn a list of factors of a positive integer\n\t"
-				+ "primefactor\treturn the prime factorization of a positive integer\n\t"
-				+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
-				+ "gcf\t\treturn the GCF of two positive integers\n\t"
-				+ "lcm\t\treturn the LCM of two positive integers\n\t"
-				+ "fraction\treturn the fraction form of a number\n\t"
-				+ "decimal\t\treturn the decimal form of a fraction\n\t"
-				+ "simplify\treturn the simplified form of a fraction\n\t"
-				+ "simplifyrad\treturn the simplified form of a radical\n\t"
-				+ "x-int\t\treturn the x-intercept of a linear function\n\t"
-				+ "calcfunction\treturn the formula of a function given 2-3 coordinates\n\t"
-				+ "intersect\treturn the point of intersection of two lines\n\t"
-				+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
-				+ "discrim\t\treturn the discriminant of a quadratic\n\t"
-				+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
-				+ "factorpoly\treturn the factored version of a polynomial\n\t"
-				+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
-				+ "integrate\treturn the integral of a polynomial over an interval\n\t"
-				+ "derive\t\treturn the derivative of a polynomial at a point";
+		
+		switch (operation) {
+		case "-h":
+		case "--help":
+			output = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
+					+ "shape\t\tperform a specified calcualtion for a specfied shape\n\t"
+					+ "factor\t\treturn a list of factors of a positive integer\n\t"
+					+ "primefactor\treturn the prime factorization of a positive integer\n\t"
+					+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
+					+ "gcf\t\treturn the GCF of two positive integers\n\t"
+					+ "lcm\t\treturn the LCM of two positive integers\n\t"
+					+ "fraction\treturn the fraction form of a number\n\t"
+					+ "decimal\t\treturn the decimal form of a fraction\n\t"
+					+ "simplify\treturn the simplified form of a fraction\n\t"
+					+ "simplifyrad\treturn the simplified form of a radical\n\t"
+					+ "x-int\t\treturn the x-intercept of a linear function\n\t"
+					+ "calcfunction\treturn the formula of a function given 2-3 coordinates\n\t"
+					+ "intersect\treturn the point of intersection of two lines\n\t"
+					+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
+					+ "discrim\t\treturn the discriminant of a quadratic\n\t"
+					+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
+					+ "factorpoly\treturn the factored version of a polynomial\n\t"
+					+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
+					+ "integrate\treturn the integral of a polynomial over an interval\n\t"
+					+ "derive\t\treturn the derivative of a polynomial at a point";
+			break;
+			
+		case "-v":
+		case "--version":
+			output = "GMath version 0.1.2_118";
+			break;
+			
+		case "shape":
+			output = "Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
+					+ "where shapes include\n\t"
+					+ "-t (triangle)\tinput is three side lengths\n\t"
+					+ "-r (rectangle)\tinput is length and width\n\t"
+					+ "-c (circle)\tinput is radius\n\n"
+					+ "where functions include\n\t"
+					+ "-a (area)\n\t"
+					+ "-p (perimeter)";
+			break;
+			
+		case "factor":
+			output = "Usage: java -jar gmath.jar factor [input]\n\n"
+					+ "where input is a positive integer.";
+			break;
 
-		if (operation == null)
-			output = usage;
-		else {
-			switch (operation) {
-			case "-v":
-			case "--version":
-				output = "GMath version 0.1.2_117";
-				break;
-				
-			case "shape":
-				output = "Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
-						+ "where shapes include\n\t"
-						+ "-t (triangle)\tinput is three side lengths\n\t"
-						+ "-r (rectangle)\tinput is length and width\n\t"
-						+ "-c (circle)\tinput is radius\n\n"
-						+ "where functions include\n\t"
-						+ "-a (area)\n\t"
-						+ "-p (perimeter)";
-				break;
-				
-			case "factor":
-				output = "Usage: java -jar gmath.jar factor [input]\n\n"
-						+ "where input is a positive integer.";
-				break;
-	
-			case "primefactor":
-				output = "Usage: java -jar gmath.jar primefactor [input]\n\n"
-						+ "where input is a positive integer.";
-				break;
-				
-			case "isprime":
-				output = "Usage: java -jar gmath.jar isprime [input]\n\n"
-						+ "where input is a positive integer.";
-				break;
-				
-			case "gcf":
-				output = "Usage: java -jar gmath.jar gcf [input]\n\n"
-						+ "where input is two positive integers.";
-				break;
-	
-			case "lcm":
-				output = "Usage: java -jar gmath.jar lcm [input]\n\n"
-						+ "where input is two positive integers.";
-				break;
-				
-			case "fraction":
-				output = "Usage: java -jar gmath.jar fraction [input]\n\n"
-						+ "where input is one number. For a repeating decimal, put parenthesis\n"
-						+ "around the repeating section.\n\n"
-						+ "EXAMPLE:\n"
-						+ "0.125 = 1/8\n"
-						+ "0.1(6) = 1/6";
-				break;
-	
-			case "decimal":
-				output = "Usage: java -jar gmath.jar decimal [input]\n\n"
-						+ "where input is a fraction in the form numerator/denominator.";
-				break;
-				
-			case "simplify":
-				output = "Usage: java -jar gmath.jar simplfy [input]\n\n"
-						+ "where input is a fraction in the form numerator/denominator.";
-				
-			case "simplifyrad":
-				output = "Usage: java -jar gmath.jar simplifyrad [input]\n\n"
-						+ "where input is n in sqrt(n).";
-				break;
-				
-			case "x-int":
-				output = "Usage: java -jar gmath.jar x-int [input]\n\n"
-						+ "where input is two numbers m and b, from the linear function f(x) = mx + b.";
-				break;
-				
-			case "calcfunction":
-				output = "Usage: java -jar gmath.jar calcfunction [input]\n\n"
-						+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
-						+ "or (x1,y1) (x2,y2) (x3,y3) for three points.";
-				break;
-				
-			case "intersect":
-				output = "Usage: java -jar gmath.jar intersect [input]\n\n"
-						+ "where input is the coefficients of two lines.";
-				break;
-				
-			case "quadratic":
-				output = "Usage: java -jar gmath.jar quadratic [input]\n\n"
-						+ "where input is three integers a, b, and c, from the quadratic\n"
-						+ "f(x) = ax^2 + bx + c.";
-				break;
-	
-			case "discrim":
-				output = "Usage: java -jar gmath.jar discrim [input]\n\n"
-						+ "where input is three integers a, b, and c, from the quadratic\n"
-						+ "f(x) = ax^2 + bx + c.";
-				break;
-				
-			case "rationalroot":
-				output = "Usage: java -jar gmath.jar rationalroot [input]\n\n"
-						+ "where input is the coefficients of a polynomial function.";
-				break;
-				
-			case "factorpoly":
-				output = "Usage: java -jar gmath.jar factorpoly [input]\n\n"
-						+ "where input is the coefficients of a polynomial function.";
-				break;
-				
-			case "syntheticdiv":
-				output = "Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
-						+ "where polynomial are the coefficients of the polynomial to be divided and\n"
-						+ "divisor is the factor to divide the polynomial by.\n"
-						+ "Executes (polynomial) / (x - divisor) using synthetic division.";
-				break;
-				
-			case "integrate":
-				output = "Usage: java -jar gmath.jar integrate [coefficients] [interval]\n\n"
-						+ "where coefficients are any number of integers representing the coefficients of a"
-						+ "polynomial and interval is two integers representing the start and end of the\n"
-						+ "interval to integrate over, respecitvely.";
-				break;
-				
-			case "derive":
-				output = "Usage: java -jar gmath.jar derive [coefficients] [point]\n\n"
-						+ "where coefficients are any number of integers representing the coefficients of a"
-						+ "polynomial and point is the x value to derive at.";
-				break;
-			}
+		case "primefactor":
+			output = "Usage: java -jar gmath.jar primefactor [input]\n\n"
+					+ "where input is a positive integer.";
+			break;
+			
+		case "isprime":
+			output = "Usage: java -jar gmath.jar isprime [input]\n\n"
+					+ "where input is a positive integer.";
+			break;
+			
+		case "gcf":
+			output = "Usage: java -jar gmath.jar gcf [input]\n\n"
+					+ "where input is two positive integers.";
+			break;
+
+		case "lcm":
+			output = "Usage: java -jar gmath.jar lcm [input]\n\n"
+					+ "where input is two positive integers.";
+			break;
+			
+		case "fraction":
+			output = "Usage: java -jar gmath.jar fraction [input]\n\n"
+					+ "where input is one number. For a repeating decimal, put parenthesis\n"
+					+ "around the repeating section.\n\n"
+					+ "EXAMPLE:\n"
+					+ "0.125 = 1/8\n"
+					+ "0.1(6) = 1/6";
+			break;
+
+		case "decimal":
+			output = "Usage: java -jar gmath.jar decimal [input]\n\n"
+					+ "where input is a fraction in the form numerator/denominator.";
+			break;
+			
+		case "simplify":
+			output = "Usage: java -jar gmath.jar simplfy [input]\n\n"
+					+ "where input is a fraction in the form numerator/denominator.";
+			
+		case "simplifyrad":
+			output = "Usage: java -jar gmath.jar simplifyrad [input]\n\n"
+					+ "where input is n in sqrt(n).";
+			break;
+			
+		case "x-int":
+			output = "Usage: java -jar gmath.jar x-int [input]\n\n"
+					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.";
+			break;
+			
+		case "calcfunction":
+			output = "Usage: java -jar gmath.jar calcfunction [input]\n\n"
+					+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
+					+ "or (x1,y1) (x2,y2) (x3,y3) for three points.";
+			break;
+			
+		case "intersect":
+			output = "Usage: java -jar gmath.jar intersect [input]\n\n"
+					+ "where input is the coefficients of two lines.";
+			break;
+			
+		case "quadratic":
+			output = "Usage: java -jar gmath.jar quadratic [input]\n\n"
+					+ "where input is three integers a, b, and c, from the quadratic\n"
+					+ "f(x) = ax^2 + bx + c.";
+			break;
+
+		case "discrim":
+			output = "Usage: java -jar gmath.jar discrim [input]\n\n"
+					+ "where input is three integers a, b, and c, from the quadratic\n"
+					+ "f(x) = ax^2 + bx + c.";
+			break;
+			
+		case "rationalroot":
+			output = "Usage: java -jar gmath.jar rationalroot [input]\n\n"
+					+ "where input is the coefficients of a polynomial function.";
+			break;
+			
+		case "factorpoly":
+			output = "Usage: java -jar gmath.jar factorpoly [input]\n\n"
+					+ "where input is the coefficients of a polynomial function.";
+			break;
+			
+		case "syntheticdiv":
+			output = "Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
+					+ "where polynomial are the coefficients of the polynomial to be divided and\n"
+					+ "divisor is the factor to divide the polynomial by.\n"
+					+ "Executes (polynomial) / (x - divisor) using synthetic division.";
+			break;
+			
+		case "integrate":
+			output = "Usage: java -jar gmath.jar integrate [coefficients] [interval]\n\n"
+					+ "where coefficients are any number of integers representing the coefficients of a"
+					+ "polynomial and interval is two integers representing the start and end of the\n"
+					+ "interval to integrate over, respecitvely.";
+			break;
+			
+		case "derive":
+			output = "Usage: java -jar gmath.jar derive [coefficients] [point]\n\n"
+					+ "where coefficients are any number of integers representing the coefficients of a"
+					+ "polynomial and point is the x value to derive at.";
+			break;
 		}
 	}
 
