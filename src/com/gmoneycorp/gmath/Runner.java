@@ -8,6 +8,7 @@ public class Runner {
 
 	private static String operation;
 	private static String output = "";
+	private static String help;
 
 	public static String runner(String[] args) {
 
@@ -67,20 +68,16 @@ public class Runner {
 				
 			//Return a list of factors of an integer
 			case "factor":
-				if (args.length > 2 || parseInt(args[1]) < 0) {
+				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
-					return output;
-				}
 				else
 					output = "Factors of " + args[1] + ": " + Factor.factor(parseInt(args[1]));
 				break;
 
 			//Return prime factorization of an integer
 			case "primefactor":
-				if (args.length > 2 || parseInt(args[1]) < 0) {
+				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
-					return output;
-				}
 				else {
 					List<Integer> primeFactors = Factor.primeFactorize(parseInt(args[1]));
 					
@@ -96,10 +93,8 @@ public class Runner {
 				
 			//Return true if an integer is prime, otherwise false
 			case "isprime":
-				if (args.length > 2 || parseInt(args[1]) < 0) {
+				if (args.length > 2 || parseInt(args[1]) < 0)
 					returnUsage();
-					return output;
-				}
 				else {
 					if (Factor.isPrime(parseInt(args[1])))
 						output = args[1] + " is prime.";
@@ -110,30 +105,24 @@ public class Runner {
 				
 			//Return the gcf of two positive integers
 			case "gcf":
-				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0) {
+				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
-					return output;
-				}
 				else
 					output = "GCF of " + args[1] + " and " + args[2] + ": " + Factor.findGCF(parseInt(args[1]), parseInt(args[2]));
 				break;
 				
 			//Return the lcm of two positive integers
 			case "lcm":
-				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0) {
+				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
-					return output;
-				}
 				else
 					output = "LCM of " + args[1] + " and " + args[2] + ": " + Factor.findLCM(parseInt(args[1]), parseInt(args[2]));
 				break;
 			
 			//Return the fraction form of a number
 			case "fraction":
-				if (args.length > 2) {
+				if (args.length > 2)
 					returnUsage();
-					return output;
-				}
 				else
 					if (args[1].length() > 9)
 						output = "Please enter a number with 7 decimals or less.";
@@ -141,16 +130,14 @@ public class Runner {
 						if (args[1].contains("("))
 							output = args[1] + " = " + Fraction.toFractionRepeating(args[1]);
 						else	
-						output = args[1] + " = " + Fraction.toFraction(parseDouble(args[1]));
+							output = args[1] + " = " + Fraction.toFraction(parseDouble(args[1]));
 					}
 				break;
 				
 			//Return the decimal form of a fraction
 			case "decimal":
-				if (args.length > 2) {
+				if (args.length > 2)
 					returnUsage();
-					return output;
-				}
 				else {
 					if (String.valueOf(Fraction.toDecimal(args[1])).length() >= 18)
 						output = args[1] + " = " + Fraction.toRepeatingDecimal(args[1]);
@@ -161,20 +148,16 @@ public class Runner {
 				
 			//Return the simplified version of the given fraction
 			case "simplify":
-				if (args.length > 2) {
+				if (args.length > 2)
 					returnUsage();
-					return output;
-				}
 				else
 					output = args[1] + " = " + Fraction.simplify(args[1]);
 				break;
 				
 			//Return the simplified version of the given radical
 			case "simplifyrad":
-				if (args.length > 2) {
+				if (args.length > 2)
 					returnUsage();
-					return output;
-				}
 				else {
 					int[] rad = Factor.simplifyRadical(parseInt(args[1]));
 					output = "sqrt(" + args[1] + ")";
@@ -189,10 +172,8 @@ public class Runner {
 				
 			//Return the x-intercept of a linear function
 			case "x-int":
-				if (args.length > 4) {
+				if (args.length > 4)
 					returnUsage();
-					return output;
-				}
 				else {
 					Polynomial func = new Polynomial(parseDouble(args[1]), parseDouble(args[2]));
 					output = "The x-intercept of " + func + " is " + func.findXInt();	
@@ -201,10 +182,8 @@ public class Runner {
 				
 			//Calculate function from of two or three coordinates
 			case "calcfunction":
-				if (args.length > 4) {
+				if (args.length > 4)
 					returnUsage();
-					return output;
-				}
 				else {
 					if (args.length == 3) {
 						if (args[1].charAt(1) == args[2].charAt(1))
@@ -227,10 +206,8 @@ public class Runner {
 				
 			//Calculate the point of intersection of two lines
 			case "intersect":
-				if (args.length > 5) {
+				if (args.length > 5)
 					returnUsage();
-					return output;
-				}
 				else {
 					Polynomial line1 = new Polynomial(parseDouble(args[1]), parseDouble(args[2]));
 					Polynomial line2 = new Polynomial(parseDouble(args[3]), parseDouble(args[4]));
@@ -249,10 +226,8 @@ public class Runner {
 				
 			//Factor quadratic and return the answer(s)
 			case "quadratic":
-				if (args.length > 4) {
+				if (args.length > 4)
 					returnUsage();
-					return output;
-				}
 				else {
 					double[] coeffs = {parseDouble(args[1]), parseDouble(args[2]), parseDouble(args[3])};
 					Polynomial q = new Polynomial(coeffs);
@@ -281,10 +256,8 @@ public class Runner {
 
 			//Return discriminant of quadratic function
 			case "discrim":
-				if (args.length > 4) {
+				if (args.length > 4)
 					returnUsage();
-					return output;
-				}
 				else {
 					double[] coeffs = {parseInt(args[1]), parseInt(args[2]), parseInt(args[3])};
 					Polynomial q = new Polynomial(coeffs);
@@ -404,7 +377,10 @@ public class Runner {
 			returnUsage();
 		}
 		
-		return output;
+		if (help == null)
+			return output;
+		else
+			return help;
 	}
 
 	private static void returnUsage() {
@@ -412,7 +388,7 @@ public class Runner {
 		switch (operation) {
 		case "-h":
 		case "--help":
-			output = "Usage: java -jar gmath.jar <operation> [input]\n\nwhere operations include:\n\t"
+			help = "Usage: gmath <operation> [input]\n\nwhere operations include:\n\t"
 					+ "shape\t\tperform a specified calcualtion for a specfied shape\n\t"
 					+ "factor\t\treturn a list of factors of a positive integer\n\t"
 					+ "primefactor\treturn the prime factorization of a positive integer\n\t"
@@ -437,11 +413,11 @@ public class Runner {
 			
 		case "-v":
 		case "--version":
-			output = "GMath version 0.1.2_118";
+			help = "GMath version 0.1.2_118";
 			break;
 			
 		case "shape":
-			output = "Usage: java -jar gmath.jar shape <shape> <function> [input]\n\n"
+			help = "Usage: gmath shape <shape> <function> [input]\n\n"
 					+ "where shapes include\n\t"
 					+ "-t (triangle)\tinput is three side lengths\n\t"
 					+ "-r (rectangle)\tinput is length and width\n\t"
@@ -452,32 +428,32 @@ public class Runner {
 			break;
 			
 		case "factor":
-			output = "Usage: java -jar gmath.jar factor [input]\n\n"
+			help = "Usage: gmath factor [input]\n\n"
 					+ "where input is a positive integer.";
 			break;
 
 		case "primefactor":
-			output = "Usage: java -jar gmath.jar primefactor [input]\n\n"
+			help = "Usage: gmath primefactor [input]\n\n"
 					+ "where input is a positive integer.";
 			break;
 			
 		case "isprime":
-			output = "Usage: java -jar gmath.jar isprime [input]\n\n"
+			help = "Usage: gmath isprime [input]\n\n"
 					+ "where input is a positive integer.";
 			break;
 			
 		case "gcf":
-			output = "Usage: java -jar gmath.jar gcf [input]\n\n"
+			help = "Usage: gmath gcf [input]\n\n"
 					+ "where input is two positive integers.";
 			break;
 
 		case "lcm":
-			output = "Usage: java -jar gmath.jar lcm [input]\n\n"
+			help = "Usage: gmath lcm [input]\n\n"
 					+ "where input is two positive integers.";
 			break;
 			
 		case "fraction":
-			output = "Usage: java -jar gmath.jar fraction [input]\n\n"
+			help = "Usage: gmath fraction [input]\n\n"
 					+ "where input is one number. For a repeating decimal, put parenthesis\n"
 					+ "around the repeating section.\n\n"
 					+ "EXAMPLE:\n"
@@ -486,73 +462,73 @@ public class Runner {
 			break;
 
 		case "decimal":
-			output = "Usage: java -jar gmath.jar decimal [input]\n\n"
+			help = "Usage: gmath decimal [input]\n\n"
 					+ "where input is a fraction in the form numerator/denominator.";
 			break;
 			
 		case "simplify":
-			output = "Usage: java -jar gmath.jar simplfy [input]\n\n"
+			help = "Usage: gmath simplfy [input]\n\n"
 					+ "where input is a fraction in the form numerator/denominator.";
 			
 		case "simplifyrad":
-			output = "Usage: java -jar gmath.jar simplifyrad [input]\n\n"
+			help = "Usage: gmath simplifyrad [input]\n\n"
 					+ "where input is n in sqrt(n).";
 			break;
 			
 		case "x-int":
-			output = "Usage: java -jar gmath.jar x-int [input]\n\n"
+			help = "Usage: gmath x-int [input]\n\n"
 					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.";
 			break;
 			
 		case "calcfunction":
-			output = "Usage: java -jar gmath.jar calcfunction [input]\n\n"
+			help = "Usage: gmath calcfunction [input]\n\n"
 					+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
 					+ "or (x1,y1) (x2,y2) (x3,y3) for three points.";
 			break;
 			
 		case "intersect":
-			output = "Usage: java -jar gmath.jar intersect [input]\n\n"
+			help = "Usage: gmath intersect [input]\n\n"
 					+ "where input is the coefficients of two lines.";
 			break;
 			
 		case "quadratic":
-			output = "Usage: java -jar gmath.jar quadratic [input]\n\n"
+			help = "Usage: gmath quadratic [input]\n\n"
 					+ "where input is three integers a, b, and c, from the quadratic\n"
 					+ "f(x) = ax^2 + bx + c.";
 			break;
 
 		case "discrim":
-			output = "Usage: java -jar gmath.jar discrim [input]\n\n"
+			help = "Usage: gmath discrim [input]\n\n"
 					+ "where input is three integers a, b, and c, from the quadratic\n"
 					+ "f(x) = ax^2 + bx + c.";
 			break;
 			
 		case "rationalroot":
-			output = "Usage: java -jar gmath.jar rationalroot [input]\n\n"
+			help = "Usage: gmath rationalroot [input]\n\n"
 					+ "where input is the coefficients of a polynomial function.";
 			break;
 			
 		case "factorpoly":
-			output = "Usage: java -jar gmath.jar factorpoly [input]\n\n"
+			help = "Usage: gmath factorpoly [input]\n\n"
 					+ "where input is the coefficients of a polynomial function.";
 			break;
 			
 		case "syntheticdiv":
-			output = "Usage: java -jar gmath.jar syntheticdiv [polynomial] [divisor]\n\n"
+			help = "Usage: gmath syntheticdiv [polynomial] [divisor]\n\n"
 					+ "where polynomial are the coefficients of the polynomial to be divided and\n"
 					+ "divisor is the factor to divide the polynomial by.\n"
 					+ "Executes (polynomial) / (x - divisor) using synthetic division.";
 			break;
 			
 		case "integrate":
-			output = "Usage: java -jar gmath.jar integrate [coefficients] [interval]\n\n"
+			help = "Usage: gmath integrate [coefficients] [interval]\n\n"
 					+ "where coefficients are any number of integers representing the coefficients of a"
 					+ "polynomial and interval is two integers representing the start and end of the\n"
 					+ "interval to integrate over, respecitvely.";
 			break;
 			
 		case "derive":
-			output = "Usage: java -jar gmath.jar derive [coefficients] [point]\n\n"
+			help = "Usage: gmath derive [coefficients] [point]\n\n"
 					+ "where coefficients are any number of integers representing the coefficients of a"
 					+ "polynomial and point is the x value to derive at.";
 			break;
