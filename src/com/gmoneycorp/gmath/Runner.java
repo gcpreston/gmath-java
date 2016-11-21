@@ -12,7 +12,7 @@ public class Runner {
 
 	public static String runner(String[] args) {
 
-		
+		help = null;
 		try {
 			operation = args[0].toLowerCase();
 
@@ -237,16 +237,16 @@ public class Runner {
 					if (q.factorQuadratic() == null)
 						output += "Not factorable.\n";
 					else {
-						output += q.factorToString() + "\n";
+						output += q.factorToString() + "\n\n";
 					}
 
 					double[] solved = q.solveQuadratic();
 					if (q.solveDiscriminant() > 0) {
-						output += "Two real solutions:";
+						output += "Two real solutions:\n";
 						output += "x = " + solved[0] + ", " + solved[1];
 					}
 					else if (q.solveDiscriminant() == 0) {
-						output += "One real solution (duplicate solutions):";
+						output += "One real solution (duplicate solutions):\n";
 						output += "x = " + solved[0];
 					}
 					else if (q.solveDiscriminant() < 0)
