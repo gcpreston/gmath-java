@@ -71,23 +71,16 @@ public abstract class Factor {
 	}
 
 	/**
-	 * Returns the greatest common factor of two specified integers.
-	 * @param num1	the first integer
-	 * @param num2	the second integer
-	 * @return		the greatest common factor of num1 and num2
+	 * Returns the greatest common denominator of two specified integers.
+	 * @param x	the first integer
+	 * @param y	the second integer
+	 * @return		the greatest common factor of x and y
 	 */
-	public static int findGCF(int num1, int num2) {
-		List<Integer> factors1 = factor(num1);
-		List<Integer> factors2 = factor(num2);
-		int GCF = 1;
-
-		for (int i = 0; i < factors1.size(); i++) {
-			for (int j = 0; j < factors2.size(); j++) {
-				if (factors1.get(i) == factors2.get(j))
-					GCF = factors1.get(i);
-			}
-		}
-		return GCF;
+	public static int gcd(int x, int y) {
+		if (y == 0)
+			return x;
+		else
+			return gcd(y, x % y);
 	}
 
 	/**

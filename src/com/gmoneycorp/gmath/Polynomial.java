@@ -219,8 +219,8 @@ public class Polynomial {
 		if (workingFactors == null)
 			return null;
 
-		int group1GCF = Factor.findGCF((int)coeffs[0], workingFactors[0]);
-		int group2GCF = Factor.findGCF(workingFactors[1], (int)coeffs[2]);
+		int group1GCF = Factor.gcd((int)coeffs[0], workingFactors[0]);
+		int group2GCF = Factor.gcd(workingFactors[1], (int)coeffs[2]);
 
 		if ((coeffs[1]/group1GCF) != (workingFactors[1]/group2GCF) || (workingFactors[0]/group1GCF) != (coeffs[2]/group2GCF)) {
 			group2GCF *= -1;
@@ -241,12 +241,12 @@ public class Polynomial {
 		int[] factoredEquation = factorQuadratic();
 		int totalGCF = 1;
 		
-		int GCF1 = Factor.findGCF(factoredEquation[0], factoredEquation[1]);
+		int GCF1 = Factor.gcd(factoredEquation[0], factoredEquation[1]);
 		totalGCF *= GCF1;
 		factoredEquation[0] /= GCF1;
 		factoredEquation[1] /= GCF1;
 		
-		int GCF2 = Factor.findGCF(factoredEquation[2], factoredEquation[3]);
+		int GCF2 = Factor.gcd(factoredEquation[2], factoredEquation[3]);
 		totalGCF *= GCF2;
 		factoredEquation[2] /= GCF2;
 		factoredEquation[3] /= GCF2;

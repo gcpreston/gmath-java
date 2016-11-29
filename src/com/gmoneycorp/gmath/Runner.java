@@ -8,11 +8,10 @@ public class Runner {
 
 	private static String operation;
 	private static String output = "";
-	private static String help;
+	private static String help = "";
 
 	public static String runner(String[] args) {
 
-		
 		try {
 			operation = args[0].toLowerCase();
 
@@ -103,12 +102,12 @@ public class Runner {
 				}
 				break;
 				
-			//Return the gcf of two positive integers
-			case "gcf":
+			//Return the gcd of two positive integers
+			case "gcd":
 				if (args.length > 3 || parseInt(args[1]) < 0 || parseInt(args[2]) < 0)
 					returnUsage();
 				else
-					output = "GCF of " + args[1] + " and " + args[2] + ": " + Factor.findGCF(parseInt(args[1]), parseInt(args[2]));
+					output = "The GCD of " + args[1] + " and " + args[2] + "is " + Factor.gcd(parseInt(args[1]), parseInt(args[2]));
 				break;
 				
 			//Return the lcm of two positive integers
@@ -369,15 +368,19 @@ public class Runner {
 			}
 		} catch (NegativeArraySizeException e) {
 			returnUsage();
+			return help;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			returnUsage();
+			return help;
 		} catch (NumberFormatException e) {
 			returnUsage();
+			return help;
 		} catch (PolynomialPowerException e) {
 			returnUsage();
+			return help;
 		}
 		
-		if (help == null)
+		if (help == "")
 			return output;
 		else
 			return help;
@@ -385,153 +388,155 @@ public class Runner {
 
 	private static void returnUsage() {
 		
-		switch (operation) {
-		case "-h":
-		case "--help":
-			help = "Usage: gmath <operation> [input]\n\nwhere operations include:\n\t"
-					+ "shape\t\tperform a specified calcualtion for a specfied shape\n\t"
-					+ "factor\t\treturn a list of factors of a positive integer\n\t"
-					+ "primefactor\treturn the prime factorization of a positive integer\n\t"
-					+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
-					+ "gcf\t\treturn the GCF of two positive integers\n\t"
-					+ "lcm\t\treturn the LCM of two positive integers\n\t"
-					+ "fraction\treturn the fraction form of a number\n\t"
-					+ "decimal\t\treturn the decimal form of a fraction\n\t"
-					+ "simplify\treturn the simplified form of a fraction\n\t"
-					+ "simplifyrad\treturn the simplified form of a radical\n\t"
-					+ "x-int\t\treturn the x-intercept of a linear function\n\t"
-					+ "calcfunction\treturn the formula of a function given 2-3 coordinates\n\t"
-					+ "intersect\treturn the point of intersection of two lines\n\t"
-					+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
-					+ "discrim\t\treturn the discriminant of a quadratic\n\t"
-					+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
-					+ "factorpoly\treturn the factored version of a polynomial\n\t"
-					+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
-					+ "integrate\treturn the integral of a polynomial over an interval\n\t"
-					+ "derive\t\treturn the derivative of a polynomial at a point";
-			break;
-			
-		case "-v":
-		case "--version":
-			help = "GMath version 0.1.2_118";
-			break;
-			
-		case "shape":
-			help = "Usage: gmath shape <shape> <function> [input]\n\n"
-					+ "where shapes include\n\t"
-					+ "-t (triangle)\tinput is three side lengths\n\t"
-					+ "-r (rectangle)\tinput is length and width\n\t"
-					+ "-c (circle)\tinput is radius\n\n"
-					+ "where functions include\n\t"
-					+ "-a (area)\n\t"
-					+ "-p (perimeter)";
-			break;
-			
-		case "factor":
-			help = "Usage: gmath factor [input]\n\n"
-					+ "where input is a positive integer.";
-			break;
-
-		case "primefactor":
-			help = "Usage: gmath primefactor [input]\n\n"
-					+ "where input is a positive integer.";
-			break;
-			
-		case "isprime":
-			help = "Usage: gmath isprime [input]\n\n"
-					+ "where input is a positive integer.";
-			break;
-			
-		case "gcf":
-			help = "Usage: gmath gcf [input]\n\n"
-					+ "where input is two positive integers.";
-			break;
-
-		case "lcm":
-			help = "Usage: gmath lcm [input]\n\n"
-					+ "where input is two positive integers.";
-			break;
-			
-		case "fraction":
-			help = "Usage: gmath fraction [input]\n\n"
-					+ "where input is one number. For a repeating decimal, put parenthesis\n"
-					+ "around the repeating section.\n\n"
-					+ "EXAMPLE:\n"
-					+ "0.125 = 1/8\n"
-					+ "0.1(6) = 1/6";
-			break;
-
-		case "decimal":
-			help = "Usage: gmath decimal [input]\n\n"
-					+ "where input is a fraction in the form numerator/denominator.";
-			break;
-			
-		case "simplify":
-			help = "Usage: gmath simplfy [input]\n\n"
-					+ "where input is a fraction in the form numerator/denominator.";
-			
-		case "simplifyrad":
-			help = "Usage: gmath simplifyrad [input]\n\n"
-					+ "where input is n in sqrt(n).";
-			break;
-			
-		case "x-int":
-			help = "Usage: gmath x-int [input]\n\n"
-					+ "where input is two numbers m and b, from the linear function f(x) = mx + b.";
-			break;
-			
-		case "calcfunction":
-			help = "Usage: gmath calcfunction [input]\n\n"
-					+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
-					+ "or (x1,y1) (x2,y2) (x3,y3) for three points.";
-			break;
-			
-		case "intersect":
-			help = "Usage: gmath intersect [input]\n\n"
-					+ "where input is the coefficients of two lines.";
-			break;
-			
-		case "quadratic":
-			help = "Usage: gmath quadratic [input]\n\n"
-					+ "where input is three integers a, b, and c, from the quadratic\n"
-					+ "f(x) = ax^2 + bx + c.";
-			break;
-
-		case "discrim":
-			help = "Usage: gmath discrim [input]\n\n"
-					+ "where input is three integers a, b, and c, from the quadratic\n"
-					+ "f(x) = ax^2 + bx + c.";
-			break;
-			
-		case "rationalroot":
-			help = "Usage: gmath rationalroot [input]\n\n"
-					+ "where input is the coefficients of a polynomial function.";
-			break;
-			
-		case "factorpoly":
-			help = "Usage: gmath factorpoly [input]\n\n"
-					+ "where input is the coefficients of a polynomial function.";
-			break;
-			
-		case "syntheticdiv":
-			help = "Usage: gmath syntheticdiv [polynomial] [divisor]\n\n"
-					+ "where polynomial are the coefficients of the polynomial to be divided and\n"
-					+ "divisor is the factor to divide the polynomial by.\n"
-					+ "Executes (polynomial) / (x - divisor) using synthetic division.";
-			break;
-			
-		case "integrate":
-			help = "Usage: gmath integrate [coefficients] [interval]\n\n"
-					+ "where coefficients are any number of integers representing the coefficients of a"
-					+ "polynomial and interval is two integers representing the start and end of the\n"
-					+ "interval to integrate over, respecitvely.";
-			break;
-			
-		case "derive":
-			help = "Usage: gmath derive [coefficients] [point]\n\n"
-					+ "where coefficients are any number of integers representing the coefficients of a"
-					+ "polynomial and point is the x value to derive at.";
-			break;
+		if (operation != null) {		
+			switch (operation) {
+			case "-h":
+			case "--help":
+				help = "Usage: gmath <operation> [input]\n\nwhere operations include:\n\t"
+						+ "shape\t\tperform a specified calcualtion for a specfied shape\n\t"
+						+ "factor\t\treturn a list of factors of a positive integer\n\t"
+						+ "primefactor\treturn the prime factorization of a positive integer\n\t"
+						+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
+						+ "gcd\t\treturn the GCD of two positive integers\n\t"
+						+ "lcm\t\treturn the LCM of two positive integers\n\t"
+						+ "fraction\treturn the fraction form of a number\n\t"
+						+ "decimal\t\treturn the decimal form of a fraction\n\t"
+						+ "simplify\treturn the simplified form of a fraction\n\t"
+						+ "simplifyrad\treturn the simplified form of a radical\n\t"
+						+ "x-int\t\treturn the x-intercept of a linear function\n\t"
+						+ "calcfunction\treturn the formula of a function given 2-3 coordinates\n\t"
+						+ "intersect\treturn the point of intersection of two lines\n\t"
+						+ "quadratic\tfactor quadratic and return the answer(s)\n\t"
+						+ "discrim\t\treturn the discriminant of a quadratic\n\t"
+						+ "rationalroot\treturn the possible rational roots of a polynomial\n\t"
+						+ "factorpoly\treturn the factored version of a polynomial\n\t"
+						+ "syntheticdiv\treturn a polynomial divided by a value\n\t"
+						+ "integrate\treturn the integral of a polynomial over an interval\n\t"
+						+ "derive\t\treturn the derivative of a polynomial at a point";
+				break;
+				
+			case "-v":
+			case "--version":
+				help = "GMath version 0.1.2_118";
+				break;
+				
+			case "shape":
+				help = "Usage: gmath shape <shape> <function> [input]\n\n"
+						+ "where shapes include\n\t"
+						+ "-t (triangle)\tinput is three side lengths\n\t"
+						+ "-r (rectangle)\tinput is length and width\n\t"
+						+ "-c (circle)\tinput is radius\n\n"
+						+ "where functions include\n\t"
+						+ "-a (area)\n\t"
+						+ "-p (perimeter)";
+				break;
+				
+			case "factor":
+				help = "Usage: gmath factor [input]\n\n"
+						+ "where input is a positive integer.";
+				break;
+	
+			case "primefactor":
+				help = "Usage: gmath primefactor [input]\n\n"
+						+ "where input is a positive integer.";
+				break;
+				
+			case "isprime":
+				help = "Usage: gmath isprime [input]\n\n"
+						+ "where input is a positive integer.";
+				break;
+				
+			case "gcd":
+				help = "Usage: gmath gcd [input]\n\n"
+						+ "where input is two positive integers.";
+				break;
+	
+			case "lcm":
+				help = "Usage: gmath lcm [input]\n\n"
+						+ "where input is two positive integers.";
+				break;
+				
+			case "fraction":
+				help = "Usage: gmath fraction [input]\n\n"
+						+ "where input is one number. For a repeating decimal, put parenthesis\n"
+						+ "around the repeating section.\n\n"
+						+ "EXAMPLE:\n"
+						+ "0.125 = 1/8\n"
+						+ "0.1(6) = 1/6";
+				break;
+	
+			case "decimal":
+				help = "Usage: gmath decimal [input]\n\n"
+						+ "where input is a fraction in the form numerator/denominator.";
+				break;
+				
+			case "simplify":
+				help = "Usage: gmath simplfy [input]\n\n"
+						+ "where input is a fraction in the form numerator/denominator.";
+				
+			case "simplifyrad":
+				help = "Usage: gmath simplifyrad [input]\n\n"
+						+ "where input is n in sqrt(n).";
+				break;
+				
+			case "x-int":
+				help = "Usage: gmath x-int [input]\n\n"
+						+ "where input is two numbers m and b, from the linear function f(x) = mx + b.";
+				break;
+				
+			case "calcfunction":
+				help = "Usage: gmath calcfunction [input]\n\n"
+						+ "where input is two coordinates in the format (x1,y1) (x2,y2) for two points\n"
+						+ "or (x1,y1) (x2,y2) (x3,y3) for three points.";
+				break;
+				
+			case "intersect":
+				help = "Usage: gmath intersect [input]\n\n"
+						+ "where input is the coefficients of two lines.";
+				break;
+				
+			case "quadratic":
+				help = "Usage: gmath quadratic [input]\n\n"
+						+ "where input is three integers a, b, and c, from the quadratic\n"
+						+ "f(x) = ax^2 + bx + c.";
+				break;
+	
+			case "discrim":
+				help = "Usage: gmath discrim [input]\n\n"
+						+ "where input is three integers a, b, and c, from the quadratic\n"
+						+ "f(x) = ax^2 + bx + c.";
+				break;
+				
+			case "rationalroot":
+				help = "Usage: gmath rationalroot [input]\n\n"
+						+ "where input is the coefficients of a polynomial function.";
+				break;
+				
+			case "factorpoly":
+				help = "Usage: gmath factorpoly [input]\n\n"
+						+ "where input is the coefficients of a polynomial function.";
+				break;
+				
+			case "syntheticdiv":
+				help = "Usage: gmath syntheticdiv [polynomial] [divisor]\n\n"
+						+ "where polynomial are the coefficients of the polynomial to be divided and\n"
+						+ "divisor is the factor to divide the polynomial by.\n"
+						+ "Executes (polynomial) / (x - divisor) using synthetic division.";
+				break;
+				
+			case "integrate":
+				help = "Usage: gmath integrate [coefficients] [interval]\n\n"
+						+ "where coefficients are any number of integers representing the coefficients of a"
+						+ "polynomial and interval is two integers representing the start and end of the\n"
+						+ "interval to integrate over, respecitvely.";
+				break;
+				
+			case "derive":
+				help = "Usage: gmath derive [coefficients] [point]\n\n"
+						+ "where coefficients are any number of integers representing the coefficients of a"
+						+ "polynomial and point is the x value to derive at.";
+				break;
+			}
 		}
 	}
 

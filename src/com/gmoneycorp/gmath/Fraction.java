@@ -51,9 +51,9 @@ public class Fraction {
 			denominator *= Math.pow(10, numDecimalsDenom);
 		}
 
-		int GCF = Factor.findGCF((int)numerator, (int)denominator);
-		numerator /= GCF;
-		denominator /= GCF;
+		int gcd = Factor.gcd((int)numerator, (int)denominator);
+		numerator /= gcd;
+		denominator /= gcd;
 
 		this.numerator = Math.abs((int)numerator);
 		this.denominator = Math.abs((int)denominator);
@@ -222,9 +222,9 @@ public class Fraction {
 		int numDecimals = s.length() - 1 - s.indexOf('.');
 		int denom = (int)Math.pow(10, numDecimals);
 		int workingNum = (int)(d * denom);
-		int GCF = Factor.findGCF(workingNum, denom);
-		workingNum /= GCF;
-		denom /= GCF;
+		int gcd = Factor.gcd(workingNum, denom);
+		workingNum /= gcd;
+		denom /= gcd;
 
 		return new Fraction(workingNum, denom);
 	}
@@ -283,9 +283,9 @@ public class Fraction {
 	 * @return		the Fraction object simplified
 	 */
 	public Fraction simplify() {
-		int GCF = Factor.findGCF(numerator, denominator);
-		int newNumer = numerator / GCF;
-		int newDenom = denominator / GCF;
+		int gcd = Factor.gcd(numerator, denominator);
+		int newNumer = numerator / gcd;
+		int newDenom = denominator / gcd;
 		Fraction g = new Fraction(newNumer, newDenom, isNegative);
 
 		return g;
