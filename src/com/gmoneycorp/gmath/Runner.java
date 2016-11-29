@@ -12,10 +12,6 @@ public class Runner {
 
 	public static String runner(String[] args) {
 
-<<<<<<< HEAD
-=======
-		help = null;
->>>>>>> 51f7022d33cc0a6aab9a57d50325a46972441165
 		try {
 			operation = args[0].toLowerCase();
 
@@ -240,16 +236,16 @@ public class Runner {
 					if (q.factorQuadratic() == null)
 						output += "Not factorable.\n";
 					else {
-						output += q.factorToString() + "\n\n";
+						output += q.factorToString() + "\n";
 					}
 
 					double[] solved = q.solveQuadratic();
 					if (q.solveDiscriminant() > 0) {
-						output += "Two real solutions:\n";
+						output += "Two real solutions:";
 						output += "x = " + solved[0] + ", " + solved[1];
 					}
 					else if (q.solveDiscriminant() == 0) {
-						output += "One real solution (duplicate solutions):\n";
+						output += "One real solution (duplicate solutions):";
 						output += "x = " + solved[0];
 					}
 					else if (q.solveDiscriminant() < 0)
@@ -392,12 +388,7 @@ public class Runner {
 
 	private static void returnUsage() {
 		
-<<<<<<< HEAD
 		if (operation != null) {		
-=======
-		if (operation != null) {
-		
->>>>>>> 51f7022d33cc0a6aab9a57d50325a46972441165
 			switch (operation) {
 			case "-h":
 			case "--help":
@@ -406,11 +397,7 @@ public class Runner {
 						+ "factor\t\treturn a list of factors of a positive integer\n\t"
 						+ "primefactor\treturn the prime factorization of a positive integer\n\t"
 						+ "isprime\t\treturn whether or not a positive integer is prime\n\t"
-<<<<<<< HEAD
 						+ "gcd\t\treturn the GCD of two positive integers\n\t"
-=======
-						+ "gcf\t\treturn the GCF of two positive integers\n\t"
->>>>>>> 51f7022d33cc0a6aab9a57d50325a46972441165
 						+ "lcm\t\treturn the LCM of two positive integers\n\t"
 						+ "fraction\treturn the fraction form of a number\n\t"
 						+ "decimal\t\treturn the decimal form of a fraction\n\t"
@@ -459,13 +446,8 @@ public class Runner {
 						+ "where input is a positive integer.";
 				break;
 				
-<<<<<<< HEAD
 			case "gcd":
 				help = "Usage: gmath gcd [input]\n\n"
-=======
-			case "gcf":
-				help = "Usage: gmath gcf [input]\n\n"
->>>>>>> 51f7022d33cc0a6aab9a57d50325a46972441165
 						+ "where input is two positive integers.";
 				break;
 	
