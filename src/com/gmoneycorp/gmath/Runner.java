@@ -536,6 +536,10 @@ public class Runner {
 						+ "where coefficients are any number of integers representing the coefficients of a"
 						+ "polynomial and point is the x value to derive at.";
 				break;
+				
+			default:
+				help = "Unknown command, type gmath --help for instructions.";
+				break;
 			}
 		}
 	}
