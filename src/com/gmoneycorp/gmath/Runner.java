@@ -56,7 +56,6 @@ public class Runner {
 				}
 				else {
 					returnUsage();
-					return output;
 				}
 				
 				if (argsList.contains("-a"))
