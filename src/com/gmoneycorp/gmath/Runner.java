@@ -292,7 +292,7 @@ public class Runner {
 					}
 				}
 				
-				output += "Real roots:";
+				output += "Real roots: ";
 				for (int i = 0; i < realRoots.size(); i++) {
 					if (i == realRoots.size() - 1)
 						output += realRoots.get(i);
