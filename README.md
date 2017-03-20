@@ -1,10 +1,11 @@
-#GMath
+# GMath
+Repo for old original Java version of GMath, go to github.com/MegAmoonguss/gmath for the new version in Python.
 The main functionality of GMath is to be used as a command line calculator, doing things that a regular calculator would not be able to do. GMath can also double as an external reference library if all classes except Runner are made into a JAR file.
 
-##Build
+## Build
 Compile the java files to class files using the `javac` command. Then create a runnable JAR file containing the compiled class files with `Runner.class` as the location of the main method.
 
-##Usage
+## Usage
 Assuming the created JAR file is named gmath.jar and you have cd'd to its directory:
 
 `java -jar gmath.jar <operation> [input]`
